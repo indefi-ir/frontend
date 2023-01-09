@@ -4,7 +4,6 @@ import DefaultLayout from './DefaultLayout';
 
 
 const LayoutWrapper = (props:any) => {
-  console.log("Props",props)
   const { children } = props;
 
   const HeadContent = (
