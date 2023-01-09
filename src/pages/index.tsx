@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-export default function Home() {
+export const Home = () => {
   return (
     <>
       <Head>
@@ -12,3 +12,13 @@ export default function Home() {
     </>
   )
 }
+
+export async function getServerSideProps() {
+  return {
+    redirect: {
+      destination: '/login',
+    },
+  };
+}
+
+export default Home;
