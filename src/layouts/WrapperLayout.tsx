@@ -1,10 +1,17 @@
 import Head from 'next/head';
 import React from 'react';
+import AdminLayout from './AdminLayout';
 import DefaultLayout from './DefaultLayout';
 
+const layouts = {
+  default: DefaultLayout,
+  admin: AdminLayout,
+};
 
-const LayoutWrapper = (props:any) => {
+const WrapperLayout = (props:any) => {
   const { children } = props;
+  //@ts-ignore
+  const Layout = layouts[children?.type?.layout]
 
   const HeadContent = (
     <Head>
@@ -14,6 +21,15 @@ const LayoutWrapper = (props:any) => {
     </Head>
   )
 
+  if (Layout != null) {
+    return (
+      <>
+        {HeadContent}
+        <Layout {...props}>{children}</Layout>
+      </>
+    )
+  }
+
   return (
     <>
       {HeadContent}
@@ -22,5 +38,5 @@ const LayoutWrapper = (props:any) => {
   )
 }
 
-export default LayoutWrapper;
+export default WrapperLayout;
 

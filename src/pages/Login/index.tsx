@@ -1,7 +1,6 @@
 import { LoginForm } from "../../components/forms";
 import Image from 'next/image'
 
-
 const Login = () => {
   return (
     <div className="flex items-center justify-between bg-[url('/images/bg-login.jpeg')] bg-no-repeat	bg-cover h-screen p-12">
@@ -22,5 +21,7 @@ const Login = () => {
     </div>
   )
 }
+
+Login.layout = 'default';
 
 export default Login;

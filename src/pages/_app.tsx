@@ -1,12 +1,21 @@
 import type { AppProps } from 'next/app';
 import '../styles/index.css';
 import '../styles/globals.css';
-import LayoutWrapper from '../layouts/LayoutWrapper';
+import LayoutWrapper from '../layouts/WrapperLayout';
+import { ConfigProvider } from 'antd';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <LayoutWrapper>
-      <Component {...pageProps} />
-    </LayoutWrapper>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#68417f',
+        }
+      }}
+    >
+      <LayoutWrapper>
+        <Component {...pageProps} />
+      </LayoutWrapper>
+    </ConfigProvider>
   )
 }
