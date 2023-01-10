@@ -15,7 +15,7 @@ const menuItems = [
     key: '1',
     icon: <UserOutlined />,
     label: 'Dashboard',
-    path: '/'
+    path: '/dashboard'
   },
   {
     key: '2',
@@ -44,9 +44,9 @@ const menuItems = [
 ]
 const AdminMenu = ({ styles }: Props) => {
   return (
-    <Menu mode="inline" defaultSelectedKeys={['1']} style={styles} className="text-base">
+    <Menu mode="inline" defaultSelectedKeys={['1']} style={styles} className="text-lg">
       {menuItems.map((item) => (
-        <Menu.Item key={item.key} icon={item.icon}>
+        <Menu.Item key={item.key} icon={item.icon} className="!my-6 text-white">
           <Link href={item.path}>
             {item.label}
           </Link>

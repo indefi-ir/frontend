@@ -23,10 +23,11 @@ const AdminLayout = ({ children }: Props) => {
     <Layout className='h-screen'>
       <Sider
         trigger={null}
+        width={320}
         collapsible
         collapsed={collapsed}
         theme='light'
-        style={{ background: colorPrimary }}>
+        style={{ background: colorPrimary, padding: "30px 15px" }}>
         <div className="logo" />
         <AdminMenu styles={{ background: colorPrimary, color: "white" }} />
       </Sider>
@@ -38,7 +39,7 @@ const AdminLayout = ({ children }: Props) => {
           })}
         </Header>
         <Content style={{ margin: '0 16px' }}>
-        <Breadcrumb />
+          <Breadcrumb />
           <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
             {children}
           </div>
