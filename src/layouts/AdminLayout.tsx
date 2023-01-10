@@ -2,11 +2,10 @@ import React, { ReactNode, useState } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, theme } from 'antd';
+import AdminMenu from '../components/AdminMenu/AdminMenu';
+import Breadcrumb from '../components/Breadcrumb/BreadCrumb';
 
 const { Header, Sider, Content } = Layout;
 
@@ -22,35 +21,14 @@ const AdminLayout = ({ children }: Props) => {
 
   return (
     <Layout className='h-screen'>
-      <Sider 
-          trigger={null} 
-          collapsible 
-          collapsed={collapsed} 
-          theme='light'
-          style={{ background: colorPrimary }}>
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        theme='light'
+        style={{ background: colorPrimary }}>
         <div className="logo" />
-        <Menu
-          mode="inline"
-          defaultSelectedKeys={['1']}
-          style={{ background: colorPrimary, color: "white" }}
-          items={[
-            {
-              key: '1',
-              icon: <UserOutlined />,
-              label: 'nav 1',
-            },
-            {
-              key: '2',
-              icon: <VideoCameraOutlined />,
-              label: 'nav 2',
-            },
-            {
-              key: '3',
-              icon: <UploadOutlined />,
-              label: 'nav 3',
-            },
-          ]}
-        />
+        <AdminMenu styles={{ background: colorPrimary, color: "white" }} />
       </Sider>
       <Layout className="site-layout">
         <Header style={{ padding: 0, background: colorBgContainer }}>
@@ -59,15 +37,11 @@ const AdminLayout = ({ children }: Props) => {
             onClick: () => setCollapsed(!collapsed),
           })}
         </Header>
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-          }}
-        >
-          {children}
+        <Content style={{ margin: '0 16px' }}>
+        <Breadcrumb />
+          <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
+            {children}
+          </div>
         </Content>
       </Layout>
     </Layout>
