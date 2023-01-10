@@ -1,4 +1,5 @@
-import { Table } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { Button, Input, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 
 interface DataType {
@@ -34,7 +35,17 @@ for (let i = 0; i < 100; i++) {
 }
 
 const SupplyChain = () => (
-  <Table columns={columns} dataSource={data} scroll={{ y: 600 }} />
+  <>
+    <div className='flex justify-between mb-10'>
+      <Input
+        prefix={<SearchOutlined className='mr-2 font-bold' />}
+        placeholder="Search Supply Chains"
+        bordered={false}
+        className='w-[300px] text-[14px] h-12 border-none !bg-neutral-100 font-normal' />
+      <Button className='bg-purple' size='large' type='primary'>Add Supply Chain</Button>
+    </div>
+    <Table columns={columns} dataSource={data} scroll={{ y: 600 }} />
+  </>
 );
 
 SupplyChain.layout = 'admin'
