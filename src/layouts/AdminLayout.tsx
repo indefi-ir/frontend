@@ -4,8 +4,8 @@ import {
   MenuUnfoldOutlined,
 } from '@ant-design/icons';
 import { Layout, theme } from 'antd';
-import AdminMenu from '../components/AdminMenu/AdminMenu';
-import Breadcrumb from '../components/Breadcrumb/BreadCrumb';
+import AdminMenu from '../components/adminMenu/AdminMenu';
+import Breadcrumb from '../components/breadcrumb/BreadCrumb';
 
 const { Header, Sider, Content } = Layout;
 
