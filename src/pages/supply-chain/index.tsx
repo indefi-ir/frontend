@@ -1,7 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
-import { Button, Input, Table } from 'antd';
+import { Button, Input, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { AddSupplyChainModal } from '../../components/modal';
+import { AddSupplyChainModal, EditSupplyChainModal } from '../../components/modal';
 
 interface DataType {
   id: React.Key;
@@ -24,6 +24,15 @@ const columns: ColumnsType<DataType> = [
     title: 'Description',
     dataIndex: 'description',
   },
+  {
+    title: 'Action',
+    key: 'action',
+    render: () => (
+      <Space size="middle">
+        <EditSupplyChainModal />
+      </Space>
+    )
+  }
 ];
 
 const data: DataType[] = [];
@@ -44,7 +53,6 @@ const SupplyChain = () => (
         bordered={false}
         className='w-[300px] text-[14px] h-12 border-none !bg-neutral-100 font-normal' />
         <AddSupplyChainModal />
-      {/* <Button className='bg-purple' size='large' type='primary'>Add Supply Chain</Button> */}
     </div>
     <Table columns={columns} dataSource={data} scroll={{ y: 600 }} />
   </>
