@@ -52,7 +52,7 @@ const SupplyChain = () => (
         placeholder="Search Supply Chains"
         bordered={false}
         className='w-[300px] text-[14px] h-12 border-none !bg-neutral-100 font-normal' />
-        <AddSupplyChainModal />
+      <AddSupplyChainModal />
     </div>
     <Table columns={columns} dataSource={data} scroll={{ y: 600 }} />
   </>

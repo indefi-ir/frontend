@@ -15,7 +15,7 @@ const AddSupplyChainModal = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  
+
   return (
     <>
       <Button type="primary" onClick={showModal}>
