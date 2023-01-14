@@ -1,7 +1,6 @@
-import { Button, Form, Input, Select, SelectProps } from "antd";
-const { TextArea } = Input;
+import { Button, Form, Input, SelectProps } from "antd";
 
-const EditSupplyChainForm = () => {
+const AddCompaniesForm = () => {
   const options: SelectProps['options'] = [];
   for (let i = 10; i < 36; i++) {
     options.push({
@@ -19,24 +18,15 @@ const EditSupplyChainForm = () => {
         <Form.Item label="Name">
           <Input className="ml-2" />
         </Form.Item>
-        <Form.Item label="Description">
-          <TextArea rows={4} className="ml-2" />
+        <Form.Item label="Email">
+          <Input className="ml-2" />
         </Form.Item>
-        <Form.Item label="Companies">
-          <Select
-            mode="tags"
-            size='middle'
-            // placeholder="Companies"
-            defaultValue={['a10', 'c12']}
-            // onChange={handleChange}
-            style={{ width: '100%' }}
-            options={options}
-            className="ml-2"
-          />
+        <Form.Item label="Password">
+          <Input className="ml-2" />
         </Form.Item>
         <div className="mt-10 flex w-full flex-row-reverse">
           <Button htmlType="submit" className="ml-2">
-            Edit
+            Add
           </Button>
           <Button htmlType="button">
             Cancel
@@ -46,4 +36,4 @@ const EditSupplyChainForm = () => {
     </div>
   )
 }
-export default EditSupplyChainForm
+export default AddCompaniesForm
