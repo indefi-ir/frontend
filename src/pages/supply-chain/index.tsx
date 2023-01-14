@@ -1,5 +1,5 @@
 import { SearchOutlined } from '@ant-design/icons';
-import { Input, Space, Table } from 'antd';
+import { Input, Pagination, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { AddSupplyChainModal, DeleteSupplyChainModal, EditSupplyChainModal } from '../../components/modal';
 
@@ -37,7 +37,7 @@ const columns: ColumnsType<DataType> = [
 ];
 
 const data: DataType[] = [];
-for (let i = 0; i <8; i++) {
+for (let i = 0; i < 100; i++) {
   data.push({
     id: i,
     name: `Plutus ${i}`,
@@ -55,7 +55,10 @@ const SupplyChain = () => (
         className='w-[300px] text-[14px] h-12 border-none !bg-neutral-100 font-normal' />
       <AddSupplyChainModal />
     </div>
-    <Table columns={columns} dataSource={data}  pagination={false}/>
+    <Table columns={columns} dataSource={data} scroll={{y: 450}} />
+    {/* <div className="flex justify-end mt-5">
+      <Pagination defaultCurrent={6} total={10} pageSize={6}/>
+    </div> */}
   </div>
 );
 
