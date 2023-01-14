@@ -1,5 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
+import { AddIcon } from "../../icons";
 
 const AddSupplyChainModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,8 +19,11 @@ const AddSupplyChainModal = () => {
 
   return (
     <>
-      <Button size="large" onClick={showModal}>
-        Create New
+      <Button className="flex items-center bg-blue-light text-blue hover:font-bold hover:!text-blue border-0 px-2 !py-6" size="large" onClick={showModal}>
+      <AddIcon/>
+        <span className="mx-2"> 
+          Create New
+        </span>
       </Button>
       <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <p>Some contents...</p>

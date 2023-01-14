@@ -32,8 +32,8 @@ const AdminLayout = ({ children }: Props) => {
         <AdminMenu styles={{ background: colorPrimary, color: "white" }} />
       </Sider>
       <Layout>
-        <Header className='flex items-center' style={{ padding: "10px 20px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: colorBgContainer }}>
-          <div className=''>
+        <Header className='flex items-center' style={{ padding: "10px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>
+          <div className='text-purple text-xl'>
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               onClick: () => setCollapsed(!collapsed),

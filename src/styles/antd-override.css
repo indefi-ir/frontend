@@ -13,3 +13,9 @@ td.ant-table-cell {
   font-weight: 600;
   font-size: 14px;
 } 
+
+.ant-breadcrumb span.ant-breadcrumb-link a{
+  color: #68417f;
+  font-size: 14px;
+  font-weight: 600;
+}

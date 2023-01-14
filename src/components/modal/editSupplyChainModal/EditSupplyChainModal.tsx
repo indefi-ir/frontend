@@ -1,5 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
+import { EditIcon } from "../../icons";
 
 const EditSupplyChainModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,8 +19,8 @@ const EditSupplyChainModal = () => {
   
   return (
     <>
-      <Button shape="round" onClick={showModal}>
-        Edit
+      <Button className="bg-neutral-100 border-0 px-2" onClick={showModal}>
+        <EditIcon className="text-neutral-400 hover:text-purple" />
       </Button>
       <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <p>Some contents...</p>
