@@ -18,8 +18,8 @@ const EditSupplyChainModal = () => {
   
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Add Supply Chain
+      <Button shape="round" onClick={showModal}>
+        Edit
       </Button>
       <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <p>Some contents...</p>

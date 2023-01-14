@@ -1,0 +1,15 @@
+.ant-layout {
+  background-color: white;
+}
+
+.ant-table-content .ant-table-thead >tr>th,
+.ant-table-content .ant-table-thead >tr>td  {
+  border-bottom: 0;
+  color: #a1a1a1;
+}
+
+td.ant-table-cell {
+  color: #181C32;
+  font-weight: 600;
+  font-size: 14px;
+} 

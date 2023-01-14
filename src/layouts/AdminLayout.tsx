@@ -31,15 +31,17 @@ const AdminLayout = ({ children }: Props) => {
         <div className="logo" />
         <AdminMenu styles={{ background: colorPrimary, color: "white" }} />
       </Sider>
-      <Layout className="site-layout">
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
-            onClick: () => setCollapsed(!collapsed),
-          })}
-        </Header>
-        <Content style={{ margin: '0 16px' }}>
+      <Layout>
+        <Header className='flex items-center' style={{ padding: "10px 20px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: colorBgContainer }}>
+          <div className=''>
+            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+              className: 'trigger',
+              onClick: () => setCollapsed(!collapsed),
+            })}
+          </div>
           <Breadcrumb />
+        </Header>
+        <Content style={{ margin: '16px' }}>
           <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
             {children}
           </div>

@@ -11,7 +11,7 @@ const Breadcrumb = () => {
   }
 
   return (
-    <AntBreadcrumb style={{ margin: '16px 0' }}>
+    <AntBreadcrumb className='mx-2'>
       {path === '/dashboard' ?
         (
           <AntBreadcrumb.Item>
