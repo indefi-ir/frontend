@@ -1,7 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { Input, Pagination, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { AddSupplyChainModal, DeleteSupplyChainModal, EditSupplyChainModal } from '../../components/modal';
+import { AddSupplyChainModal, DeleteSupplyChainModal, EditSupplyChainModal } from '../../components/modals';
 
 interface DataType {
   id: React.Key;

@@ -1,5 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
+import { AddSupplyChainForm } from "../../forms";
 import { AddIcon } from "../../icons";
 
 const AddSupplyChainModal = () => {
@@ -25,10 +26,14 @@ const AddSupplyChainModal = () => {
           Create New
         </span>
       </Button>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Modal 
+        title="Add Chain" 
+        open={isModalOpen} 
+        onOk={handleOk} 
+        onCancel={handleCancel}
+        footer={false}
+      >
+        <AddSupplyChainForm />
       </Modal>
     </>
   )
