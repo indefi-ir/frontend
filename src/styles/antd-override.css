@@ -19,3 +19,32 @@ td.ant-table-cell {
   font-size: 14px;
   font-weight: 600;
 }
+
+ul.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light {
+  border-inline-end: none;
+}
+
+.ant-menu .ant-menu-item-selected {
+  background-color: white !important;
+  color: #68417f !important;
+}
+
+aside.ant-layout-sider.ant-layout-sider-light {
+  background: #68417f;
+  padding: 30px 15px;
+  flex: 0 0 250px;
+  max-width: 250px;
+  min-width: 250px;
+  width: 250px;
+  border-top-right-radius: 70px;
+}
+
+.ant-menu-item:not(.ant-menu-item-selected):hover {
+  background-color: transparent;
+  color: #f2cfda !important;
+}
+
+td.ant-table-cell {
+  color: #7e8299;
+  font-weight: normal;
+}

@@ -13,12 +13,10 @@ const columns: ColumnsType<DataType> = [
   {
     title: 'Id',
     dataIndex: 'id',
-    width: 150,
   },
   {
     title: 'Name',
     dataIndex: 'name',
-    width: 150,
   },
   {
     title: 'Description',
@@ -49,7 +47,7 @@ const SupplyChain = () => (
   <div className='border rounded-lg p-5'>
     <div className='flex justify-between mb-10'>
       <Input
-        prefix={<SearchOutlined className='mr-2 font-bold' />}
+        prefix={<SearchOutlined className='mr-2 font-bold text-lg' />}
         placeholder="Search Supply Chains"
         bordered={false}
         className='w-[300px] text-[14px] h-12 border-none !bg-neutral-100 font-normal' />

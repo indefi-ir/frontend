@@ -5,6 +5,7 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
+import { DashboardIcon } from '../icons';
 
 interface Props {
   styles?: any;
@@ -13,38 +14,38 @@ interface Props {
 const menuItems = [
   {
     key: '1',
-    icon: <UserOutlined />,
+    icon: <DashboardIcon />,
     label: 'Dashboard',
     path: '/dashboard'
   },
   {
     key: '2',
-    icon: <UserOutlined />,
+    icon: <DashboardIcon />,
     label: 'Supply chains',
     path: '/supply-chain'
   },
   {
     key: '3',
-    icon: <VideoCameraOutlined />,
+    icon: <DashboardIcon />,
     label: 'Companies',
     path: '/companies'
   },
   {
     key: '4',
-    icon: <UploadOutlined />,
+    icon: <DashboardIcon />,
     label: 'Financiers',
     path: '/financiers'
   },
   {
     key: '5',
-    icon: <UploadOutlined />,
+    icon: <DashboardIcon />,
     label: 'Orders',
     path: '/orders'
   },
 ]
 const AdminMenu = ({ styles }: Props) => {
   return (
-    <Menu mode="inline" defaultSelectedKeys={['1']} style={styles} className="text-lg">
+    <Menu mode="inline" defaultSelectedKeys={['1']} style={styles} className="text-base">
       {menuItems.map((item) => (
         <Menu.Item key={item.key} icon={item.icon} className="!my-6 text-white">
           <Link href={item.path}>

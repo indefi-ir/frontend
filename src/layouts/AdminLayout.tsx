@@ -23,16 +23,15 @@ const AdminLayout = ({ children }: Props) => {
     <Layout className='h-screen'>
       <Sider
         trigger={null}
-        width={320}
+        width={250}
         collapsible
         collapsed={collapsed}
-        theme='light'
-        style={{ background: colorPrimary, padding: "30px 15px" }}>
+        theme='light'>
         <div className="logo" />
-        <AdminMenu styles={{ background: colorPrimary, color: "white" }} />
+        <AdminMenu styles={{ background: "#68417f", color: "white" }} />
       </Sider>
       <Layout>
-        <Header className='flex items-center' style={{ padding: "10px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>
+        <Header className='flex items-center mt-6' style={{ padding: "10px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>
           <div className='text-purple text-xl'>
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',

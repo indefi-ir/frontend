@@ -20,10 +20,9 @@ const AddCompaniesModal = () => {
 
   return (
     <>
-      <Button className="flex items-center bg-blue-light text-blue hover:font-bold hover:!text-blue border-0 px-2 !py-6" size="large" onClick={showModal}>
-      <AddIcon/>
+      <Button className="flex items-center bg-blue text-white hover:bg-blue-dark hover:!text-white font-medium text-sm border-0 px-2 !py-6" onClick={showModal}>
         <span className="mx-2"> 
-          Create New
+          Create New Company
         </span>
       </Button>
       <Modal 
