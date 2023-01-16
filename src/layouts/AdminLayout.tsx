@@ -6,6 +6,7 @@ import {
 import { Layout, theme } from 'antd';
 import AdminMenu from '../components/adminMenu/AdminMenu';
 import Breadcrumb from '../components/breadcrumb/BreadCrumb';
+import { PlutusLogo } from '../components/icons';
 
 const { Header, Sider, Content } = Layout;
 
@@ -16,7 +17,7 @@ interface Props {
 const AdminLayout = ({ children }: Props) => {
   const [collapsed, setCollapsed] = useState(false);
   const {
-    token: { colorBgContainer, colorPrimary },
+    token: { colorBgContainer },
   } = theme.useToken();
 
   return (
@@ -27,7 +28,9 @@ const AdminLayout = ({ children }: Props) => {
         collapsible
         collapsed={collapsed}
         theme='light'>
-        <div className="logo" />
+        {!collapsed &&
+          <PlutusLogo />
+        }
         <AdminMenu styles={{ background: "#68417f", color: "white" }} />
       </Sider>
       <Layout>
