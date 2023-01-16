@@ -25,7 +25,7 @@ const EditCompaniesForm = () => {
           <Input className="ml-2" />
         </Form.Item>
         <div className="mt-10 flex w-full flex-row-reverse">
-          <Button htmlType="submit" className="ml-2">
+          <Button htmlType="submit" className="ml-2 bg-blue text-white hover:bg-blue-dark hover:!text-white">
             Edit
           </Button>
           <Button htmlType="button">

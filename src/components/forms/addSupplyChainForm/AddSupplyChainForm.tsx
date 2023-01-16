@@ -11,7 +11,7 @@ const AddSupplyChainForm = () => {
   }
 
   return (
-    <div className="mt-6">
+    <div className="mt-10">
       <Form
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
@@ -35,7 +35,7 @@ const AddSupplyChainForm = () => {
           />
         </Form.Item>
         <div className="mt-10 flex w-full flex-row-reverse">
-          <Button htmlType="submit" className="ml-2">
+          <Button htmlType="submit" className="ml-2 bg-blue text-white hover:bg-blue-dark hover:!text-white">
             Add
           </Button>
           <Button htmlType="button">
