@@ -8,11 +8,11 @@ import { ConfigProvider } from 'antd';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ConfigProvider
-      // theme={{
-      //   token: {
-      //     colorPrimary: '#68417f',
-      //   }
-      // }}
+      theme={{
+        token: {
+          colorPrimary: '#68417f',
+        }
+      }}
     >
       <LayoutWrapper>
         <Component {...pageProps} />
