@@ -4,9 +4,10 @@ import axios from "axios";
 const headers: { [key: string]: any } = {};
 
 const { publicRuntimeConfig } = getConfig();
-// export const { baseURL } = publicRuntimeConfig;
+export const { baseURL } = publicRuntimeConfig;
+
 const axiosApiInstance = axios.create({
-  baseURL:"https://plutus-backend.darkube.app",
+  baseURL,
   headers,
 });
 
