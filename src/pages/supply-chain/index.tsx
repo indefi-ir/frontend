@@ -37,16 +37,9 @@ const columns: ColumnsType<DataType> = [
 ];
 
 const data: DataType[] = [];
-for (let i = 0; i < 100; i++) {
-  data.push({
-    id: i,
-    name: `Plutus ${i}`,
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry ${i}`,
-  });
-}
 
 const SupplyChain = () => {
-  const {data} = useSWR("/api/SupplyChains",fetcher)
+  const { data } = useSWR("/api/SupplyChains", fetcher)
   console.log("data", data)
 
   return (
@@ -59,7 +52,7 @@ const SupplyChain = () => {
           className='w-[300px] text-[14px] h-12 border-none !bg-neutral-100 font-normal' />
         <AddSupplyChainModal />
       </div>
-      {/* <Table columns={columns} dataSource={data} scroll={{ y: 450 }} /> */}
+      <Table columns={columns} dataSource={data} scroll={{ y: 450 }} />
       {/* <div className="flex justify-end mt-5">
       <Pagination defaultCurrent={6} total={10} pageSize={6}/>
     </div> */}

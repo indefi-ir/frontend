@@ -14,7 +14,7 @@ const axiosApiInstance = axios.create({
 export async function get(url:string) {
   return axiosApiInstance
     .get(url)
-    .then((res) => res)
+    .then((res) => res?.data)
     .catch((error) => error)
 }
 
