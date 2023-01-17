@@ -40,7 +40,6 @@ const data: DataType[] = [];
 
 const SupplyChain = () => {
   const { data } = useSWR("/api/SupplyChains", fetcher)
-  console.log("data", data)
 
   return (
     <div className='border rounded-lg p-5'>
