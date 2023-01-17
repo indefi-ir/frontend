@@ -19,8 +19,8 @@ const columns: ColumnsType<DataType> = [
     dataIndex: 'name',
   },
   {
-    title: 'Balance',
-    dataIndex: 'Balance',
+    title: 'ٍEmail',
+    dataIndex: 'email',
   },
   {
     title: '',
@@ -34,14 +34,7 @@ const columns: ColumnsType<DataType> = [
   }
 ];
 
-const data: DataType[] = [];
-for (let i = 0; i < 100; i++) {
-  data.push({
-    id: i,
-    name: `Plutus ${i}`,
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry ${i}`,
-  });
-}
+const data: DataType[] = []
 
 const Financiers = () => (
   <div className='border rounded-lg p-5'>
