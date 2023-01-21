@@ -6,6 +6,9 @@ import type { ColumnsType } from 'antd/es/table';
 import { AddSupplyChainModal, DeleteSupplyChainModal, EditSupplyChainModal } from '../../components/modals';
 import { supplyChainsUrl } from '../../services/apiEndpoint';
 import { useState } from 'react';
+import { UserInfoProvider } from '../../components/providers';
+import React from 'react';
+import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
 
 interface DataType {
   id: React.Key;
@@ -43,9 +46,10 @@ const columns = (searchTerm: string) => ([
 ]);
 
 const SupplyChain = () => {
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useState("");
+  const userInfo = React.useContext(userInfoContext); 
   //@ts-ignore
-  const { data } = useSWR(supplyChainsUrl, fetcher)
+  const { data } = useSWR(`${supplyChainsUrl}${userInfo.id}`, fetcher);
 
   return (
     <div className='border rounded-lg p-5'>

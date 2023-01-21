@@ -4,6 +4,7 @@ import '../styles/globals.css';
 import '../styles/antd-override.css';
 import LayoutWrapper from '../layouts/WrapperLayout';
 import { ConfigProvider } from 'antd';
+import { UserInfoProvider } from '../components/providers';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -14,9 +15,11 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       }}
     >
-      <LayoutWrapper>
-        <Component {...pageProps} />
-      </LayoutWrapper>
+      <UserInfoProvider>
+        <LayoutWrapper>
+          <Component {...pageProps} />
+        </LayoutWrapper>
+      </UserInfoProvider>
     </ConfigProvider>
   )
 }
