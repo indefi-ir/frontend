@@ -7,7 +7,7 @@ export const companiesUrl =  "/api/companies";
 export const addCompany = "/api/companies/add";
 export const editCompany = "/api/companies/edit";
 
-export const financiers =  "/api/financiers";
+export const financiersUrl =  "/api/financiers";
 export const addFinancier = "/api/financiers/add";
 export const editFinancier = "/api/financiers/edit";
 
