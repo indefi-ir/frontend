@@ -1,3 +1,4 @@
+export const loginUrl = 'api/authenticate/login';
 export const supplyChains =  "/api/supplyChains?regulatorId=d80ae806-81a3-424f-93f1-e285b2dd02b2";
 export const addSupplyChain = "/api/supplyChains/add";
 export const editSupplyChain = "/api/supplyChains/delete";

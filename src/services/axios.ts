@@ -27,3 +27,5 @@ export async function post(url:any, body:any, config={}) {
 
 export const fetcher = (url:string) => axios.get(url).then(res => res.data)
 
+export default axiosApiInstance;
+
