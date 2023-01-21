@@ -25,4 +25,5 @@ export async function post(url:any, body:any, config={}) {
   .catch((error) => error)
 }
 
-export const fetcher = (url:string) => get(url);
+export const fetcher = (url:string) => axios.get(url).then(res => res.data)
+

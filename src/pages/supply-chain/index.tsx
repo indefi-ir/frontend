@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import { fetcher } from '../../services/axios';
 import type { ColumnsType } from 'antd/es/table';
 import { AddSupplyChainModal, DeleteSupplyChainModal, EditSupplyChainModal } from '../../components/modals';
+import { supplyChains } from '../../services/apiEndpoint';
 
 interface DataType {
   id: React.Key;
@@ -38,7 +39,9 @@ const columns: ColumnsType<DataType> = [
 
 const SupplyChain = () => {
   //@ts-ignore
-  const { data } = useSWR<DataType[]>("/api/SupplyChains", fetcher)
+  const { data } = useSWR(supplyChains, fetcher)
+
+  console.log("supply", data)
 
   return (
     <div className='border rounded-lg p-5'>

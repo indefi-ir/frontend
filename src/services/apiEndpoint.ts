@@ -1,15 +1,15 @@
-export const getSupplyChains =  "/api/supplyChains";
+export const supplyChains =  "/api/supplyChains?regulatorId=d80ae806-81a3-424f-93f1-e285b2dd02b2";
 export const addSupplyChain = "/api/supplyChains/add";
 export const editSupplyChain = "/api/supplyChains/delete";
 
-export const getCompanies =  "/api/companies";
+export const companies =  "/api/companies";
 export const addCompany = "/api/companies/add";
 export const editCompany = "/api/companies/edit";
 
-export const getFinanciers =  "/api/financiers";
+export const financiers =  "/api/financiers";
 export const addFinancier = "/api/financiers/add";
 export const editFinancier = "/api/financiers/edit";
 
-export const getSellOrders =  "/api/orders/sellorders";
-export const getBuyOrders = "/api/orders/buyorders";
+export const sellOrders =  "/api/orders/sellorders";
+export const buyOrders = "/api/orders/buyorders";
 export const updateOrderState = "/api/orders/updatestate";
