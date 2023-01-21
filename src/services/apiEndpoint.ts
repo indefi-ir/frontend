@@ -11,6 +11,6 @@ export const financiersUrl =  "/api/financiers";
 export const addFinancier = "/api/financiers/add";
 export const editFinancier = "/api/financiers/edit";
 
-export const sellOrders =  "/api/orders/sellorders";
-export const buyOrders = "/api/orders/buyorders";
+export const sellOrdersUrl =  "/api/orders/sell-orders";
+export const buyOrdersUrl = "/api/orders/buy-orders";
 export const updateOrderState = "/api/orders/updatestate";

@@ -39,13 +39,19 @@ const menuItems = [
   {
     key: '5',
     icon: <DashboardIcon />,
-    label: 'Orders',
-    path: '/orders'
+    label: 'Buy orders',
+    path: '/buy-orders'
+  },
+  {
+    key: '6',
+    icon: <DashboardIcon />,
+    label: 'Cell orders',
+    path: '/sell-orders'
   },
 ]
 const AdminMenu = ({ styles }: Props) => {
   return (
-    <Menu mode="inline" defaultSelectedKeys={['1']} style={styles} className="text-base">
+    <Menu mode="inline" style={styles} className="text-base">
       {menuItems.map((item) => (
         <Menu.Item key={item.key} icon={item.icon} className="!my-6 text-white">
           <Link href={item.path}>

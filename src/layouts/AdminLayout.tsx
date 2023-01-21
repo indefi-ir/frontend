@@ -31,7 +31,7 @@ const AdminLayout = ({ children }: Props) => {
         {!collapsed &&
           <PlutusLogo />
         }
-        <AdminMenu styles={{ background: "#68417f", color: "white" }} />
+        <AdminMenu styles={{ background: "transparent", color: "white" }} />
       </Sider>
       <Layout>
         <Header className='flex items-center mt-6' style={{ padding: "10px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>
