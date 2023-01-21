@@ -3,7 +3,7 @@ export const supplyChainsUrl =  "/api/supplychains?RegulatorId=d80ae806-81a3-424
 export const addSupplyChain = "/api/supplyChains/add";
 export const editSupplyChain = "/api/supplyChains/delete";
 
-export const companies =  "/api/companies";
+export const companiesUrl =  "/api/companies";
 export const addCompany = "/api/companies/add";
 export const editCompany = "/api/companies/edit";
 
