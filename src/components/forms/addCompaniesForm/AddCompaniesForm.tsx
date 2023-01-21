@@ -1,12 +1,10 @@
-import { Button, Form, Input, SelectProps } from "antd";
+import { Button, Form, Input } from "antd";
+import { post } from "../../../services/axios";
 
 const AddCompaniesForm = () => {
-  const options: SelectProps['options'] = [];
-  for (let i = 10; i < 36; i++) {
-    options.push({
-      value: i.toString(36) + i,
-      label: i.toString(36) + i,
-    });
+  const onFinish = async (values:any) => {
+    const FinalData = { ...values, regulatorId: "d80ae806-81a3-424f-93f1-e285b2dd02b2", "walletReference": "string"}
+    const result = await post ('/api/Companies/add', FinalData)
   }
 
   return (
@@ -14,14 +12,15 @@ const AddCompaniesForm = () => {
       <Form
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
+        onFinish={onFinish}
         layout="horizontal">
-        <Form.Item label="Name">
+        <Form.Item label="Name" name="name">
           <Input className="ml-2" />
         </Form.Item>
-        <Form.Item label="Email">
+        <Form.Item label="Email" name="email">
           <Input className="ml-2" />
         </Form.Item>
-        <Form.Item label="Password">
+        <Form.Item label="Password" name="password">
           <Input className="ml-2" />
         </Form.Item>
         <div className="mt-10 flex w-full flex-row-reverse">

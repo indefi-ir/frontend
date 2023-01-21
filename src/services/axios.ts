@@ -12,10 +12,17 @@ const axiosApiInstance = axios.create({
 });
 
 export async function get(url:string) {
-  return axiosApiInstance
+  axiosApiInstance
     .get(url)
     .then((res) => res?.data)
     .catch((error) => error)
 }
 
-export const fetcher = (url:any) => get(url);
+export async function post(url:any, body:any, config={}) {
+  return axiosApiInstance
+  .post(url, body, config)
+  .then((res) => res.data)
+  .catch((error) => error)
+}
+
+export const fetcher = (url:string) => get(url);

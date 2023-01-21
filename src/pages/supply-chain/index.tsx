@@ -36,10 +36,9 @@ const columns: ColumnsType<DataType> = [
   }
 ];
 
-const data: DataType[] = [];
-
 const SupplyChain = () => {
-  const { data } = useSWR("/api/SupplyChains", fetcher)
+  //@ts-ignore
+  const { data } = useSWR<DataType[]>("/api/SupplyChains", fetcher)
 
   return (
     <div className='border rounded-lg p-5'>

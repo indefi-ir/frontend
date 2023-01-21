@@ -1,6 +1,6 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { Input, Pagination, Space, Table } from 'antd';
-import useSWR from 'swr';
+import useSWR, { Fetcher } from 'swr';
 import type { ColumnsType } from 'antd/es/table';
 import { AddCompaniesModal, DeleteCompaniesModal, EditCompaniesModal } from '../../components/modals';
 import { fetcher } from '../../services/axios';
@@ -36,11 +36,9 @@ const columns: ColumnsType<DataType> = [
   }
 ];
 
-const data: DataType[] = [];
-
-
 const Companies = () => {
-  const { data } = useSWR("/api/SupplyChains", fetcher)
+  //@ts-ignore
+  const { data } = useSWR<DataType[]>("/api/Companies", fetcher)
 
   return (
     <div className='border rounded-lg p-5'>
