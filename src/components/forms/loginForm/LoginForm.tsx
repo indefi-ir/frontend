@@ -17,17 +17,17 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center bg-white rounded-lg h-fit p-10">
+    <div className="flex flex-col justify-center bg-white rounded-lg h-fit p-14">
       <h1 className="mb-10 text-center font-semibold text-[25px] text-purple">Sign In</h1>
       <Form onFinish={onFinish}>
         <Form.Item name="email">
-          <Input placeholder="Email" className="p-4 text-lg"/>
+          <Input placeholder="Email" className="p-4 text-base"/>
         </Form.Item>
         <Form.Item name="password">
-          <Input placeholder="Password" className="p-4 text-lg"/>
+          <Input placeholder="Password" className="p-4 text-base"/>
         </Form.Item>
         <Form.Item>
-          <Button htmlType="submit" className="w-full bg-purple text-white hover:text-white h-[55px] text-lg">
+          <Button htmlType="submit" className="w-full bg-purple text-white hover:!text-white h-[55px] text-base">
             Submit
           </Button>
         </Form.Item>
