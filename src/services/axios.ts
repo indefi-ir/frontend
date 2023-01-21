@@ -1,5 +1,6 @@
 import getConfig from "next/config";
 import axios from "axios";
+import { getCookie } from "../utils/cookie";
 
 const headers: { [key: string]: any } = {};
 
@@ -8,8 +9,23 @@ export const { baseURL } = publicRuntimeConfig;
 
 const axiosApiInstance = axios.create({
   baseURL,
-  headers,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
+
+axiosApiInstance.interceptors.request.use(
+  (config) => {
+    const accessToken = localStorage.getItem("token");
+    if (accessToken) {
+      config.headers["Authorization"] = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => {
+    Promise.reject(error);
+  }
+);
 
 export async function get(url:string) {
   axiosApiInstance
@@ -25,7 +41,7 @@ export async function post(url:any, body:any, config={}) {
   .catch((error) => error)
 }
 
-export const fetcher = (url:string) => axios.get(url).then(res => res.data)
+export const fetcher = (url:string) => axiosApiInstance.get(url).then(res => res.data)
 
 export default axiosApiInstance;
 
