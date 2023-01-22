@@ -8,6 +8,8 @@ export const removeSupplyChainUrl = "api/supplychains/delete?supplyChainId=";
 export const companiesUrl =  "/api/companies?RegulatorId=";
 export const addCompanyUrl = "/api/companies/add";
 export const editCompany = "/api/companies/edit";
+export const removeCompanyUrl = "/api/companies/delete?companyId=";
+
 
 export const financiersUrl =  "/api/financiers";
 export const addFinancier = "/api/financiers/add";

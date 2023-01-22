@@ -35,17 +35,17 @@ const columns = (searchTerm: string) => ([
   {
     title: '',
     key: 'action',
-    render: () => (
+    render: (record: { id: string; }) => (
       <Space size="middle">
         <EditCompaniesModal />
-        <DeleteCompaniesModal />
+        <DeleteCompaniesModal companyId={record.id} />
       </Space>
     )
   }
 ]);
 
 const Companies = () => {
-  const userInfo = React.useContext(userInfoContext); 
+  const userInfo = React.useContext(userInfoContext);
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
   const { data } = useSWR(`${companiesUrl}${userInfo.id}`, fetcher)

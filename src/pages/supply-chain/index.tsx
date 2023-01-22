@@ -2,11 +2,9 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Input, Pagination, Space, Table } from 'antd';
 import useSWR from 'swr';
 import { fetcher } from '../../services/axios';
-import type { ColumnsType } from 'antd/es/table';
 import { AddSupplyChainModal, DeleteSupplyChainModal, EditSupplyChainModal } from '../../components/modals';
 import { supplyChainsUrl } from '../../services/apiEndpoint';
 import { useState } from 'react';
-import { UserInfoProvider } from '../../components/providers';
 import React from 'react';
 import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
 
@@ -36,7 +34,7 @@ const columns = (searchTerm: string) => ([
   {
     title: '',
     key: 'action',
-    render: (_: any, record: { id: string; }) => (
+    render: (record: { id: string; }) => (
       <Space size="middle">
         <EditSupplyChainModal />
         <DeleteSupplyChainModal supplyChainId={record.id}/>
