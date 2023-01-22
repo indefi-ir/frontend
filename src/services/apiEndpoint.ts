@@ -3,8 +3,8 @@ export const supplyChainsUrl =  "/api/supplychains?RegulatorId=";
 export const addSupplyChain = "/api/supplyChains/add";
 export const editSupplyChain = "/api/supplyChains/delete";
 
-export const companiesUrl =  "/api/companies";
-export const addCompany = "/api/companies/add";
+export const companiesUrl =  "/api/companies?RegulatorId=";
+export const addCompanyUrl = "/api/companies/add";
 export const editCompany = "/api/companies/edit";
 
 export const financiersUrl =  "/api/financiers";

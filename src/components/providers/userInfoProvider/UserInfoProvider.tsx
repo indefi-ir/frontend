@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import useSWR from 'swr';
-import { fetcher, get } from '../../../services/axios';
+import { fetcher } from '../../../services/axios';
 import { userInfoUrl } from '../../../services/apiEndpoint';
 
 export const userInfoContext = React.createContext([]);
@@ -20,7 +19,7 @@ const UserInfoProvider = ({ children }: Props) => {
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [localStorage.getItem("token")]);
 
   return (
     <userInfoContext.Provider value={userInfo ?userInfo : []}>

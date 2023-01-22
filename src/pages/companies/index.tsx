@@ -6,6 +6,8 @@ import { companiesUrl } from '../../services/apiEndpoint';
 import { AddCompaniesModal, DeleteCompaniesModal, EditCompaniesModal } from '../../components/modals';
 import { fetcher } from '../../services/axios';
 import { useState } from 'react';
+import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
+import React from 'react';
 
 interface DataType {
   id: React.Key;
@@ -43,9 +45,10 @@ const columns = (searchTerm: string) => ([
 ]);
 
 const Companies = () => {
+  const userInfo = React.useContext(userInfoContext); 
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
-  const { data } = useSWR(companiesUrl, fetcher)
+  const { data } = useSWR(`${companiesUrl}${userInfo.id}`, fetcher)
 
   return (
     <div className='border rounded-lg p-5'>
