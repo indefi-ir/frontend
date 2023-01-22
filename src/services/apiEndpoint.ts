@@ -1,7 +1,9 @@
 export const loginUrl = 'api/authenticate/login';
+
 export const supplyChainsUrl =  "/api/supplychains?RegulatorId=";
 export const addSupplyChainUrl = "/api/supplyChains/add";
 export const editSupplyChain = "/api/supplyChains/delete";
+export const removeSupplyChainUrl = "api/supplychains/delete?supplyChainId=";
 
 export const companiesUrl =  "/api/companies?RegulatorId=";
 export const addCompanyUrl = "/api/companies/add";

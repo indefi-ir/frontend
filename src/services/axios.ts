@@ -34,7 +34,7 @@ export async function get(url:string) {
     .catch((error) => error)
 }
 
-export async function post(url:any, body:any, config={}) {
+export async function post(url:string, body?:any, config={}) {
   return axiosApiInstance
   .post(url, body, config)
   .then((res) => res.data)

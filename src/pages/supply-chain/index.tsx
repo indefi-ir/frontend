@@ -36,10 +36,10 @@ const columns = (searchTerm: string) => ([
   {
     title: '',
     key: 'action',
-    render: () => (
+    render: (_: any, record: { id: string; }) => (
       <Space size="middle">
         <EditSupplyChainModal />
-        <DeleteSupplyChainModal />
+        <DeleteSupplyChainModal supplyChainId={record.id}/>
       </Space>
     )
   }
