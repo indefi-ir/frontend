@@ -10,11 +10,7 @@ const AddFinanciersModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
+  const closeModal = () => {
     setIsModalOpen(false);
   };
 
@@ -28,11 +24,11 @@ const AddFinanciersModal = () => {
       <Modal 
         title="Add financiers" 
         open={isModalOpen} 
-        onOk={handleOk} 
-        onCancel={handleCancel}
+        onOk={closeModal} 
+        onCancel={closeModal}
         footer={false}
       >
-        <AddFinanciersForm />
+        <AddFinanciersForm closeModal={closeModal} />
       </Modal>
     </>
   )

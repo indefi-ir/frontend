@@ -2,10 +2,11 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Input, Pagination, Space, Table } from 'antd';
 import { fetcher } from '../../services/axios';
 import useSWR from 'swr';
-import type { ColumnsType } from 'antd/es/table';
 import { financiersUrl } from '../../services/apiEndpoint';
 import { useState } from 'react';
 import { AddFinanciersModal, DeleteFinanciersModal, EditFinanciersModal } from '../../components/modals';
+import React from 'react';
+import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
 
 interface DataType {
   id: React.Key;
@@ -45,9 +46,10 @@ const columns = (searchTerm: string) => ([
 const data: DataType[] = []
 
 const Financiers = () => {
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useState("");
+  const userInfo = React.useContext(userInfoContext); 
   //@ts-ignore
-  const { data } = useSWR(financiersUrl, fetcher)
+  const { data } = useSWR(`${financiersUrl}${userInfo.id}`, fetcher)
 
   return (
     <div className='border rounded-lg p-5'>

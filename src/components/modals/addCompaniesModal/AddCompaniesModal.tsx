@@ -1,7 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
 import { AddCompaniesForm } from "../../forms";
-import { AddIcon } from "../../icons";
 
 const AddCompaniesModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
