@@ -37,7 +37,7 @@ const columns = (searchTerm: string) => ([
     key: 'action',
     render: (record: { id: string; }) => (
       <Space size="middle">
-        <EditCompaniesModal />
+        <EditCompaniesModal companyInfo={record}/>
         <DeleteCompaniesModal companyId={record.id} />
       </Space>
     )

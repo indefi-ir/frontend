@@ -1,34 +1,56 @@
-import { Button, Form, Input, SelectProps } from "antd";
+import { Button, Form, Input } from "antd";
+import React, { useState } from "react";
+import { mutate } from "swr";
+import { companiesUrl, editCompanyUrl } from "../../../services/apiEndpoint";
+import { post } from "../../../services/axios";
+import { userInfoContext } from "../../providers/userInfoProvider/UserInfoProvider";
 
-const EditCompaniesForm = () => {
-  const options: SelectProps['options'] = [];
-  for (let i = 10; i < 36; i++) {
-    options.push({
-      value: i.toString(36) + i,
-      label: i.toString(36) + i,
-    });
+interface Props {
+  closeModal: () => void;
+  companyInfo: any;
+}
+
+const EditCompaniesForm = ({ closeModal, companyInfo }: Props) => {
+  const [form] = Form.useForm();
+  const { id: regulatorId }: any = React.useContext(userInfoContext);
+  const [error, setError] = useState<string>("");
+  const { id, name:companyName } = companyInfo?.companyInfo;
+
+  const onFinish = async (values: any) => {
+    const FinalData = { ...values, id }
+    const result = await post(editCompanyUrl, FinalData)
+    await mutate(`${companiesUrl}${regulatorId}`);
+    if (result?.statusCode == "OK") {
+      form.resetFields();
+      closeModal();
+      setError("");
+    } else {
+      setError(result?.response?.data)
+      form.resetFields();
+    }
   }
 
   return (
     <div className="mt-6">
+      {error &&
+        <div className="text-red-500 mb-4">{error}</div>
+      }
       <Form
+        form={form}
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
-        layout="horizontal">
-        <Form.Item label="Name">
-          <Input className="ml-2" />
-        </Form.Item>
-        <Form.Item label="Email">
-          <Input className="ml-2" />
-        </Form.Item>
-        <Form.Item label="Password">
+        onFinish={onFinish}
+        layout="horizontal"
+        initialValues={{ name: companyName }}
+      >
+        <Form.Item label="Name" name="name" >
           <Input className="ml-2" />
         </Form.Item>
         <div className="mt-10 flex w-full flex-row-reverse">
           <Button htmlType="submit" className="ml-2 bg-blue text-white hover:bg-blue-dark hover:!text-white">
-            Edit
+            Save
           </Button>
-          <Button htmlType="button">
+          <Button htmlType="button" onClick={() => closeModal()}>
             Cancel
           </Button>
         </div>
@@ -36,4 +58,4 @@ const EditCompaniesForm = () => {
     </div>
   )
 }
-export default EditCompaniesForm
+export default EditCompaniesForm;

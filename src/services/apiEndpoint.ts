@@ -7,7 +7,7 @@ export const removeSupplyChainUrl = "api/supplychains/delete?supplyChainId=";
 
 export const companiesUrl =  "/api/companies?RegulatorId=";
 export const addCompanyUrl = "/api/companies/add";
-export const editCompany = "/api/companies/edit";
+export const editCompanyUrl = "/api/companies/edit";
 export const removeCompanyUrl = "/api/companies/delete?companyId=";
 
 
