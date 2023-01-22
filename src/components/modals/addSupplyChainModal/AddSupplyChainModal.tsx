@@ -1,7 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
 import { AddSupplyChainForm } from "../../forms";
-import { AddIcon } from "../../icons";
 
 const AddSupplyChainModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,11 +9,7 @@ const AddSupplyChainModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
+  const closeModal = () => {
     setIsModalOpen(false);
   };
 
@@ -28,11 +23,11 @@ const AddSupplyChainModal = () => {
       <Modal 
         title="Add Chain" 
         open={isModalOpen} 
-        onOk={handleOk} 
-        onCancel={handleCancel}
+        onOk={closeModal} 
+        onCancel={closeModal}
         footer={false}
       >
-        <AddSupplyChainForm />
+        <AddSupplyChainForm closeModal={closeModal} />
       </Modal>
     </>
   )

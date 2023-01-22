@@ -1,6 +1,6 @@
 export const loginUrl = 'api/authenticate/login';
 export const supplyChainsUrl =  "/api/supplychains?RegulatorId=";
-export const addSupplyChain = "/api/supplyChains/add";
+export const addSupplyChainUrl = "/api/supplyChains/add";
 export const editSupplyChain = "/api/supplyChains/delete";
 
 export const companiesUrl =  "/api/companies?RegulatorId=";

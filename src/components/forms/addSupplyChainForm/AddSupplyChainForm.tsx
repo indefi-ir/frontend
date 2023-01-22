@@ -1,34 +1,67 @@
 import { Button, Form, Input, Select, SelectProps } from "antd";
+import React from "react";
+import { useState } from "react";
+import { mutate } from "swr";
+import useSWR from 'swr';
+import { addSupplyChainUrl, companiesUrl } from "../../../services/apiEndpoint";
+import { fetcher, post } from "../../../services/axios";
+import { userInfoContext } from "../../providers/userInfoProvider/UserInfoProvider";
 const { TextArea } = Input;
 
-const AddSupplyChainForm = () => {
+interface Props {
+  closeModal: () => void;
+}
+
+const AddSupplyChainForm = ({ closeModal }: Props) => {
+  const [form] = Form.useForm();
+  const { id: regulatorId }: any = React.useContext(userInfoContext);
+  const [isFiledTouched, setIsFiledTouched] = useState<boolean>();
+  const [error, setError] = useState<string>("");
+  const { data: companies } = useSWR(`${companiesUrl}${regulatorId}`, fetcher)
+
   const options: SelectProps['options'] = [];
-  for (let i = 10; i < 36; i++) {
+  companies?.data?.map((company: { id: any; name: any; }) => (
     options.push({
-      value: i.toString(36) + i,
-      label: i.toString(36) + i,
-    });
+      value: company.id,
+      label: company.name,
+    })
+  ));
+  const onFinish = async (values: any) => {
+    const FinalData = { ...values, regulatorId }
+    const result = await post(addSupplyChainUrl, FinalData)
+    await mutate(`${addSupplyChainUrl}${regulatorId}`);
+    if (result?.statusCode == "OK") {
+      form.resetFields();
+      closeModal();
+      setError("");
+    } else {
+      setError(result?.response?.data)
+      form.resetFields();
+    }
   }
 
   return (
     <div className="mt-10">
+      {error &&
+        <div className="text-red-500 mb-4">{error}</div>
+      }
       <Form
+        form={form}
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
+        onFinish={onFinish}
+        onFieldsChange={() => setIsFiledTouched(true)}
         layout="horizontal">
-        <Form.Item label="Name">
+        <Form.Item label="Name" name="name" required>
           <Input className="ml-2" />
         </Form.Item>
-        <Form.Item label="Description">
+        <Form.Item label="Description" name="description">
           <TextArea rows={4} className="ml-2" />
         </Form.Item>
-        <Form.Item label="Companies">
+        <Form.Item label="Companies" name="companies">
           <Select
             mode="tags"
             size='middle'
-            // placeholder="Companies"
-            defaultValue={['a10', 'c12']}
-            // onChange={handleChange}
             style={{ width: '100%' }}
             options={options}
             className="ml-2"
@@ -38,7 +71,7 @@ const AddSupplyChainForm = () => {
           <Button htmlType="submit" className="ml-2 bg-blue text-white hover:bg-blue-dark hover:!text-white">
             Add
           </Button>
-          <Button htmlType="button">
+          <Button htmlType="button" onClick={() => closeModal()}>
             Cancel
           </Button>
         </div>
@@ -47,3 +80,4 @@ const AddSupplyChainForm = () => {
   )
 }
 export default AddSupplyChainForm
+
