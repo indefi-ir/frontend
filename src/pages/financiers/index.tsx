@@ -34,10 +34,10 @@ const columns = (searchTerm: string) => ([
   {
     title: '',
     key: 'action',
-    render: () => (
+    render: (record: { id: string; }) => (
       <Space size="middle">
         <EditFinanciersModal />
-        <DeleteFinanciersModal />
+        <DeleteFinanciersModal financierId={record.id} />
       </Space>
     )
   }
@@ -47,7 +47,7 @@ const data: DataType[] = []
 
 const Financiers = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const userInfo = React.useContext(userInfoContext); 
+  const userInfo = React.useContext(userInfoContext);
   //@ts-ignore
   const { data } = useSWR(`${financiersUrl}${userInfo.id}`, fetcher)
 
