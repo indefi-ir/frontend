@@ -13,9 +13,9 @@ export const removeCompanyUrl = "/api/companies/delete?companyId=";
 
 export const financiersUrl =  "/api/financiers?RegulatorId=";
 export const addFinancierUrl = "/api/financiers/add";
-export const editFinancier = "/api/financiers/edit";
+export const editFinancierUrl = "/api/financiers/edit";
+export const setPasswordFinancierUrl = "/api/Financier/set-password";
 export const removeFinancierUrl = "/api/financiers/delete?financierId=";
-
 
 export const sellOrdersUrl =  "/api/orders/sell-orders";
 export const buyOrdersUrl = "/api/orders/buy-orders";

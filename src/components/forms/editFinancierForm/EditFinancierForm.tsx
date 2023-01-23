@@ -1,23 +1,25 @@
-import { Button, Form, Input, SelectProps } from "antd";
+import { Button, Form, Input } from "antd";
 import React, { useState } from "react";
 import { mutate } from "swr";
-import { addFinancierUrl, financiersUrl } from "../../../services/apiEndpoint";
+import { companiesUrl, editCompanyUrl, editFinancierUrl, financiersUrl } from "../../../services/apiEndpoint";
 import { post } from "../../../services/axios";
+import SetPasswordModal from "../../modals/setPasswordModal/SetPasswordModal";
 import { userInfoContext } from "../../providers/userInfoProvider/UserInfoProvider";
 
 interface Props {
   closeModal: () => void;
+  companyInfo: any;
 }
 
-const EditFinanciersForm = ({ closeModal }: Props) => {
+const EditFinancierForm = ({ closeModal, companyInfo }: Props) => {
   const [form] = Form.useForm();
   const { id: regulatorId }: any = React.useContext(userInfoContext);
-  const [isFiledTouched, setIsFiledTouched] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const { id, name: companyName } = companyInfo?.companyInfo;
 
   const onFinish = async (values: any) => {
-    const FinalData = { ...values, regulatorId, walletReference: "walletReference" }
-    const result = await post(addFinancierUrl, FinalData)
+    const FinalData = { ...values, id }
+    const result = await post(editFinancierUrl, FinalData)
     await mutate(`${financiersUrl}${regulatorId}`);
     if (result?.statusCode == "OK") {
       form.resetFields();
@@ -39,22 +41,20 @@ const EditFinanciersForm = ({ closeModal }: Props) => {
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
         onFinish={onFinish}
-        onFieldsChange={() => setIsFiledTouched(true)}
-        layout="horizontal">
-        <Form.Item label="Name">
-          <Input className="ml-2" required />
+        layout="horizontal"
+        initialValues={{ name: companyName }}
+      >
+        <Form.Item label="Name" name="name" >
+          <Input className="ml-2" />
         </Form.Item>
-        <Form.Item label="Email">
-          <Input className="ml-2" required />
-        </Form.Item>
-        <Form.Item label="Password">
-          <Input className="ml-2" required />
-        </Form.Item>
+        <div className="ml-4">
+          <SetPasswordModal userId={id}/>
+        </div>
         <div className="mt-10 flex w-full flex-row-reverse">
           <Button htmlType="submit" className="ml-2 bg-blue text-white hover:bg-blue-dark hover:!text-white">
-            Edit
+            Save
           </Button>
-          <Button htmlType="button">
+          <Button htmlType="button" onClick={() => closeModal()}>
             Cancel
           </Button>
         </div>
@@ -62,4 +62,4 @@ const EditFinanciersForm = ({ closeModal }: Props) => {
     </div>
   )
 }
-export default EditFinanciersForm
+export default EditFinancierForm;

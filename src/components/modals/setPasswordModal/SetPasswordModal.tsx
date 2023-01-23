@@ -2,7 +2,7 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import { SetPasswordForm } from "../../forms";
 
-const SetPasswordModal = ({ companyId }: any) => {
+const SetPasswordModal = ({ userId }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -27,7 +27,7 @@ const SetPasswordModal = ({ companyId }: any) => {
         onCancel={closeModal}
         footer={false}
       >
-        <SetPasswordForm closeModal={closeModal} id={companyId} />
+        <SetPasswordForm closeModal={closeModal} id={userId} />
       </Modal>
     </>
   )
