@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import { EditCompaniesForm } from "../../forms";
+import { EditFinanciersForm } from "../../forms";
 import { EditIcon } from "../../icons";
 
 const EditCompaniesModal = () => {
@@ -30,7 +30,7 @@ const EditCompaniesModal = () => {
         onCancel={handleCancel}
         footer={false}
       >
-        <EditCompaniesForm />
+        {/* <EditFinanciersForm /> */}
       </Modal>
     </>
   )
