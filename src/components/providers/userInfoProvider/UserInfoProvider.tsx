@@ -20,7 +20,7 @@ const UserInfoProvider = ({ children }: Props) => {
   if(typeof window !== "undefined") {
     useEffect(() => {
       getUserInfo();
-    }, []);
+    }, [localStorage.getItem('token')]);
   }
 
   return (
