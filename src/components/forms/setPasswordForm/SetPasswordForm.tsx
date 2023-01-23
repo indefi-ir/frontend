@@ -1,25 +1,24 @@
 import { Button, Form, Input } from "antd";
 import React, { useState } from "react";
 import { mutate } from "swr";
-import { companiesUrl, editCompanyUrl } from "../../../services/apiEndpoint";
+import { companiesUrl, setPasswordCompanyUrl } from "../../../services/apiEndpoint";
 import { post } from "../../../services/axios";
-import SetPasswordModal from "../../modals/setPasswordModal/SetPasswordModal";
 import { userInfoContext } from "../../providers/userInfoProvider/UserInfoProvider";
 
 interface Props {
   closeModal: () => void;
-  companyInfo: any;
+  id: string;
 }
 
-const EditCompaniesForm = ({ closeModal, companyInfo }: Props) => {
+const SetPasswordForm = ({ closeModal, id }: Props) => {
   const [form] = Form.useForm();
   const { id: regulatorId }: any = React.useContext(userInfoContext);
+  const [isFiledTouched, setIsFiledTouched] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-  const { id, name: companyName } = companyInfo?.companyInfo;
 
   const onFinish = async (values: any) => {
     const FinalData = { ...values, id }
-    const result = await post(editCompanyUrl, FinalData)
+    const result = await post(setPasswordCompanyUrl, FinalData)
     await mutate(`${companiesUrl}${regulatorId}`);
     if (result?.statusCode == "OK") {
       form.resetFields();
@@ -42,16 +41,16 @@ const EditCompaniesForm = ({ closeModal, companyInfo }: Props) => {
         wrapperCol={{ span: 14 }}
         onFinish={onFinish}
         layout="horizontal"
-        initialValues={{ name: companyName }}
+        onFieldsChange={() => setIsFiledTouched(true)}
       >
-        <Form.Item label="Name" name="name" >
+        <Form.Item label="Password" name="password">
           <Input className="ml-2" />
         </Form.Item>
-        <div className="ml-4">
-          <SetPasswordModal companyId={id}/>
-        </div>
+        <Form.Item label="Confirm Password" name="confirmPassword">
+          <Input className="ml-2" />
+        </Form.Item>
         <div className="mt-10 flex w-full flex-row-reverse">
-          <Button htmlType="submit" className="ml-2 bg-blue text-white hover:bg-blue-dark hover:!text-white">
+          <Button htmlType="submit" className="ml-2 bg-blue text-white hover:bg-blue-dark hover:!text-white" disabled={!isFiledTouched}>
             Save
           </Button>
           <Button htmlType="button" onClick={() => closeModal()}>
@@ -62,4 +61,4 @@ const EditCompaniesForm = ({ closeModal, companyInfo }: Props) => {
     </div>
   )
 }
-export default EditCompaniesForm;
+export default SetPasswordForm

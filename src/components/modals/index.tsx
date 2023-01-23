@@ -7,3 +7,4 @@ export { default as DeleteCompaniesModal } from './deleteCompaniesModal/DeleteCo
 export { default as AddFinanciersModal } from './addFinanciersModal/AddFinanciersModal';
 export { default as EditFinanciersModal } from './editFinanciersModal/EditFinanciersModal';
 export { default as  DeleteFinanciersModal} from './deleteFinanciersModal/DeleteFinanciersModal';
+export { default as  SetPasswordModal} from './setPasswordModal/SetPasswordModal';

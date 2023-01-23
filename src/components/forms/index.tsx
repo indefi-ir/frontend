@@ -5,3 +5,4 @@ export { default as AddCompaniesForm } from './addCompaniesForm/AddCompaniesForm
 export { default as EditCompaniesForm } from './editCompaniesForm/EditCompaniesForm';
 export { default as AddFinanciersForm } from './addFinanciersForm/AddFinanciersForm';
 export { default as EditFinanciersForm } from './editFinanciersForm/EditFinanciersForm';
+export { default as SetPasswordForm } from './setPasswordForm/SetPasswordForm';
