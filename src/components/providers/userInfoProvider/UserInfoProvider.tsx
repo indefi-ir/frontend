@@ -19,12 +19,10 @@ const UserInfoProvider = ({ children }: Props) => {
 
   const access_token = typeof window !== "undefined" && localStorage.getItem('token')
 
-  if(typeof window !== "undefined") {
-    useEffect(() => {
-      getUserInfo();
-    }, [access_token]);
-  }
-
+  useEffect(() => {
+    getUserInfo();
+  }, [access_token]);
+  
   return (
     <userInfoContext.Provider value={userInfo ?userInfo : []}>
       {children}
