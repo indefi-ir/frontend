@@ -17,7 +17,7 @@ RUN yarn install
 COPY . /usr/src/app
 
 # Building app
-RUN npm run build
+RUN yarn build
 EXPOSE 3001
 
 # Running the app
