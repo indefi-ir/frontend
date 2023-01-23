@@ -17,10 +17,12 @@ const UserInfoProvider = ({ children }: Props) => {
     }
   };
 
+  const access_token = typeof window !== "undefined" && localStorage.getItem('token')
+
   if(typeof window !== "undefined") {
     useEffect(() => {
       getUserInfo();
-    }, [localStorage.getItem('token')]);
+    }, [access_token]);
   }
 
   return (
