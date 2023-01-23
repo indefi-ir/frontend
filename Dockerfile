@@ -11,6 +11,7 @@ WORKDIR /usr/src/app
 
 # Installing dependencies
 COPY package*.json /usr/src/app/
+COPY next.config.js /usr/src/app/
 RUN npm install
 
 # Copying source files
