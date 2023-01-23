@@ -21,7 +21,7 @@ const EditFinancierForm = ({ closeModal, companyInfo }: Props) => {
     const FinalData = { ...values, id }
     const result = await post(editFinancierUrl, FinalData)
     await mutate(`${financiersUrl}${regulatorId}`);
-    if (result?.statusCode == "OK") {
+    if (result.status === undefined) {
       form.resetFields();
       closeModal();
       setError("");

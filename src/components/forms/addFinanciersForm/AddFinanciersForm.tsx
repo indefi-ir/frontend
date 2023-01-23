@@ -19,7 +19,7 @@ const AddFinanciersForm = ({ closeModal }: Props) => {
     const FinalData = { ...values, regulatorId, walletReference: "walletReference" }
     const result = await post(addFinancierUrl, FinalData)
     await mutate(`${financiersUrl}${regulatorId}`);
-    if (result?.statusCode == "OK") {
+    if (result.status === undefined) {
       form.resetFields();
       closeModal();
       setError("");

@@ -30,7 +30,7 @@ const AddSupplyChainForm = ({ closeModal }: Props) => {
     const FinalData = { ...values, regulatorId }
     const result = await post(addSupplyChainUrl, FinalData)
     await mutate(`${supplyChainsUrl}${regulatorId}`);
-    if (result?.statusCode == "OK") {
+    if (result.status === undefined) {
       form.resetFields();
       closeModal();
       setError("");
