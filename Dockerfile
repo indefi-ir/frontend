@@ -14,7 +14,7 @@ ENV NEXT_PUBLIC_BACKEND_BASE_URL=$NEXT_PUBLIC_BACKEND_BASE_URL
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-RUN export NODE_OPTIONS=--openssl-legacy-provider && yarn build && yarn install --production --ignore-scripts --prefer-offline
+RUN export NODE_OPTIONS=--openssl-legacy-provider && yarn build && yarn install 
 RUN find ./src/pages \( -type d -exec mkdir -p "/app/dummyPages/{}" \; -o -type f -exec touch "/app/dummyPages/{}" \; \)
 
 # Production image, copy all the files and run next
@@ -36,8 +36,5 @@ COPY --from=builder /app/dummyPages ./pages
 USER nextjs
 EXPOSE 3000
 ENV PORT 3000
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry.
-# ENV NEXT_TELEMETRY_DISABLED 1
+
 CMD ["yarn", "start"]
