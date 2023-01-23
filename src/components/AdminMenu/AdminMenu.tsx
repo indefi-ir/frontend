@@ -1,11 +1,6 @@
 import { Menu } from 'antd';
 import Link from 'next/link';
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
-import { DashboardIcon } from '../icons';
+import { BuyOrderIcon, CompanyIcon, DashboardIcon, FinancierIcon, SellOrderIcon, SupplyChainIcon } from '../icons';
 
 interface Props {
   styles?: any;
@@ -20,32 +15,32 @@ const menuItems = [
   },
   {
     key: '2',
-    icon: <DashboardIcon />,
+    icon: <SupplyChainIcon />,
     label: 'Supply chains',
     path: '/supply-chain'
   },
   {
     key: '3',
-    icon: <DashboardIcon />,
+    icon: <CompanyIcon />,
     label: 'Companies',
     path: '/companies'
   },
   {
     key: '4',
-    icon: <DashboardIcon />,
+    icon: <FinancierIcon />,
     label: 'Financiers',
     path: '/financiers'
   },
   {
     key: '5',
-    icon: <DashboardIcon />,
+    icon: <BuyOrderIcon />,
     label: 'Buy orders',
     path: '/buy-orders'
   },
   {
     key: '6',
-    icon: <DashboardIcon />,
-    label: 'Cell orders',
+    icon: <SellOrderIcon />,
+    label: 'Sell orders',
     path: '/sell-orders'
   },
 ]
