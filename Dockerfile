@@ -14,6 +14,12 @@ COPY package*.json /usr/src/app/
 COPY next.config.js /usr/src/app/
 RUN npm install
 
+# Rebuild the source code only when needed
+FROM node:alpine AS builder
+
+ARG NEXT_PUBLIC_BACKEND_BASE_URL
+ENV NEXT_PUBLIC_BACKEND_BASE_URL=$NEXT_PUBLIC_BACKEND_BASE_URL
+
 # Copying source files
 COPY . /usr/src/app
 
