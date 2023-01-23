@@ -30,7 +30,7 @@ const EditSupplyChainModal = () => {
         onCancel={handleCancel}
         footer={false}
       >
-        <AddSupplyChainForm />
+        {/* <AddSupplyChainForm /> */}
       </Modal>
     </>
   )
