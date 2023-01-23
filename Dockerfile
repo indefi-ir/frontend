@@ -3,7 +3,7 @@
 # Use node alpine as it's a small node image
 FROM node:alpine
 
-ENV PORT 3000
+ENV NODE_ENV development
 
 # Create app directory
 RUN mkdir -p /usr/src/app
