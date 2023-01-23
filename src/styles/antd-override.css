@@ -36,7 +36,6 @@ aside.ant-layout-sider.ant-layout-sider-light {
   max-width: 250px;
   min-width: 250px;
   width: 250px;
-  border-top-right-radius: 70px;
 }
 
 .ant-menu-item:not(.ant-menu-item-selected):hover {
@@ -55,4 +54,15 @@ td.ant-table-cell {
 
 .ant-table-wrapper ul.ant-pagination.ant-table-pagination {
   margin-top: 40px;
+}
+
+.ant-menu-submenu-title {
+  height: 40px;
+  line-height: 40px;
+  padding-inline: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-inline: 0;
+  margin-block: 0;
+  width: auto;
 }
