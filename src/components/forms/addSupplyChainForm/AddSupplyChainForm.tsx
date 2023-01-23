@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { mutate } from "swr";
 import useSWR from 'swr';
-import { addSupplyChainUrl, companiesUrl } from "../../../services/apiEndpoint";
+import { addSupplyChainUrl, companiesUrl, supplyChainsUrl } from "../../../services/apiEndpoint";
 import { fetcher, post } from "../../../services/axios";
 import { userInfoContext } from "../../providers/userInfoProvider/UserInfoProvider";
 const { TextArea } = Input;
@@ -29,13 +29,13 @@ const AddSupplyChainForm = ({ closeModal }: Props) => {
   const onFinish = async (values: any) => {
     const FinalData = { ...values, regulatorId }
     const result = await post(addSupplyChainUrl, FinalData)
-    await mutate(`${addSupplyChainUrl}${regulatorId}`);
+    await mutate(`${supplyChainsUrl}${regulatorId}`);
     if (result?.statusCode == "OK") {
       form.resetFields();
       closeModal();
       setError("");
     } else {
-      setError(result?.response?.data)
+      // setError(result?.response?.data)
       form.resetFields();
     }
   }
@@ -55,10 +55,10 @@ const AddSupplyChainForm = ({ closeModal }: Props) => {
         <Form.Item label="Name" name="name" required>
           <Input className="ml-2" />
         </Form.Item>
-        <Form.Item label="Description" name="description">
+        <Form.Item label="Description" name="description" required>
           <TextArea rows={4} className="ml-2" />
         </Form.Item>
-        <Form.Item label="Companies" name="companies">
+        <Form.Item label="Companies" name="companies" required>
           <Select
             mode="tags"
             size='middle'

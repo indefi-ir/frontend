@@ -1,9 +1,9 @@
 export const loginUrl = 'api/authenticate/login';
 
-export const supplyChainsUrl =  "/api/supplychains?RegulatorId=";
-export const addSupplyChainUrl = "/api/supplyChains/add";
-export const editSupplyChain = "/api/supplyChains/delete";
-export const removeSupplyChainUrl = "api/supplychains/delete?supplyChainId=";
+export const supplyChainsUrl =  "/api/supply-chains?RegulatorId=";
+export const addSupplyChainUrl = "/api/supply-chains/add";
+export const editSupplyChain = "/api/supply-chains/delete";
+export const removeSupplyChainUrl = "api/supply-chains/delete?supplyChainId=";
 
 export const companiesUrl =  "/api/companies?RegulatorId=";
 export const addCompanyUrl = "/api/companies/add";
@@ -19,9 +19,7 @@ export const removeFinancierUrl = "/api/financiers/delete?financierId=";
 
 export const sellOrdersUrl =  "/api/orders/sell-orders";
 export const buyOrdersUrl = "/api/orders/buy-orders";
-export const updateOrderState = "/api/orders/updatestate";
-
-
+export const updateOrderState = "/api/orders/update-state";
 
 export const userInfoUrl = "/api/users";
 

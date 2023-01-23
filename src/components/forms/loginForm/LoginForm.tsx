@@ -24,7 +24,7 @@ const LoginForm = () => {
           <Input placeholder="Email" className="p-4 text-base"/>
         </Form.Item>
         <Form.Item name="password">
-          <Input placeholder="Password" className="p-4 text-base"/>
+          <Input placeholder="Password" className="p-4 text-base" type="password"/>
         </Form.Item>
         <Form.Item>
           <Button htmlType="submit" className="w-full bg-purple text-white hover:!text-white h-[55px] text-base">
