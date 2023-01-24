@@ -16,7 +16,7 @@ export const Home = () => {
 export async function getServerSideProps() {
   return {
     redirect: {
-      destination: '/loginn',
+      destination: '/login',
     },
   };
 }
