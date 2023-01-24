@@ -14,7 +14,7 @@ ENV NEXT_PUBLIC_BACKEND_BASE_URL=$NEXT_PUBLIC_BACKEND_BASE_URL
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-RUN export NODE_OPTIONS=--openssl-legacy-provider && yarn build && yarn install 
+RUN yarn build && yarn install 
 RUN find ./src/pages \( -type d -exec mkdir -p "/app/dummyPages/{}" \; -o -type f -exec touch "/app/dummyPages/{}" \; \)
 
 # Production image, copy all the files and run next
