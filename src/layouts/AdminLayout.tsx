@@ -44,13 +44,13 @@ const AdminLayout = ({ children }: Props) => {
           </div>
           <Breadcrumb />
         </Header>
-        <UserInfoProvider>
+        {/* <UserInfoProvider> */}
           <Content style={{ margin: '16px' }}>
             <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
               {children}
             </div>
           </Content>
-        </UserInfoProvider>
+        {/* </UserInfoProvider> */}
       </Layout>
     </Layout>
   );
