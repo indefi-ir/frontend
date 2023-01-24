@@ -5,7 +5,6 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
 COPY next.config.js ./
-COPY i18n.json ./
 RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
@@ -29,7 +28,6 @@ RUN adduser -S nextjs -u 1001
 # COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.js ./next.config.js
-COPY --from=builder /app/i18n.json ./i18n.json
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
