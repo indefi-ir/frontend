@@ -20,7 +20,7 @@ const EditCompaniesForm = ({ closeModal, companyInfo }: Props) => {
   const onFinish = async (values: any) => {
     const FinalData = { ...values, id }
     const result = await post(editCompanyUrl, FinalData)
-    await mutate(`${companiesUrl}${regulatorId}`);
+    await mutate(companiesUrl);
     if (result.status === undefined) {
       form.resetFields();
       closeModal();

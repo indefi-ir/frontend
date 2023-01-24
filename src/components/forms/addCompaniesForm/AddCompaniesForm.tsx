@@ -18,7 +18,7 @@ const AddCompaniesForm = ({ closeModal }: Props) => {
   const onFinish = async (values: any) => {
     const FinalData = { ...values, regulatorId, walletReference: "walletReference" }
     const result = await post(addCompanyUrl, FinalData)
-    await mutate(`${companiesUrl}${regulatorId}`);
+    await mutate(companiesUrl);
     if (result.status !== undefined) {
       form.resetFields();
       closeModal();

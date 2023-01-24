@@ -19,7 +19,7 @@ const SetPasswordForm = ({ closeModal, id }: Props) => {
   const onFinish = async (values: any) => {
     const FinalData = { ...values, id }
     const result = await post(setPasswordCompanyUrl, FinalData)
-    await mutate(`${companiesUrl}${regulatorId}`);
+    await mutate(companiesUrl);
     if (result?.statusCode == "OK") {
       form.resetFields();
       closeModal();

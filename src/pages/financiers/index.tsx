@@ -49,7 +49,7 @@ const Financiers = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const userInfo = React.useContext(userInfoContext);
   //@ts-ignore
-  const { data } = useSWR(`${financiersUrl}${userInfo.id}`, fetcher)
+  const { data } = useSWR(financiersUrl, fetcher)
 
   return (
     <div className='border rounded-lg p-5'>

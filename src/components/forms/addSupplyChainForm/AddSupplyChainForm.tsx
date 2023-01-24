@@ -17,7 +17,7 @@ const AddSupplyChainForm = ({ closeModal }: Props) => {
   const { id: regulatorId }: any = React.useContext(userInfoContext);
   const [isFiledTouched, setIsFiledTouched] = useState<boolean>();
   const [error, setError] = useState<string>("");
-  const { data: companies } = useSWR(`${companiesUrl}${regulatorId}`, fetcher)
+  const { data: companies } = useSWR(companiesUrl, fetcher)
 
   const options: SelectProps['options'] = [];
   companies?.data?.map((company: { id: any; name: any; }) => (
@@ -29,7 +29,7 @@ const AddSupplyChainForm = ({ closeModal }: Props) => {
   const onFinish = async (values: any) => {
     const FinalData = { ...values, regulatorId }
     const result = await post(addSupplyChainUrl, FinalData)
-    await mutate(`${supplyChainsUrl}${regulatorId}`);
+    await mutate(supplyChainsUrl);
     if (result.status === undefined) {
       form.resetFields();
       closeModal();

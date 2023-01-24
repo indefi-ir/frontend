@@ -1,7 +1,6 @@
 import { SearchOutlined } from '@ant-design/icons';
-import { Input, Pagination, Space, Table } from 'antd';
-import useSWR, { Fetcher } from 'swr';
-import type { ColumnsType } from 'antd/es/table';
+import { Input, Space, Table } from 'antd';
+import useSWR from 'swr';
 import { companiesUrl } from '../../services/apiEndpoint';
 import { AddCompaniesModal, DeleteCompaniesModal, EditCompaniesModal } from '../../components/modals';
 import { fetcher } from '../../services/axios';
@@ -48,7 +47,7 @@ const Companies = () => {
   const userInfo = React.useContext(userInfoContext);
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
-  const { data } = useSWR(`${companiesUrl}${userInfo.id}`, fetcher)
+  const { data } = useSWR(companiesUrl, fetcher)
 
   return (
     <div className='border rounded-lg p-5'>

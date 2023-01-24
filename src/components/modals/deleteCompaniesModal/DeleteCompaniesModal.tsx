@@ -17,7 +17,7 @@ const DeleteCompaniesModal = ({ companyId }: any) => {
 
   const handleOk = async () => {
     await post(`${removeCompanyUrl}${companyId}`);
-    await mutate(`${companiesUrl}${regulatorId}`);
+    await mutate(companiesUrl);
     setIsModalOpen(false);
   };
 

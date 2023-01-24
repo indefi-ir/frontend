@@ -16,7 +16,7 @@ const DeleteSupplyChainModal = ({ supplyChainId }: any) => {
 
   const handleOk = async () => {
     await post(`${removeSupplyChainUrl}${supplyChainId}`);
-    await mutate(`${supplyChainsUrl}${regulatorId}`);
+    await mutate(supplyChainsUrl);
     setIsModalOpen(false);
   };
 

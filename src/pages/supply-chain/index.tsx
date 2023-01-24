@@ -1,5 +1,5 @@
 import { SearchOutlined } from '@ant-design/icons';
-import { Input, Pagination, Space, Table } from 'antd';
+import { Input, Space, Table } from 'antd';
 import useSWR from 'swr';
 import { fetcher } from '../../services/axios';
 import { AddSupplyChainModal, DeleteSupplyChainModal, EditSupplyChainModal } from '../../components/modals';
@@ -47,7 +47,7 @@ const SupplyChain = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const userInfo = React.useContext(userInfoContext); 
   //@ts-ignore
-  const { data } = useSWR(`${supplyChainsUrl}${userInfo.id}`, fetcher);
+  const { data } = useSWR(supplyChainsUrl, fetcher);
 
   return (
     <div className='border rounded-lg p-5'>
