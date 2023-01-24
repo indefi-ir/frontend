@@ -35,7 +35,7 @@ COPY --from=builder /app/dummyPages ./pages
 
 USER nextjs
 
-EXPOSE 3001
+EXPOSE 3005
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
