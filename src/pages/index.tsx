@@ -13,12 +13,12 @@ export const Home = () => {
   )
 }
 
-export async function getServerSideProps() {
-  return {
-    redirect: {
-      destination: '/login',
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   return {
+//     redirect: {
+//       destination: '/login',
+//     },
+//   };
+// }
 
 export default Home;
