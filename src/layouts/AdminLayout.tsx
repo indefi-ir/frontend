@@ -7,6 +7,7 @@ import { Layout, theme } from 'antd';
 import AdminMenu from '../components/adminMenu';
 import Breadcrumb from '../components/breadcrumb';
 import { PlutusLogo } from '../components/icons';
+import { UserInfoProvider } from '../components/providers';
 
 const { Header, Sider, Content } = Layout;
 
@@ -43,11 +44,13 @@ const AdminLayout = ({ children }: Props) => {
           </div>
           <Breadcrumb />
         </Header>
-        <Content style={{ margin: '16px' }}>
-          <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
-            {children}
-          </div>
-        </Content>
+        <UserInfoProvider>
+          <Content style={{ margin: '16px' }}>
+            <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
+              {children}
+            </div>
+          </Content>
+        </UserInfoProvider>
       </Layout>
     </Layout>
   );
