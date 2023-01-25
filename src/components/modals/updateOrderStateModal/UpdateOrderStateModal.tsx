@@ -2,15 +2,16 @@ import { Button, Modal } from "antd";
 import React from "react";
 import { useState } from "react";
 import { mutate } from "swr";
-import { buyOrdersUrl, updateOrderState } from "../../../services/apiEndpoint";
 import { post } from "../../../services/axios";
 
 interface Props {
   orderId: string;
   orderAction: string;
+  updateStateUrl: string;
+  ordersListUrl: string;
 }
 
-const UpdateStateModal = ({ orderId, orderAction }: Props) => {
+const UpdateStateModal = ({ orderId, orderAction, updateStateUrl, ordersListUrl }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -18,8 +19,8 @@ const UpdateStateModal = ({ orderId, orderAction }: Props) => {
   };
 
   const handleOk = async () => {
-    await post(updateOrderState, { id: orderId, orderState: orderAction });
-    await mutate(buyOrdersUrl);
+    await post(updateStateUrl, { id: orderId, orderState: orderAction });
+    await mutate(ordersListUrl);
     setIsModalOpen(false);
   };
 

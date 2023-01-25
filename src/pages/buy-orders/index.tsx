@@ -2,10 +2,11 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Input, Table, Tag } from 'antd';
 import useSWR from 'swr';
 import { fetcher } from '../../services/axios';
-import { buyOrdersUrl } from '../../services/apiEndpoint';
+import { buyOrdersUrl, updateOrderState } from '../../services/apiEndpoint';
 import { useState } from 'react';
 import dateFormat from '../../utils/dateFormat';
 import { UpdateOrderStateModal } from '../../components/modals';
+
 
 const renderStatus = (status: string) => {
   switch (status) {
@@ -59,7 +60,13 @@ const columns = (searchTerm: any) => ([
   },
   {
     render: (record: any) => record?.allowedActions.map((item: string) =>
-      <UpdateOrderStateModal key={record.id} orderAction={item} orderId={record.id} />
+      <UpdateOrderStateModal
+        key={record.id}
+        orderAction={item}
+        orderId={record.id}
+        updateStateUrl={updateOrderState}
+        ordersListUrl={buyOrdersUrl}
+      />
     )
   }
 ]);
