@@ -3,7 +3,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons';
-import { Layout, theme } from 'antd';
+import { Button, Layout, theme } from 'antd';
 import AdminMenu from '../components/adminMenu';
 import Breadcrumb from '../components/breadcrumb';
 import { PlutusLogo } from '../components/icons';
@@ -22,7 +22,7 @@ const AdminLayout = ({ children }: Props) => {
   } = theme.useToken();
 
   return (
-    <Layout className='h-screen'>
+    <Layout className='flex h-screen'>
       <Sider
         trigger={null}
         width={250}
@@ -33,6 +33,11 @@ const AdminLayout = ({ children }: Props) => {
           <PlutusLogo />
         }
         <AdminMenu styles={{ background: "transparent", color: "white" }} />
+        <Button className="flex items-center bg-pink text-white hover:bg-pink-dark hover:!text-white font-medium text-sm border-0 px-2 !py-6">
+        <span className="mx-2"> 
+          Create New Order
+        </span>
+      </Button>
       </Sider>
       <Layout>
         <Header className='flex items-center mt-6' style={{ padding: "10px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>
