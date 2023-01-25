@@ -2,11 +2,10 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Input, Table, Tag } from 'antd';
 import useSWR from 'swr';
 import { fetcher } from '../../services/axios';
-import { buyOrdersUrl, updateOrderState } from '../../services/apiEndpoint';
+import { buyOrdersUrl } from '../../services/apiEndpoint';
 import { useState } from 'react';
 import dateFormat from '../../utils/dateFormat';
 import { UpdateOrderStateModal } from '../../components/modals';
-
 
 const renderStatus = (status: string) => {
   switch (status) {
