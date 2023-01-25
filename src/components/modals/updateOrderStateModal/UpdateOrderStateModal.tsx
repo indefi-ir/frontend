@@ -3,15 +3,15 @@ import React from "react";
 import { useState } from "react";
 import { mutate } from "swr";
 import { post } from "../../../services/axios";
+import { updateOrderState } from '../../../services/apiEndpoint';
 
 interface Props {
   orderId: string;
   orderAction: string;
-  updateStateUrl: string;
   ordersListUrl: string;
 }
 
-const UpdateStateModal = ({ orderId, orderAction, updateStateUrl, ordersListUrl }: Props) => {
+const UpdateStateModal = ({ orderId, orderAction, ordersListUrl }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -19,7 +19,7 @@ const UpdateStateModal = ({ orderId, orderAction, updateStateUrl, ordersListUrl 
   };
 
   const handleOk = async () => {
-    await post(updateStateUrl, { id: orderId, orderState: orderAction });
+    await post(updateOrderState, { id: orderId, orderState: orderAction });
     await mutate(ordersListUrl);
     setIsModalOpen(false);
   };

@@ -64,7 +64,6 @@ const columns = (searchTerm: any) => ([
         key={record.id}
         orderAction={item}
         orderId={record.id}
-        updateStateUrl={updateOrderState}
         ordersListUrl={buyOrdersUrl}
       />
     )

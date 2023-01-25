@@ -1,62 +1,83 @@
 import { SearchOutlined } from '@ant-design/icons';
-import { Input, Pagination, Space, Table, Tag } from 'antd';
+import { Input, Table, Tag } from 'antd';
 import useSWR from 'swr';
 import { fetcher } from '../../services/axios';
-import { sellOrdersUrl } from '../../services/apiEndpoint';
+import { buyOrdersUrl, updateOrderState } from '../../services/apiEndpoint';
 import { useState } from 'react';
+import dateFormat from '../../utils/dateFormat';
+import { UpdateOrderStateModal } from '../../components/modals';
 
-const columns = (searchTerm: string) => ([
+
+const renderStatus = (status: string) => {
+  switch (status) {
+    case 'Accept':
+      return <Tag color="green">accepted</Tag>;
+    case 'Reject':
+      return <Tag color="red">rejected</Tag>;
+    case 'Cancel':
+      return <Tag>cancelled</Tag>;
+    case 'Pending':
+      return <Tag color="gold">pending</Tag>;
+  }
+}
+
+const columns = (searchTerm: any) => ([
   {
-    title: 'id',
-    dataIndex: 'id',
-    width: 150,
-    filteredValue: [searchTerm],
-    onFilter: (value: any, record: { OrderId: string | any[]; }) => {
-      return record.OrderId.includes(value)
-    }
+    title: 'tracking code',
+    dataIndex: 'trackingCode',
   },
   {
     title: 'from',
     dataIndex: 'fromCompanyName',
-    width: 150,
   },
   {
     title: 'to',
     dataIndex: 'toCompanyName',
-    width: 150,
   },
   {
-    title: 'Amount',
-    dataIndex: 'Amount',
-    width: 150,
+    title: 'amount',
+    dataIndex: 'amount',
+  },
+  {
+    title: 'time',
+    dataIndex: 'time',
+    render: (record: string) => (
+      dateFormat(record)
+    )
   },
   {
     title: 'description',
     dataIndex: 'description',
-    width: 150,
+    filteredValue: [searchTerm],
+    onFilter: (value: any, record: {
+      description: any;
+    }) => {
+      return record.description.includes(value)
+    },
   },
   {
-    title: 'order state',
+    title: 'status',
     dataIndex: 'orderState',
-    width: 150,
+    render: (record: string) => (
+      renderStatus(record)
+    )
   },
   {
-    title: '',
-    dataIndex: 'allowedActions',
-    render: () => (
-      <Space size="middle">
-        <Tag color="green">accept</Tag>
-        <Tag color="red">reject</Tag>
-        <Tag color="default">cancel</Tag>
-      </Space>
+    render: (record: any) => record?.allowedActions.map((item: string) =>
+      <UpdateOrderStateModal
+        key={record.id}
+        orderAction={item}
+        orderId={record.id}
+        ordersListUrl={buyOrdersUrl}
+      />
     )
   }
 ]);
 
-const SellOrders = () => {
+const sellOrders = () => {
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
-  const { data } = useSWR(sellOrdersUrl, fetcher)
+  const { data } = useSWR(buyOrdersUrl, fetcher)
 
   return (
     <div className='border rounded-lg p-5'>
@@ -77,6 +98,6 @@ const SellOrders = () => {
   )
 };
 
-SellOrders.layout = 'admin'
+sellOrders.layout = 'admin'
 
-export default SellOrders
+export default sellOrders;
