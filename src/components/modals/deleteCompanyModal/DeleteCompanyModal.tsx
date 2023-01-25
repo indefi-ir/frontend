@@ -5,11 +5,9 @@ import { mutate } from "swr";
 import { companiesUrl, removeCompanyUrl } from "../../../services/apiEndpoint";
 import { post } from "../../../services/axios";
 import { DeleteIcon } from "../../icons";
-import { userInfoContext } from "../../providers/userInfoProvider/UserInfoProvider";
 
-const DeleteCompaniesModal = ({ companyId }: any) => {
+const DeleteCompanyModal = ({ companyId }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { id: regulatorId }: any = React.useContext(userInfoContext);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -32,7 +30,6 @@ const DeleteCompaniesModal = ({ companyId }: any) => {
       </Button>
       <Modal title="Delete Chain" footer={false} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         Are You Sure?
-
         <div className="mt-10 flex w-full flex-row-reverse">
           <Button htmlType="submit" className="ml-2 bg-blue text-white hover:bg-blue-dark hover:!text-white" onClick={() => handleOk()}>
             Ok
@@ -46,4 +43,4 @@ const DeleteCompaniesModal = ({ companyId }: any) => {
   )
 }
 
-export default DeleteCompaniesModal;
+export default DeleteCompanyModal;

@@ -1,9 +1,8 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import { EditFinanciersForm } from "../../forms";
 import { EditIcon } from "../../icons";
 
-const EditCompaniesModal = () => {
+const EditFinancierModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -36,4 +35,4 @@ const EditCompaniesModal = () => {
   )
 }
 
-export default EditCompaniesModal;
+export default EditFinancierModal;

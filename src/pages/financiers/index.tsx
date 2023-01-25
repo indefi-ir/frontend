@@ -1,12 +1,11 @@
 import { SearchOutlined } from '@ant-design/icons';
-import { Input, Pagination, Space, Table } from 'antd';
+import { Input, Space, Table } from 'antd';
 import { fetcher } from '../../services/axios';
 import useSWR from 'swr';
 import { financiersUrl } from '../../services/apiEndpoint';
 import { useState } from 'react';
-import { AddFinanciersModal, DeleteFinanciersModal, EditFinanciersModal } from '../../components/modals';
+import { AddFinancierModal, DeleteFinancierModal, EditFinancierModal } from '../../components/modals';
 import React from 'react';
-import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
 
 interface DataType {
   id: React.Key;
@@ -36,18 +35,15 @@ const columns = (searchTerm: string) => ([
     key: 'action',
     render: (record: { id: string; }) => (
       <Space size="middle">
-        <EditFinanciersModal />
-        <DeleteFinanciersModal financierId={record.id} />
+        <EditFinancierModal />
+        <DeleteFinancierModal financierId={record.id} />
       </Space>
     )
   }
 ]);
 
-const data: DataType[] = []
-
 const Financiers = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const userInfo = React.useContext(userInfoContext);
   //@ts-ignore
   const { data } = useSWR(financiersUrl, fetcher)
 
@@ -61,12 +57,9 @@ const Financiers = () => {
           className='w-[300px] text-[14px] h-12 border-none !bg-neutral-100 font-normal'
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <AddFinanciersModal />
+        <AddFinancierModal />
       </div>
       <Table columns={columns(searchTerm)} dataSource={data?.data} scroll={{ y: 450 }} />
-      {/* <div className="flex justify-end mt-5">
-      <Pagination defaultCurrent={6} total={10} pageSize={6}/>
-    </div> */}
     </div>
   )
 };

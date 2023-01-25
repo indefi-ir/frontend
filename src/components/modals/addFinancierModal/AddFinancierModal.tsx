@@ -1,9 +1,8 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import { AddFinanciersForm } from "../../forms";
-import { AddIcon } from "../../icons";
+import { AddFinancierForm } from "../../forms";
 
-const AddFinanciersModal = () => {
+const AddFinancierModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -28,10 +27,10 @@ const AddFinanciersModal = () => {
         onCancel={closeModal}
         footer={false}
       >
-        <AddFinanciersForm closeModal={closeModal} />
+        <AddFinancierForm closeModal={closeModal} />
       </Modal>
     </>
   )
 }
 
-export default AddFinanciersModal;
+export default AddFinancierModal;

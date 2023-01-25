@@ -1,8 +1,9 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import { AddCompaniesForm } from "../../forms";
+import { EditCompanyForm } from "../../forms";
+import { EditIcon } from "../../icons";
 
-const AddCompaniesModal = () => {
+const EditCompanyModal = (companyInfo: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -15,22 +16,20 @@ const AddCompaniesModal = () => {
 
   return (
     <>
-      <Button className="flex items-center bg-blue text-white hover:bg-blue-dark hover:!text-white font-medium text-sm border-0 px-2 !py-6" onClick={showModal}>
-        <span className="mx-2"> 
-          Create New Company
-        </span>
+      <Button className="bg-neutral-100 border-0 px-2" onClick={showModal}>
+        <EditIcon className="text-neutral-400 hover:text-purple" />
       </Button>
       <Modal 
-        title="Add Company" 
+        title="Edit Company" 
         open={isModalOpen} 
         onOk={closeModal} 
         onCancel={closeModal}
         footer={false}
       >
-        <AddCompaniesForm closeModal={closeModal}/>
+        <EditCompanyForm closeModal={closeModal} companyInfo={companyInfo} />
       </Modal>
     </>
   )
 }
 
-export default AddCompaniesModal;
+export default EditCompanyModal;

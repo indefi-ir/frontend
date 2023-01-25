@@ -1,9 +1,9 @@
 export { default as LoginForm } from './loginForm/LoginForm';
 export { default as AddSupplyChainForm } from './addSupplyChainForm/AddSupplyChainForm';
 export { default as EditSupplyChainForm } from './editSupplyChainForm/EditSupplyChainForm';
-export { default as AddCompaniesForm } from './addCompaniesForm/AddCompaniesForm';
-export { default as EditCompaniesForm } from './editCompaniesForm/EditCompaniesForm';
-export { default as AddFinanciersForm } from './addFinanciersForm/AddFinanciersForm';
-export { default as EditFinanciersForm } from './editFinancierForm/EditFinancierForm';
+export { default as AddCompanyForm } from './addCompanyForm/AddCompanyForm';
+export { default as EditCompanyForm } from './editCompanyForm/EditCompanyForm';
+export { default as AddFinancierForm } from './addFinancierForm/AddFinancierForm';
+export { default as EditFinancierForm } from './editFinancierForm/EditFinancierForm';
 export { default as SetPasswordForm } from './setPasswordForm/SetPasswordForm';
 export { default as AddOrderForm } from './addOrderForm/AddOrderForm';

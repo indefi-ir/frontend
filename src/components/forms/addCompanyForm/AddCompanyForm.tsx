@@ -9,7 +9,7 @@ interface Props {
   closeModal: () => void;
 }
 
-const AddCompaniesForm = ({ closeModal }: Props) => {
+const AddCompanyForm = ({ closeModal }: Props) => {
   const [form] = Form.useForm();
   const { id: regulatorId }: any = React.useContext(userInfoContext);
   const [isFiledTouched, setIsFiledTouched] = useState<boolean>(false);
@@ -63,4 +63,4 @@ const AddCompaniesForm = ({ closeModal }: Props) => {
     </div>
   )
 }
-export default AddCompaniesForm
+export default AddCompanyForm

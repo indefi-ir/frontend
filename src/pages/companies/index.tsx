@@ -2,7 +2,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Input, Space, Table } from 'antd';
 import useSWR from 'swr';
 import { companiesUrl } from '../../services/apiEndpoint';
-import { AddCompaniesModal, DeleteCompaniesModal, EditCompaniesModal } from '../../components/modals';
+import { AddCompanyModal, DeleteCompanyModal, EditCompanyModal } from '../../components/modals';
 import { fetcher } from '../../services/axios';
 import { useState } from 'react';
 import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
@@ -36,8 +36,8 @@ const columns = (searchTerm: string) => ([
     key: 'action',
     render: (record: { id: string; }) => (
       <Space size="middle">
-        <EditCompaniesModal companyInfo={record}/>
-        <DeleteCompaniesModal companyId={record.id} />
+        <EditCompanyModal companyInfo={record}/>
+        <DeleteCompanyModal companyId={record.id} />
       </Space>
     )
   }
@@ -59,12 +59,9 @@ const Companies = () => {
           className='w-[300px] text-[14px] h-12 border-none !bg-neutral-100 font-normal'
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <AddCompaniesModal />
+        <AddCompanyModal />
       </div>
       <Table columns={columns(searchTerm)} dataSource={data?.data} scroll={{ y: 450 }} />
-      {/* <div className="flex justify-end mt-5">
-      <Pagination defaultCurrent={6} total={10} pageSize={6}/>
-    </div> */}
     </div>
   )
 };

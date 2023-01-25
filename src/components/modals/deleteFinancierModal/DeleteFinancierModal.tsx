@@ -5,11 +5,9 @@ import { mutate } from "swr";
 import { financiersUrl, removeFinancierUrl } from "../../../services/apiEndpoint";
 import { post } from "../../../services/axios";
 import { DeleteIcon } from "../../icons";
-import { userInfoContext } from "../../providers/userInfoProvider/UserInfoProvider";
 
-const DeleteCompaniesModal = ({ companyId }: any) => {
+const DeleteFinancierModal = ({ companyId }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { id: regulatorId }: any = React.useContext(userInfoContext);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -45,4 +43,4 @@ const DeleteCompaniesModal = ({ companyId }: any) => {
   )
 }
 
-export default DeleteCompaniesModal;
+export default DeleteFinancierModal;

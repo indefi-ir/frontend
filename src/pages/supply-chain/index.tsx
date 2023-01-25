@@ -62,9 +62,6 @@ const SupplyChain = () => {
         <AddSupplyChainModal />
       </div>
       <Table columns={columns(searchTerm)} dataSource={data?.data} scroll={{ y: 450 }} />
-      {/* <div className="flex justify-end mt-5">
-      <Pagination defaultCurrent={6} total={10} pageSize={6}/>
-    </div> */}
     </div>
   )
 };
