@@ -48,6 +48,8 @@ const Companies = () => {
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
   const { data } = useSWR(companiesUrl, fetcher)
+  console.log("data", data.data)
+
 
   return (
     <div className='border rounded-lg p-5'>

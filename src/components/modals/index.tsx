@@ -8,3 +8,4 @@ export { default as AddFinanciersModal } from './addFinanciersModal/AddFinancier
 export { default as EditFinanciersModal } from './editFinanciersModal/EditFinanciersModal';
 export { default as  DeleteFinanciersModal} from './deleteFinanciersModal/DeleteFinanciersModal';
 export { default as  SetPasswordModal} from './setPasswordModal/SetPasswordModal';
+export { default as  UpdateOrderStateModal} from './updateOrderStateModal/UpdateOrderStateModal';
