@@ -36,6 +36,9 @@ const columns = (searchTerm: any) => ([
   {
     title: 'Amount',
     dataIndex: 'amount',
+    render: (record: any) => (
+      record.toLocaleString()
+    )
   },
   {
     title: 'Time',
