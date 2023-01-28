@@ -22,37 +22,38 @@ const AdminLayout = ({ children }: Props) => {
   } = theme.useToken();
 
   return (
-    <Layout className='flex h-screen'>
-      <Sider
-        trigger={null}
-        width={250}
-        collapsible
-        collapsed={collapsed}
-        theme='light'>
-        {!collapsed &&
-          <PlutusLogo />
-        }
-        <AdminMenu styles={{ background: "transparent", color: "white" }} />
-      </Sider>
-      <Layout>
-        <Header className='flex items-center mt-6' style={{ padding: "10px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>
-          <div className='text-purple text-xl'>
-            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
-              onClick: () => setCollapsed(!collapsed),
-            })}
-          </div>
-          <Breadcrumb />
-        </Header>
-        <UserInfoProvider>
+    <UserInfoProvider>
+      <Layout className='flex h-screen'>
+        <Sider
+          trigger={null}
+          width={250}
+          collapsible
+          collapsed={collapsed}
+          theme='light'>
+          {!collapsed &&
+            <PlutusLogo />
+          }
+          <AdminMenu styles={{ background: "transparent", color: "white" }} />
+        </Sider>
+        <Layout>
+          <Header className='flex items-center mt-6' style={{ padding: "10px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>
+            <div className='text-purple text-xl'>
+              {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                className: 'trigger',
+                onClick: () => setCollapsed(!collapsed),
+              })}
+            </div>
+            <Breadcrumb />
+          </Header>
           <Content style={{ margin: '16px' }}>
             <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
               {children}
             </div>
           </Content>
-        </UserInfoProvider>
+        </Layout>
       </Layout>
-    </Layout>
+    </UserInfoProvider>
+
   );
 };
 
