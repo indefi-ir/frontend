@@ -18,7 +18,9 @@ export const setPasswordFinancierUrl = "/api/Financier/set-password";
 export const removeFinancierUrl = "/api/financiers/delete?financierId=";
 
 export const ordersUrl = "/api/orders";
+export const availableOrdersUrl = "/api/orders/available-sellers";
 export const updateOrderState = "/api/orders/update-state";
+export const addOrdersUrl = "/api/orders/book";
 
 export const userInfoUrl = "/api/users";
 

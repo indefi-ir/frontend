@@ -5,7 +5,7 @@ import { fetcher } from '../../services/axios';
 import { ordersUrl } from '../../services/apiEndpoint';
 import { useState } from 'react';
 import dateFormat from '../../utils/dateFormat';
-import { UpdateOrderStateModal } from '../../components/modals';
+import { AddOrderModal, UpdateOrderStateModal } from '../../components/modals';
 
 const renderStatus = (status: string) => {
   switch (status) {
@@ -89,6 +89,7 @@ const Orders = () => {
           className='w-[300px] text-[14px] h-12 border-none !bg-neutral-100 font-normal'
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <AddOrderModal />
       </div>
       <Table columns={columns(searchTerm)} dataSource={data?.data} scroll={{ y: 450 }} />
     </div>

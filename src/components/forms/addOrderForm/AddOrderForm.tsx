@@ -1,9 +1,9 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Select, SelectProps } from "antd";
 import React, { useState } from "react";
+import useSWR from 'swr';
 import { mutate } from "swr";
-import { addCompanyUrl, companiesUrl } from "../../../services/apiEndpoint";
-import { post } from "../../../services/axios";
-import { userInfoContext } from "../../providers/userInfoProvider/UserInfoProvider";
+import { addCompanyUrl, addOrdersUrl, availableOrdersUrl, ordersUrl } from "../../../services/apiEndpoint";
+import { fetcher, post } from "../../../services/axios";
 const { TextArea } = Input;
 
 interface Props {
@@ -12,15 +12,29 @@ interface Props {
 
 const AddOrderForm = ({ closeModal }: Props) => {
   const [form] = Form.useForm();
-  const { id: regulatorId }: any = React.useContext(userInfoContext);
   const [isFiledTouched, setIsFiledTouched] = useState<boolean>(false);
+  const { data: availableSellers } = useSWR(availableOrdersUrl, fetcher)
   const [error, setError] = useState<string>("");
 
+  const companies: SelectProps['options'] = [];
+  const chains: SelectProps['options'] = [];
+
+  availableSellers?.data?.map((availableSeller: { companyId: string; companyName: string; chainId: string; chainName: string;}) => (
+    companies.push({
+      value: availableSeller.companyId,
+      label: availableSeller.companyName,
+    }),
+    chains.push({
+      value: availableSeller.chainId,
+      label: availableSeller.chainName,
+    })
+  ));
+
   const onFinish = async (values: any) => {
-    const FinalData = { ...values, regulatorId, walletReference: "walletReference" }
-    const result = await post(addCompanyUrl, FinalData)
-    await mutate(companiesUrl);
-    if (result.status !== undefined) {
+    const FinalData = { ...values }
+    const result = await post(addOrdersUrl, FinalData)
+    await mutate(ordersUrl);
+    if (result.status === undefined) {
       form.resetFields();
       closeModal();
       setError("");
@@ -46,11 +60,21 @@ const AddOrderForm = ({ closeModal }: Props) => {
         <Form.Item label="Amount" name="amount" required>
           <Input className="ml-2" />
         </Form.Item>
-        <Form.Item label="to company" name="toCompanyId" required>
-          <Input className="ml-2" />
+        <Form.Item label="To Company" name="toCompanyId" required>
+          <Select
+            size='middle'
+            style={{ width: '100%' }}
+            options={companies}
+            className="ml-2"
+          />
         </Form.Item>
-        <Form.Item label="supply chain" name="supplyChainId" required>
-          <Input className="ml-2" />
+        <Form.Item label="from chain" name="supplyChainId" required>
+          <Select
+            size='middle'
+            style={{ width: '100%' }}
+            options={chains}
+            className="ml-2"
+          />
         </Form.Item>
         <Form.Item label="Description" name="description">
           <TextArea rows={4} className="ml-2" />
@@ -68,3 +92,4 @@ const AddOrderForm = ({ closeModal }: Props) => {
   )
 }
 export default AddOrderForm
+

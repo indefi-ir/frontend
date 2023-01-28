@@ -2,7 +2,7 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import { AddOrderForm } from "../../forms";
 
-const AddCompaniesModal = () => {
+const AddOrderModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -33,4 +33,4 @@ const AddCompaniesModal = () => {
   )
 }
 
-export default AddCompaniesModal;
+export default AddOrderModal;
