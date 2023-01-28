@@ -2,7 +2,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Input, Table, Tag } from 'antd';
 import useSWR from 'swr';
 import { fetcher } from '../../services/axios';
-import { buyOrdersUrl } from '../../services/apiEndpoint';
+import { ordersUrl } from '../../services/apiEndpoint';
 import { useState } from 'react';
 import dateFormat from '../../utils/dateFormat';
 import { UpdateOrderStateModal } from '../../components/modals';
@@ -22,30 +22,31 @@ const renderStatus = (status: string) => {
 
 const columns = (searchTerm: any) => ([
   {
-    title: 'tracking code',
+    title: 'Tracking code',
     dataIndex: 'trackingCode',
   },
   {
-    title: 'from',
+    title: 'From',
     dataIndex: 'fromCompanyName',
   },
   {
-    title: 'to',
+    title: 'To',
     dataIndex: 'toCompanyName',
   },
   {
-    title: 'amount',
+    title: 'Amount',
     dataIndex: 'amount',
   },
   {
-    title: 'time',
+    title: 'Time',
     dataIndex: 'time',
     render: (record: string) => (
-      dateFormat(record)
-    )
+      dateFormat(record, 'YYYY-MM-DD h:mm:ss a')
+    ),
+    width: 300
   },
   {
-    title: 'description',
+    title: 'Description',
     dataIndex: 'description',
     filteredValue: [searchTerm],
     onFilter: (value: any, record: {
@@ -55,7 +56,7 @@ const columns = (searchTerm: any) => ([
     },
   },
   {
-    title: 'status',
+    title: 'Status',
     dataIndex: 'orderState',
     render: (record: string) => (
       renderStatus(record)
@@ -67,16 +68,16 @@ const columns = (searchTerm: any) => ([
         key={record.id}
         orderAction={item}
         orderId={record.id}
-        ordersListUrl={buyOrdersUrl}
+        ordersListUrl={ordersUrl}
       />
     )
   }
 ]);
 
-const sellOrders = () => {
+const Orders = () => {
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
-  const { data } = useSWR(buyOrdersUrl, fetcher)
+  const { data } = useSWR(ordersUrl, fetcher)
 
   return (
     <div className='border rounded-lg p-5'>
@@ -94,6 +95,6 @@ const sellOrders = () => {
   )
 };
 
-sellOrders.layout = 'admin'
+Orders.layout = 'admin'
 
-export default sellOrders;
+export default Orders

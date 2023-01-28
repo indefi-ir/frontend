@@ -33,11 +33,6 @@ const AdminLayout = ({ children }: Props) => {
           <PlutusLogo />
         }
         <AdminMenu styles={{ background: "transparent", color: "white" }} />
-        {/* <Button className="flex items-center bg-pink text-white hover:bg-pink-dark hover:!text-white font-medium text-sm border-0 px-2 !py-6">
-        <span className="mx-2"> 
-          Create New Order
-        </span>
-      </Button> */}
       </Sider>
       <Layout>
         <Header className='flex items-center mt-6' style={{ padding: "10px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>

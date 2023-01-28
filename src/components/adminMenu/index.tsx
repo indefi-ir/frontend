@@ -34,15 +34,9 @@ const menuItems = [
   {
     key: '5',
     icon: <BuyOrderIcon />,
-    label: 'Buy orders',
-    path: '/buy-orders'
-  },
-  {
-    key: '6',
-    icon: <SellOrderIcon />,
-    label: 'Sell orders',
-    path: '/sell-orders'
-  },
+    label: 'Orders',
+    path: '/orders'
+  }
 ]
 const AdminMenu = ({ styles }: Props) => {
   return (
