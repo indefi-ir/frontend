@@ -63,7 +63,13 @@ const columns = (searchTerm: any) => ([
     dataIndex: 'orderState',
     render: (record: string) => (
       renderStatus(record)
-    )
+    ),
+    filters: [
+      { text: 'Accept', value: 'Accept' },
+      { text: 'Reject', value: 'Reject' },
+      { text: 'Cancel', value: 'Cancel' },
+      { text: 'Pending', value: 'Pending' }
+    ],
   },
   {
     render: (record: any) => record?.allowedActions.map((item: string) =>
