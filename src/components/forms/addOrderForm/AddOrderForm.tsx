@@ -2,7 +2,7 @@ import { Button, Form, Input, Select, SelectProps } from "antd";
 import React, { useState } from "react";
 import useSWR from 'swr';
 import { mutate } from "swr";
-import { addCompanyUrl, addOrdersUrl, availableOrdersUrl, ordersUrl } from "../../../services/apiEndpoint";
+import { addOrdersUrl, availableOrdersUrl, ordersUrl } from "../../../services/apiEndpoint";
 import { fetcher, post } from "../../../services/axios";
 const { TextArea } = Input;
 
