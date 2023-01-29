@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Button, Modal, notification } from "antd";
 import React from "react";
 import { useState } from "react";
 import { mutate } from "swr";
@@ -8,15 +8,30 @@ import { DeleteIcon } from "../../icons";
 
 const DeleteCompanyModal = ({ companyId }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
 
   const showModal = () => {
     setIsModalOpen(true);
   };
 
   const handleOk = async () => {
-    await post(`${removeCompanyUrl}${companyId}`);
+    const result = await post(`${removeCompanyUrl}${companyId}`);
     await mutate(companiesUrl);
-    setIsModalOpen(false);
+
+    if (result === '') {
+      setIsModalOpen(false);
+      api.open({
+        message: 'The company was successfully deleted.',
+        duration: 3,
+        className: 'success'
+      });
+    } else {
+      api.open({
+        message: `${result?.response?.data?.title}`,
+        duration: 3,
+        className: 'error'
+      });
+    }
   };
 
   const handleCancel = () => {
@@ -25,6 +40,7 @@ const DeleteCompanyModal = ({ companyId }: any) => {
 
   return (
     <>
+      {contextHolder}
       <Button className="bg-neutral-100 border-0 px-2" onClick={showModal}>
         <DeleteIcon className="text-neutral-400 hover:text-purple" />
       </Button>
