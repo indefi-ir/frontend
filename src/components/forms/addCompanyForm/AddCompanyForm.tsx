@@ -1,4 +1,4 @@
-import { Alert, Button, Form, Input, notification } from "antd";
+import { Button, Form, Input, notification } from "antd";
 import React, { useState } from "react";
 import { mutate } from "swr";
 import { addCompanyUrl, companiesUrl } from "../../../services/apiEndpoint";
