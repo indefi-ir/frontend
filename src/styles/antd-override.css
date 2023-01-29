@@ -66,3 +66,27 @@ td.ant-table-cell {
   margin-block: 0;
   width: auto;
 }
+
+.ant-notification-notice.success {
+  background-color: #e8fff3;
+}
+
+.ant-notification-notice.success .ant-notification-notice-message {
+  color: #47be7d
+}
+
+.ant-notification-notice.success .ant-notification-notice-close {
+  color: #47be7d
+}
+
+.ant-notification-notice.error {
+  background-color: #fff5f8;
+}
+
+.ant-notification-notice.error .ant-notification-notice-message {
+  color: #d9214e
+}
+
+.ant-notification-notice.error .ant-notification-notice-close {
+  color: #d9214e
+}
