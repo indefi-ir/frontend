@@ -28,7 +28,7 @@ const LoginForm = () => {
         </Form.Item>
         <Form.Item>
           <Button htmlType="submit" className="w-full bg-purple text-white hover:!text-white h-[55px] text-base">
-            Submit
+            Login
           </Button>
         </Form.Item>
       </Form>
