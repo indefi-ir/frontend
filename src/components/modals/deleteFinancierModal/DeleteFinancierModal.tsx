@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Button, Modal, notification } from "antd";
 import React from "react";
 import { useState } from "react";
 import { mutate } from "swr";
@@ -6,17 +6,31 @@ import { financiersUrl, removeFinancierUrl } from "../../../services/apiEndpoint
 import { post } from "../../../services/axios";
 import { DeleteIcon } from "../../icons";
 
-const DeleteFinancierModal = ({ companyId }: any) => {
+const DeleteFinancierModal = ({ financierId }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
 
   const showModal = () => {
     setIsModalOpen(true);
   };
 
   const handleOk = async () => {
-    await post(`${removeFinancierUrl}${companyId}`);
+    const result = await post(`${removeFinancierUrl}${financierId}`);
     await mutate(financiersUrl);
-    setIsModalOpen(false);
+    if (result === '') {
+      setIsModalOpen(false);
+      api.open({
+        message: 'The company was successfully deleted.',
+        duration: 3,
+        className: 'success'
+      });
+    } else {
+      api.open({
+        message: `${result?.response?.data?.title}`,
+        duration: 3,
+        className: 'error'
+      });
+    }
   };
 
   const handleCancel = () => {
@@ -25,6 +39,7 @@ const DeleteFinancierModal = ({ companyId }: any) => {
 
   return (
     <>
+      {contextHolder}
       <Button className="bg-neutral-100 border-0 px-2" onClick={showModal}>
         <DeleteIcon className="text-neutral-400 hover:text-purple" />
       </Button>

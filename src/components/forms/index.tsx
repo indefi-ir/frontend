@@ -6,4 +6,3 @@ export { default as EditCompanyForm } from './editCompanyForm/EditCompanyForm';
 export { default as AddFinancierForm } from './addFinancierForm/AddFinancierForm';
 export { default as EditFinancierForm } from './editFinancierForm/EditFinancierForm';
 export { default as SetPasswordForm } from './setPasswordForm/SetPasswordForm';
-export { default as AddOrderForm } from './addOrderForm/AddOrderForm';

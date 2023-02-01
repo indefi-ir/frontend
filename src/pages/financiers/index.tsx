@@ -33,10 +33,10 @@ const columns = (searchTerm: string) => ([
   {
     title: '',
     key: 'action',
-    render: (record: { id: string; }) => (
+    render: (record: any) => (
       <Space size="middle">
-        <EditFinancierModal />
-        <DeleteFinancierModal financierId={record.id} />
+        <EditFinancierModal financierInfo={record}/>
+        <DeleteFinancierModal financierId={record?.id} />
       </Space>
     )
   }

@@ -1,19 +1,16 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
+import { EditFinancierForm } from "../../forms";
 import { EditIcon } from "../../icons";
 
-const EditFinancierModal = () => {
+const EditFinancierModal = (financierInfo: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
+  const closeModal = () => {
     setIsModalOpen(false);
   };
 
@@ -23,13 +20,13 @@ const EditFinancierModal = () => {
         <EditIcon className="text-neutral-400 hover:text-purple" />
       </Button>
       <Modal
-        title="Edit Financiers"
+        title="Edit Financier"
         open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        onOk={closeModal} 
+        onCancel={closeModal}
         footer={false}
       >
-        {/* <EditFinanciersForm /> */}
+        <EditFinancierForm closeModal={closeModal} financierInfo={financierInfo} />
       </Modal>
     </>
   )
