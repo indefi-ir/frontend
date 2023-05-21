@@ -1,6 +1,7 @@
 const colors = require('tailwindcss/colors');
 
 module.exports = {
+  important: true,
   content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -10,7 +11,7 @@ module.exports = {
     },
     colors: {
       ...colors,
-      purple: '#68417f',
+      purple: '#04b085',
       pink: {
         DEFAULT: '#c66aab',
         light: '#f2cfda'

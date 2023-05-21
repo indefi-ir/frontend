@@ -1,9 +1,9 @@
-import { LoginForm } from "../../components/forms";
+import { SignUpForm} from "../../components/forms";
 import Image from 'next/image'
 
-const Login = () => {
+const SignUp = () => {
   return (
-    <div className="flex flex-col xl:flex-row items-center justify-between xl:bg-[url('/images/bg-login.jpeg')] bg-no-repeat	bg-cover h-screen p-12">
+    <div className="flex flex-col xl:flex-row items-center justify-between xl:bg-[url('/images/bg-login.jpeg')] bg-no-repeat bg-cover h-screen p-12">
       <div className="flex justify-center xl:w-2/3 w-full">
         <div className="flex flex-col">
           <Image
@@ -16,12 +16,12 @@ const Login = () => {
         </div>
       </div>
       <div className="xl:w-1/3 w-full">
-        <LoginForm />
+        <SignUpForm />
       </div>
     </div>
   )
 }
 
-Login.layout = 'default';
+SignUp.layout = 'default';
 
-export default Login;
+export default SignUp;

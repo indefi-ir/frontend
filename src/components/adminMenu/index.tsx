@@ -12,25 +12,25 @@ const adminMenuItems = [
   {
     key: '1',
     icon: <DashboardIcon />,
-    label: 'Dashboard',
+    label: 'داشبورد',
     path: '/dashboard'
   },
   {
     key: '2',
     icon: <SupplyChainIcon />,
-    label: 'Supply chains',
+    label: 'مدیریت محصولات',
     path: '/supply-chain'
   },
   {
     key: '3',
     icon: <CompanyIcon />,
-    label: 'Companies',
+    label: 'مدیریت درخواست ها',
     path: '/companies'
   },
   {
     key: '4',
     icon: <FinancierIcon />,
-    label: 'Financiers',
+    label: 'تامین کننده ها',
     path: '/financiers'
   }
 ]
@@ -39,13 +39,13 @@ const companyMenuItems = [
   {
     key: '1',
     icon: <DashboardIcon />,
-    label: 'Dashboard',
+    label: 'داشبورد',
     path: '/dashboard'
   },
   {
     key: '2',
     icon: <BuyOrderIcon />,
-    label: 'Orders',
+    label: 'سفارشات',
     path: '/orders'
   }
 ]

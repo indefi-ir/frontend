@@ -16,14 +16,14 @@ const Breadcrumb = () => {
         (
           <AntBreadcrumb.Item>
             <Link href='/dashboard'>
-              Dashboard
+              داشبورد
             </Link>
           </AntBreadcrumb.Item>
         ) : (
           <>
             <AntBreadcrumb.Item>
               <Link href='/dashboard'>
-                Dashboard
+                داشبورد
               </Link>
             </AntBreadcrumb.Item>
             <AntBreadcrumb.Item>

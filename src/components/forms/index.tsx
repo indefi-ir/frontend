@@ -1,4 +1,5 @@
 export { default as LoginForm } from './loginForm/LoginForm';
+export { default as SignUpForm } from './signUpForm/signUpForm';
 export { default as AddSupplyChainForm } from './addSupplyChainForm/AddSupplyChainForm';
 export { default as EditSupplyChainForm } from './editSupplyChainForm/EditSupplyChainForm';
 export { default as AddCompanyForm } from './addCompanyForm/AddCompanyForm';

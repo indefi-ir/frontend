@@ -15,7 +15,7 @@ td.ant-table-cell {
 } 
 
 .ant-breadcrumb span.ant-breadcrumb-link a{
-  color: #68417f;
+  color: #04b085;
   font-size: 14px;
   font-weight: 600;
 }
@@ -26,11 +26,11 @@ ul.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light {
 
 .ant-menu .ant-menu-item-selected {
   background-color: white !important;
-  color: #68417f !important;
+  color: #04b085 !important;
 }
 
 aside.ant-layout-sider.ant-layout-sider-light {
-  background: #68417f;
+  background: #04b085;
   padding: 30px 15px;
   flex: 0 0 250px;
   max-width: 250px;

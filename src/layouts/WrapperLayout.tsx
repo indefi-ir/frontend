@@ -15,7 +15,7 @@ const WrapperLayout = (props:any) => {
 
   const HeadContent = (
     <Head>
-      <title>Plutus</title>
+      <title>SCF</title>
       <meta charSet='utf-8' />
       <link rel='icon' href='/favicon.ico?v=2.0' />
     </Head>
