@@ -10,8 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: '#04b085',
-            fontFamily: 'IranSans',
+          colorPrimary: '#68417f',
         }
       }}
     >
