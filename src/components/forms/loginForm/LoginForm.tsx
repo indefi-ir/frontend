@@ -21,12 +21,12 @@ const LoginForm = () => {
       <h1 className="mb-10 text-right text-4xl text-black">ورود</h1>
       <Form onFinish={onFinish}>
         <Form.Item name="username">
-          <span className="text-base">نام کاربری</span>
-          <Input placeholder="Username" className="p-4 text-base"/>
+          <span className="text-base block pb-2">نام کاربری</span>
+          <Input placeholder="نام کاربری" className="p-3 text-sm w-96"/>
         </Form.Item>
         <Form.Item name="password">
-          <span className="text-base">کلمه عبور</span>
-          <Input placeholder="Password" className="p-4 text-base" type="password"/>
+          <span className="text-base block pb-2">کلمه عبور</span>
+          <Input placeholder="کلمه عبور" className="p-3 text-sm w-96" type="password"/>
         </Form.Item>
         <Form.Item>
           <Button htmlType="submit" className="w-full bg-primary-500 text-white hover:!text-white h-[55px] text-base">
