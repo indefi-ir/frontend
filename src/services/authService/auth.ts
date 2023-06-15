@@ -1,10 +1,10 @@
 import axiosApiInstance from "../axios";
-import { loginUrl } from "../apiEndpoint";
+import { loginFunderUrl } from "../apiEndpoint";
 import { setCookie } from "../../utils/cookie";
 
 export async function login(data:any) {
   return axiosApiInstance 
-    .post(loginUrl, {
+    .post(loginFunderUrl, {
       username: data?.username,
       password: data?.password
     })

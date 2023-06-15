@@ -1,26 +1,34 @@
-export const loginUrl = '/api/v1/authenticate/login-funder';
+// Authenticate
+export const registerFunderUrl = '/api/v1/authenticate/register-funder';
+export const loginFunderUrl = '/api/v1/authenticate/login-funder';
+export const registerCompanyUrl = '/api/v1/authenticate/register-company';
+export const loginCompanyUrl = '/api/v1/authenticate/login-company';
 
-export const supplyChainsUrl =  "/api/supply-chains";
-export const addSupplyChainUrl = "/api/supply-chains/add";
-export const editSupplyChain = "/api/supply-chains/delete";
-export const removeSupplyChainUrl = "api/supply-chains/delete?supplyChainId=";
+// Bills
+export const billsUrl =  "/api/v1/bills/get-all-bills";
+export const myBillsUrl = "/api/v1/bills/get-my-bills";
+export const updateBillUrl = "/api/v1/bills/update-bill";
 
-export const companiesUrl =  "/api/companies";
-export const addCompanyUrl = "/api/companies/add";
-export const editCompanyUrl = "/api/companies/edit";
-export const setPasswordCompanyUrl = "/api/companies/set-password";
-export const removeCompanyUrl = "/api/companies/delete?companyId=";
+// Credits
+export const creditMyCompanyUrl =  "/api/v1/credits/get-credit-for-my-company";
+export const creditCompanyUrl = "/api/v1/credits/get-credit-for-company";
+export const addFinancialInstrumentsUrl= "/api/v1/credits/add-financial-instruments-to-company";
+export const transferCreditUrl = "/api/v1/credits/transfer-credit";
 
-export const financiersUrl =  "/api/financiers";
-export const addFinancierUrl = "/api/financiers/add";
-export const editFinancierUrl = "/api/financiers/edit";
-export const setPasswordFinancierUrl = "/api/Financier/set-password";
-export const removeFinancierUrl = "/api/financiers/delete?financierId=";
+// ProductCategory
+export const productCategoriesUrl =  "/api/v1/product-category/get-all-product-categories";
+export const productCategoriesCompanyUrl = "/api/v1/product-category/get-product-categories-for-company";
+export const productCategoriesMyCompanyUrl= "/api/v1/product-category/get-product-categories-for-my-company";
+export const addProductCategoryUrl = "/api/v1/product-category/add-product-category";
 
-export const ordersUrl = "/api/orders";
-export const availableOrdersUrl = "/api/orders/available-sellers";
-export const updateOrderState = "/api/orders/update-state";
-export const addOrdersUrl = "/api/orders/book";
+// Transactions
+export const transactionsUrl = "/api/v1/transactions/get-all-transactions";
+export const transactionCompanyUrl = "/api/v1/transactions/get-transaction-for-company";
+export const transactionMyCompanyUrl =  "/api/v1/transactions/get-transaction-for-my-company";
 
-export const userInfoUrl = "/api/users";
-
+// Users
+export const companyByIdUrl = "/api/v1/users/get-company-by-id";
+export const companyDetailsByIdUrl = "/api/v1/users/get-company-details-by-id";
+export const companiesUrl =  "/api/v1/users/get-companies";
+export const myCompanyInfoUrl = "/api/v1/users/get-my-company-info";
+export const updateCompanyUrl = "/api/v1/users/update-company";
