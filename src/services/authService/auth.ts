@@ -9,7 +9,6 @@ export async function login(data:any) {
       password: data?.password
     })
     .then(async (response) => {
-      console.log("response", response.data.message)
       localStorage.setItem("token", response.data.message);
       // setCookie('backAccessToken', response.data.token);
       return response;

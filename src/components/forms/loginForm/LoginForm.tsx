@@ -18,7 +18,7 @@ const LoginForm = () => {
 
   return (
     <div className="flex flex-col justify-center bg-white rounded-lg h-fit p-14">
-      <h1 className="mb-10 text-center font-semibold text-[25px] text-purple">Sign In</h1>
+      <h1 className="mb-10 text-center font-semibold text-[25px] text-purple">ورود</h1>
       <Form onFinish={onFinish}>
         <Form.Item name="username">
           <Input placeholder="Username" className="p-4 text-base"/>
@@ -28,7 +28,7 @@ const LoginForm = () => {
         </Form.Item>
         <Form.Item>
           <Button htmlType="submit" className="w-full bg-purple text-white hover:!text-white h-[55px] text-base">
-            Login
+            ورود
           </Button>
         </Form.Item>
       </Form>
