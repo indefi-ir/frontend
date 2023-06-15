@@ -17,7 +17,7 @@ const EditFinancierModal = (financierInfo: any) => {
   return (
     <>
       <Button className="bg-neutral-100 border-0 px-2" onClick={showModal}>
-        <EditIcon className="text-neutral-400 hover:text-purple" />
+        <EditIcon className="text-neutral-400 hover:text-primary-500" />
       </Button>
       <Modal
         title="Edit Financier"

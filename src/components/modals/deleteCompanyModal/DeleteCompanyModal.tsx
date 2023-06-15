@@ -42,7 +42,7 @@ const DeleteCompanyModal = ({ companyId }: any) => {
     <>
       {contextHolder}
       <Button className="bg-neutral-100 border-0 px-2" onClick={showModal}>
-        <DeleteIcon className="text-neutral-400 hover:text-purple" />
+        <DeleteIcon className="text-neutral-400 hover:text-primary-500" />
       </Button>
       <Modal title="Delete Chain" footer={false} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         Are You Sure?

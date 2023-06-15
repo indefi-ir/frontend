@@ -30,7 +30,7 @@ const UpdateStateModal = ({ orderId, orderAction, ordersListUrl }: Props) => {
 
   return (
     <>
-      <Button className="flex items-center bg-purple text-white  hover:!text-white font-medium text-sm border-0 px-2" onClick={showModal}>{orderAction}</Button>
+      <Button className="flex items-center bg-primary-500 text-white  hover:!text-white font-medium text-sm border-0 px-2" onClick={showModal}>{orderAction}</Button>
       <Modal title={`${orderAction} order`} footer={false} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         Are You Sure?
         <div className="mt-10 flex w-full flex-row-reverse">

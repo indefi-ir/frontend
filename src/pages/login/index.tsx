@@ -9,7 +9,7 @@ const Login = () => {
       </div>
       <div className="flex justify-center w-2/3">
         <div className="flex flex-col">
-        <h1 className="font-semibold text-[35px] text-center text-purple">
+        <h1 className="font-semibold text-[35px] text-center text-primary-500">
         وارد شوید!</h1>
         <h2>
         سامانه تامین مالی زنجیره تامین
