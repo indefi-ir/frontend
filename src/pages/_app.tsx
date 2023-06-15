@@ -8,9 +8,10 @@ import { ConfigProvider } from 'antd';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ConfigProvider
+      direction="rtl"
       theme={{
         token: {
-          colorPrimary: '#68417f',
+          colorPrimary: '#4285F4',
         }
       }}
     >

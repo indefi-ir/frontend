@@ -17,13 +17,15 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center bg-white rounded-lg h-fit p-14">
-      <h1 className="mb-10 text-center font-semibold text-[25px] text-primary-500">ورود</h1>
+    <div className="flex flex-col justify-center bg-white rounded-lg h-fit py-20 px-14 shadow-md">
+      <h1 className="mb-10 text-right text-4xl text-black">ورود</h1>
       <Form onFinish={onFinish}>
         <Form.Item name="username">
+          <span className="text-base">نام کاربری</span>
           <Input placeholder="Username" className="p-4 text-base"/>
         </Form.Item>
         <Form.Item name="password">
+          <span className="text-base">کلمه عبور</span>
           <Input placeholder="Password" className="p-4 text-base" type="password"/>
         </Form.Item>
         <Form.Item>

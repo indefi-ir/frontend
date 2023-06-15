@@ -3,20 +3,19 @@ import Image from 'next/image'
 
 const Login = () => {
   return (
-    <div className="flex items-center justify-between bg-[url('/images/bg-login.jpeg')] bg-no-repeat	bg-cover h-screen p-12">
-      <div className="w-1/3">
-        <LoginForm />
-      </div>
-      <div className="flex justify-center w-2/3">
-        <div className="flex flex-col">
-        <h1 className="font-semibold text-[35px] text-center text-primary-500">
-        وارد شوید!</h1>
-        <h2>
-        سامانه تامین مالی زنجیره تامین
-        </h2>
-        <p>
-        تامین مالی زنجیره تامین مجموعه ای از فرآیندهای تجاری و تامین مالی مبتنی بر فناوری است که هزینه ها را کاهش می دهد و کارایی را برای طرف های درگیر در معامله بهبود می بخشد. 
-        </p>
+    <div className="flex items-center justify-between bg-gradient-radial h-screen p-12">
+      <div className="flex justify-center w-7/12">
+        <div className="flex flex-col ">
+          <div className="w-96">
+            <h1 className="font-semibold text-3xl text-right text-white pb-4">
+              وارد شوید!</h1>
+            <h2 className="text-2xl text-right text-white py-2">
+              سامانه تامین مالی زنجیره تامین
+            </h2>
+            <p className="text-base text-justify text-right text-white py-2">
+              تامین مالی زنجیره تامین مجموعه ای از فرآیندهای تجاری و تامین مالی مبتنی بر فناوری است که هزینه ها را کاهش می دهد و کارایی را برای طرف های درگیر در معامله بهبود می بخشد.
+            </p>
+          </div>
           <Image
             src="/images/login-vector.png"
             alt="Picture of the author"
@@ -24,6 +23,9 @@ const Login = () => {
             height={650}
           />
         </div>
+      </div>
+      <div className="flex justify-center w-5/12">
+        <LoginForm />
       </div>
     </div>
   )
