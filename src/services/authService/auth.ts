@@ -5,12 +5,12 @@ import { setCookie } from "../../utils/cookie";
 export async function login(data:any) {
   return axiosApiInstance 
     .post(loginUrl, {
-      email: data?.email,
+      username: data?.username,
       password: data?.password
     })
     .then(async (response) => {
-      console.log("response", response)
-      localStorage.setItem("token", response.data.token);
+      console.log("response", response.data.message)
+      localStorage.setItem("token", response.data.message);
       // setCookie('backAccessToken', response.data.token);
       return response;
     })

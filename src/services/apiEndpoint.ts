@@ -1,4 +1,4 @@
-export const loginUrl = 'api/authenticate/login';
+export const loginUrl = '/api/v1/authenticate/login-funder';
 
 export const supplyChainsUrl =  "/api/supply-chains";
 export const addSupplyChainUrl = "/api/supply-chains/add";

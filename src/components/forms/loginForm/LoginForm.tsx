@@ -8,7 +8,7 @@ const LoginForm = () => {
   const onFinish = async (values: any) => {
     try {
       const res = await login({...values}) 
-      if (res?.data?.token) {
+      if (res?.data?.message) {
         router.push(`/dashboard`);
       }
     } catch (err) {
@@ -20,8 +20,8 @@ const LoginForm = () => {
     <div className="flex flex-col justify-center bg-white rounded-lg h-fit p-14">
       <h1 className="mb-10 text-center font-semibold text-[25px] text-purple">Sign In</h1>
       <Form onFinish={onFinish}>
-        <Form.Item name="email">
-          <Input placeholder="Email" className="p-4 text-base"/>
+        <Form.Item name="username">
+          <Input placeholder="Username" className="p-4 text-base"/>
         </Form.Item>
         <Form.Item name="password">
           <Input placeholder="Password" className="p-4 text-base" type="password"/>
