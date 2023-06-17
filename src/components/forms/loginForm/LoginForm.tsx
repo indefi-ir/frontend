@@ -19,13 +19,11 @@ const LoginForm = () => {
   return (
     <div className="flex flex-col justify-center bg-white rounded-lg h-fit py-20 px-14 shadow-md">
       <h1 className="mb-10 text-right text-4xl text-black">ورود</h1>
-      <Form onFinish={onFinish}>
-        <Form.Item name="username">
-          <span className="text-base block pb-2">نام کاربری</span>
+      <Form onFinish={onFinish} layout="vertical">
+        <Form.Item name="username" label="نام کاربری">
           <Input placeholder="نام کاربری" className="p-3 text-sm w-96"/>
         </Form.Item>
-        <Form.Item name="password">
-          <span className="text-base block pb-2">کلمه عبور</span>
+        <Form.Item name="password" label="کلمه عبور">
           <Input placeholder="کلمه عبور" className="p-3 text-sm w-96" type="password"/>
         </Form.Item>
         <Form.Item>
