@@ -19,25 +19,25 @@ const adminMenuItems = [
     key: '2',
     icon: <SupplyChainIcon />,
     label: 'شرکت ها',
-    path: '/supply-chain'
+    path: '/companies'
   },
   {
     key: '3',
     icon: <CompanyIcon />,
     label: 'درخواست ها',
-    path: '/companies'
+    path: '/requests'
   },
   {
     key: '4',
     icon: <FinancierIcon />,
     label: 'مدیریت زنجیره ها',
-    path: '/financiers'
+    path: '/supply-chains'
   },
   {
     key: '5',
     icon: <FinancierIcon />,
     label: 'صورتحساب ها',
-    path: '/financiers'
+    path: '/bills'
   }
 ]
 
