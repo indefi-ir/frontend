@@ -28,12 +28,15 @@ const AdminLayout = ({ children }: Props) => {
           trigger={null}
           width={250}
           collapsible
+          theme='light'
           collapsed={collapsed}
-          theme='light'>
+          >
           {!collapsed &&
-            <PlutusLogo />
+            <div className='flex justify-center'>
+              <PlutusLogo />
+            </div>
           }
-          <AdminMenu styles={{ background: "transparent", color: "white" }} />
+          <AdminMenu />
         </Sider>
         <Layout>
           <Header className='flex items-center mt-6' style={{ padding: "10px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>

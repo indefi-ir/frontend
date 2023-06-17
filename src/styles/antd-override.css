@@ -1,4 +1,4 @@
-.ant-layout {
+/* .ant-layout {
   background-color: white;
 }
 
@@ -15,7 +15,7 @@ td.ant-table-cell {
 } 
 
 .ant-breadcrumb span.ant-breadcrumb-link a{
-  color: #68417f;
+  color: white;
   font-size: 14px;
   font-weight: 600;
 }
@@ -89,4 +89,12 @@ td.ant-table-cell {
 
 .ant-notification-notice.error .ant-notification-notice-close {
   color: #d9214e
+} */
+
+.ant-menu-item.ant-menu-item-selected   {
+  background-color: #5C59E8 !important;
+}
+
+.ant-menu-item.ant-menu-item-selected   {
+  color: white !important;
 }

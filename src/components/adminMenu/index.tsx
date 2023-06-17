@@ -12,25 +12,31 @@ const adminMenuItems = [
   {
     key: '1',
     icon: <DashboardIcon />,
-    label: 'Dashboard',
+    label: 'داشبورد',
     path: '/dashboard'
   },
   {
     key: '2',
     icon: <SupplyChainIcon />,
-    label: 'Supply chains',
+    label: 'شرکت ها',
     path: '/supply-chain'
   },
   {
     key: '3',
     icon: <CompanyIcon />,
-    label: 'Companies',
+    label: 'درخواست ها',
     path: '/companies'
   },
   {
     key: '4',
     icon: <FinancierIcon />,
-    label: 'Financiers',
+    label: 'مدیریت زنجیره ها',
+    path: '/financiers'
+  },
+  {
+    key: '5',
+    icon: <FinancierIcon />,
+    label: 'صورتحساب ها',
     path: '/financiers'
   }
 ]
@@ -53,10 +59,10 @@ const AdminMenu = ({ styles }: Props) => {
   const { role }: any = React.useContext(userInfoContext);
 
   return (
-    <Menu mode="inline" style={styles} className="text-base">
+    <Menu mode="inline" style={styles} className="text-base px-2">
       {role === 'Company'
         ? (companyMenuItems.map((item) => (
-          <Menu.Item key={item.key} icon={item.icon} className="!my-6 text-white">
+          <Menu.Item key={item.key} icon={item.icon} className="!my-6">
             <Link href={item.path}>
               {item.label}
             </Link>
@@ -64,7 +70,7 @@ const AdminMenu = ({ styles }: Props) => {
         )))
 
         : (adminMenuItems.map((item) => (
-          <Menu.Item key={item.key} icon={item.icon} className="!my-6 text-white">
+          <Menu.Item key={item.key} icon={item.icon} className="!my-6 text-black-500">
             <Link href={item.path}>
               {item.label}
             </Link>
