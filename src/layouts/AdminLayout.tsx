@@ -49,7 +49,7 @@ const AdminLayout = ({ children }: Props) => {
             <Breadcrumb />
           </Header>
           <Content style={{ margin: '16px' }}>
-            <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
+            <div>
               {children}
             </div>
           </Content>
