@@ -1,11 +1,11 @@
+import React from 'react';
 import { Avatar, Card, DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
 import useSWR from 'swr';
+import nextRouter, { useRouter } from 'next/router';
 import { companiesUrl } from '../../services/apiEndpoint';
 import { fetcher } from '../../services/axios';
 import { useState } from 'react';
 import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
-import React from 'react';
-import Link from 'next/link';
 import dateFormat from '../../utils/dateFormat';
 import { CreditIcon, EyeIcon } from '../../components/icons';
 const { Meta } = Card;
@@ -75,14 +75,14 @@ const columns = (searchTerm: string) => ([
   {
     title: "عملیات",
     key: "action",
-    render: () => (
+    render: (_, record:any) => (
       <Space size="middle">
-        <Link href="/about">
+        <span className='cursor-pointer' onClick={() => nextRouter.push(`/companies/details/${record.id}`)}>
           <EyeIcon />
-        </Link>
-        <Link href="/about">
+        </span>
+        <span className='cursor-pointer' onClick={() => nextRouter.push(`/companies/credit/${record.id}`)}>
           <CreditIcon />
-        </Link>
+        </span>
       </Space>
     )
   }
