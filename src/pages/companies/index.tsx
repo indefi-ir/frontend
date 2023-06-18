@@ -1,4 +1,4 @@
-import { DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
+import { Avatar, Card, DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
 import useSWR from 'swr';
 import { companiesUrl } from '../../services/apiEndpoint';
 import { fetcher } from '../../services/axios';
@@ -8,7 +8,7 @@ import React from 'react';
 import Link from 'next/link';
 import dateFormat from '../../utils/dateFormat';
 import { CreditIcon, EyeIcon } from '../../components/icons';
-
+const { Meta } = Card;
 
 const renderStatus = (status: Number) => {
   switch (status) {
@@ -29,7 +29,16 @@ const columns = (searchTerm: string) => ([
     filteredValue: [searchTerm],
     onFilter: (value: any, record: { name: string | any[]; }) => {
       return record.name.includes(value)
-    }
+    },
+    render: (_, record: { name: string | any; email: string | any }) => (
+      <Card bordered={false}>
+        <Meta
+          avatar={<Avatar src="/images/chainova-logo.jpeg" />}
+          title={record.name}
+          description={record.email}
+        />
+      </Card>
+    )
   },
   {
     title: 'شناسه ملی شرکت',
@@ -42,12 +51,15 @@ const columns = (searchTerm: string) => ([
   },
   {
     title: 'تلفن',
-    dataIndex: 'age',
-    defaultSortOrder: 'descend',
+    dataIndex: 'phoneNumber',
+    key: 'phoneNumber',
+    render: (record: string) => (
+      <div style={{ direction: "ltr" }} className="text-right">{record}</div>
+    )
   },
   {
     title: 'وضعیت',
-    dataIndex: 'orderState',
+    dataIndex: 'companyStatus',
     render: (record: Number) => (
       renderStatus(record)
     )
@@ -112,7 +124,7 @@ const Companies = () => {
         />
         {/* <AddCompanyModal /> */}
       </div>
-      <Table columns={columns(searchTerm)} dataSource={data?.data} scroll={{ y: 450 }} />
+      <Table columns={columns(searchTerm)} dataSource={data?.data} />
     </>
   )
 };
