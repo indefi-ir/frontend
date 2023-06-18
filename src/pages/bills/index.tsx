@@ -42,12 +42,15 @@ const columns = (searchTerm: string) => ([
   },
   {
     title: 'تلفن',
-    dataIndex: 'age',
-    defaultSortOrder: 'descend',
+    dataIndex: 'phoneNumber',
+    key: 'phoneNumber',
+    render: (record: string) => (
+      <div style={{direction: "ltr"}} className="text-right">{record}</div>
+    )
   },
   {
     title: 'وضعیت',
-    dataIndex: 'orderState',
+    dataIndex: 'companyStatus',
     render: (record: Number) => (
       renderStatus(record)
     )
