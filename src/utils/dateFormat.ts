@@ -1,5 +1,5 @@
-import moment from "moment";
+import moment from 'jalali-moment';
 
-export default function dateFormat(value:string, format = 'YYYY-MM-DD') {
+export default function dateFormat(value:string, format = 'HH:mm:ss jYYYY/jMM/jDD ') {
   return moment(value).format(format);
 }

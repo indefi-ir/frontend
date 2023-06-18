@@ -8,3 +8,6 @@ export { default as SellOrderIcon } from './SellOrderIcon';
 export { default as FinancierIcon } from './FinancierIcon';
 export { default as SupplyChainIcon } from './SupplyChainIcon';
 export { default as CompanyIcon } from './CompanyIcon';
+
+export { default as EyeIcon } from './EyeIcon';
+export { default as CreditIcon } from './CreditIcon';

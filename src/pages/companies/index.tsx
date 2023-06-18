@@ -1,43 +1,76 @@
-import { SearchOutlined } from '@ant-design/icons';
-import { Input, Space, Table } from 'antd';
+import { DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
 import useSWR from 'swr';
 import { companiesUrl } from '../../services/apiEndpoint';
-import { AddCompanyModal, DeleteCompanyModal, EditCompanyModal } from '../../components/modals';
 import { fetcher } from '../../services/axios';
 import { useState } from 'react';
 import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
 import React from 'react';
+import Link from 'next/link';
+import dateFormat from '../../utils/dateFormat';
+import { CreditIcon, EyeIcon } from '../../components/icons';
 
-interface DataType {
-  id: React.Key;
-  name: string;
-  email: string;
+
+const renderStatus = (status: Number) => {
+  switch (status) {
+    case 1:
+      return <Tag color="green">فعال</Tag>;
+    case 0:
+      return <Tag color="red">مسدود شده</Tag>;
+    case 2:
+      return <Tag color="gold">مسدود موقت</Tag>;
+  }
 }
 
 const columns = (searchTerm: string) => ([
   {
-    title: 'Id',
-    dataIndex: 'id',
-  },
-  {
-    title: 'Name',
+    title: 'نام شرکت',
     dataIndex: 'name',
+    key: 'name',
     filteredValue: [searchTerm],
     onFilter: (value: any, record: { name: string | any[]; }) => {
       return record.name.includes(value)
     }
   },
   {
-    title: 'Email',
-    dataIndex: 'email',
+    title: 'شناسه ملی شرکت',
+    dataIndex: 'nationalID',
+    key: 'nationalID',
+    filteredValue: [searchTerm],
+    onFilter: (value: any, record: { name: string | any[]; }) => {
+      return record.name.includes(value)
+    }
   },
   {
-    title: '',
-    key: 'action',
-    render: (record: { id: string; }) => (
+    title: 'تلفن',
+    dataIndex: 'age',
+    defaultSortOrder: 'descend',
+  },
+  {
+    title: 'وضعیت',
+    dataIndex: 'orderState',
+    render: (record: Number) => (
+      renderStatus(record)
+    )
+  },
+  {
+    title: 'تاریخ ایجاد',
+    dataIndex: 'creationDate',
+    key: 'creationDate',
+    render: (record: string) => (
+      dateFormat(record)
+    ),
+  },
+  {
+    title: "عملیات",
+    key: "action",
+    render: () => (
       <Space size="middle">
-        <EditCompanyModal companyInfo={record}/>
-        <DeleteCompanyModal companyId={record.id} />
+        <Link href="/about">
+          <EyeIcon />
+        </Link>
+        <Link href="/about">
+          <CreditIcon />
+        </Link>
       </Space>
     )
   }
@@ -49,20 +82,38 @@ const Companies = () => {
   //@ts-ignore
   const { data } = useSWR(companiesUrl, fetcher)
 
+  const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+    console.log(date, dateString);
+  };
+
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+
   return (
-    <div className='border rounded-lg p-5'>
-      <div className='flex justify-between mb-10'>
+    <>
+      <div className='flex mb-10'>
         <Input
-          prefix={<SearchOutlined className='mr-2 font-bold text-lg' />}
-          placeholder="Search Supply Chains"
-          bordered={false}
-          className='w-[300px] text-[14px] h-12 border-none !bg-neutral-100 font-normal'
+          placeholder="نام شرکت"
+          className='font-normal !bg-white w-60 p-2 ml-3'
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <AddCompanyModal />
+        <DatePicker onChange={onChange} placeholder="تاریخ ایجاد" className='ml-3' />
+        <Select
+          defaultValue="فعال"
+          onChange={handleChange}
+          placeholder="وضعیت"
+          className='w-40 ml-3'
+          options={[
+            { value: 1, label: 'فعال' },
+            { value: 2, label: 'مسدود موقت' },
+            { value: 0, label: 'مسدود شده' }
+          ]}
+        />
+        {/* <AddCompanyModal /> */}
       </div>
       <Table columns={columns(searchTerm)} dataSource={data?.data} scroll={{ y: 450 }} />
-    </div>
+    </>
   )
 };
 

@@ -8,7 +8,7 @@ const LoginForm = () => {
   const onFinish = async (values: any) => {
     try {
       const res = await login({...values}) 
-      if (res?.data?.message) {
+      if (res?.data?.data) {
         router.push(`/dashboard`);
       }
     } catch (err) {
