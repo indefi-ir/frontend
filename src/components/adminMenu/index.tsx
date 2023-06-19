@@ -21,20 +21,20 @@ const adminMenuItems = [
     label: 'شرکت ها',
     path: '/companies'
   },
+  // {
+  //   key: '3',
+  //   icon: <CompanyIcon />,
+  //   label: 'درخواست ها',
+  //   path: '/requests'
+  // },
   {
     key: '3',
-    icon: <CompanyIcon />,
-    label: 'درخواست ها',
-    path: '/requests'
-  },
-  {
-    key: '4',
     icon: <FinancierIcon />,
     label: 'مدیریت زنجیره ها',
     path: '/supply-chains'
   },
   {
-    key: '5',
+    key: '4',
     icon: <FinancierIcon />,
     label: 'صورتحساب ها',
     path: '/bills'
