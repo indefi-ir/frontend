@@ -2,7 +2,7 @@ import React from 'react';
 import { Avatar, Card, DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
 import useSWR from 'swr';
 import nextRouter, { useRouter } from 'next/router';
-import { companiesUrl } from '../../services/apiEndpoint';
+import { getAllSupplyChainsUrl } from '../../services/apiEndpoint';
 import { fetcher } from '../../services/axios';
 import { useState } from 'react';
 import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
@@ -59,7 +59,7 @@ const SupplyChains = () => {
   const userInfo = React.useContext(userInfoContext);
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
-  const { data } = useSWR(companiesUrl, fetcher)
+  const { data } = useSWR(getAllSupplyChainsUrl, fetcher)
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     console.log(date, dateString);
