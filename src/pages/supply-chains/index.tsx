@@ -1,29 +1,19 @@
-import { DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
+import React from 'react';
+import { Avatar, Card, DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
 import useSWR from 'swr';
+import nextRouter, { useRouter } from 'next/router';
 import { companiesUrl } from '../../services/apiEndpoint';
 import { fetcher } from '../../services/axios';
 import { useState } from 'react';
 import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
-import React from 'react';
-import Link from 'next/link';
 import dateFormat from '../../utils/dateFormat';
+
 import { CreditIcon, EyeIcon } from '../../components/icons';
-
-
-const renderStatus = (status: Number) => {
-  switch (status) {
-    case 1:
-      return <Tag color="green">فعال</Tag>;
-    case 0:
-      return <Tag color="red">مسدود شده</Tag>;
-    case 2:
-      return <Tag color="gold">مسدود موقت</Tag>;
-  }
-}
+const { Meta } = Card;
 
 const columns = (searchTerm: string) => ([
   {
-    title: 'نام شرکت',
+    title: 'نام زنجیره',
     dataIndex: 'name',
     key: 'name',
     filteredValue: [searchTerm],
@@ -32,24 +22,16 @@ const columns = (searchTerm: string) => ([
     }
   },
   {
-    title: 'شناسه ملی شرکت',
+    title: 'اعتبار',
     dataIndex: 'nationalID',
     key: 'nationalID',
-    filteredValue: [searchTerm],
-    onFilter: (value: any, record: { name: string | any[]; }) => {
-      return record.name.includes(value)
-    }
   },
   {
-    title: 'تلفن',
-    dataIndex: 'age',
-    defaultSortOrder: 'descend',
-  },
-  {
-    title: 'وضعیت',
-    dataIndex: 'orderState',
-    render: (record: Number) => (
-      renderStatus(record)
+    title: 'اعتبار جاری',
+    dataIndex: 'phoneNumber',
+    key: 'phoneNumber',
+    render: (record: string) => (
+      <div style={{ direction: "ltr" }} className="text-right">{record}</div>
     )
   },
   {
@@ -63,14 +45,11 @@ const columns = (searchTerm: string) => ([
   {
     title: "عملیات",
     key: "action",
-    render: () => (
+    render: (_, record:any) => (
       <Space size="middle">
-        <Link href="/about">
+        <span className='cursor-pointer' onClick={() => nextRouter.push(`/supply-chains/view-chain/${record.id}`)}>
           <EyeIcon />
-        </Link>
-        <Link href="/about">
-          <CreditIcon />
-        </Link>
+        </span>
       </Space>
     )
   }
@@ -94,7 +73,7 @@ const SupplyChains = () => {
     <>
       <div className='flex mb-10'>
         <Input
-          placeholder="نام شرکت"
+          placeholder="نام زنجیره"
           className='font-normal !bg-white w-60 p-2 ml-3'
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -112,12 +91,12 @@ const SupplyChains = () => {
         />
         {/* <AddCompanyModal /> */}
       </div>
-      <Table columns={columns(searchTerm)} dataSource={data?.data} scroll={{ y: 450 }} />
+      <Table columns={columns(searchTerm)} dataSource={data?.data} />
     </>
   )
 };
 
 SupplyChains.layout = 'admin'
 
-export default SupplyChains
+export default SupplyChains;
 
