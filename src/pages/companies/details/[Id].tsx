@@ -3,4 +3,6 @@ const DetailsCompany = () => (
     test
   </div>
 )
-export default DetailsCompany
+
+DetailsCompany.layout = 'admin';
+export default DetailsCompany;
