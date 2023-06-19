@@ -9,6 +9,13 @@ export const billsUrl =  "/api/v1/bills/get-all-bills";
 export const myBillsUrl = "/api/v1/bills/get-my-bills";
 export const updateBillUrl = "/api/v1/bills/update-bill";
 
+// SupplyChain
+export const addSupplyChainUrl =  "/api/v1/supplychain/add-supplychain";
+export const getAllSupplyChainsUrl =  "/api/v1/supplychain/get-all-supplychains";
+export const getSupplyChainsForCompanyUrl =  "/api/v1/supplychain/get-supplychains-for-company";
+export const getSupplyChainsForMyCompanyUrl =  "/api/v1/supplychain/get-supplychains-for-my-company";
+export const updateSupplyChainUrl =  "/api/v1/supplychain/get-supplychains-for-my-company";
+
 // Credits
 export const creditMyCompanyUrl =  "/api/v1/credits/get-credit-for-my-company";
 export const creditCompanyUrl = "/api/v1/credits/get-credit-for-company";
