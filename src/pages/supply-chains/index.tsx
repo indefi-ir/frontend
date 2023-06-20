@@ -61,6 +61,8 @@ const SupplyChains = () => {
   //@ts-ignore
   const { data } = useSWR(getAllSupplyChainsUrl, fetcher)
 
+  console.log("supply chain", data)
+
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     console.log(date, dateString);
   };

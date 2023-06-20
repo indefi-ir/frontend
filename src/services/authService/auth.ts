@@ -10,7 +10,7 @@ export async function login(data:any) {
       password: data?.password
     })
     .then(async (response) => {
-      localStorage.setItem("token", response.data.message);
+      localStorage.setItem("token", response.data.data);
       // setCookie('backAccessToken', response.data.token);
       return response;
     })
