@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Card, DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
+import { Avatar, Button, Card, DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
 import useSWR from 'swr';
 import nextRouter, { useRouter } from 'next/router';
 import { companiesUrl } from '../../services/apiEndpoint';
@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
 import dateFormat from '../../utils/dateFormat';
 import { CreditIcon, EyeIcon } from '../../components/icons';
+import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
 const renderStatus = (status: Number) => {
@@ -75,7 +76,7 @@ const columns = (searchTerm: string) => ([
   {
     title: "عملیات",
     key: "action",
-    render: (_, record:any) => (
+    render: (_, record: any) => (
       <Space size="middle">
         <span className='cursor-pointer' onClick={() => nextRouter.push(`/companies/details/${record.id}`)}>
           <EyeIcon />
@@ -104,25 +105,35 @@ const Companies = () => {
 
   return (
     <>
-      <div className='flex mb-10'>
-        <Input
-          placeholder="نام شرکت"
-          className='font-normal !bg-white w-60 p-2 ml-3'
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <DatePicker onChange={onChange} placeholder="تاریخ ایجاد" className='ml-3' />
-        <Select
-          defaultValue="فعال"
-          onChange={handleChange}
-          placeholder="وضعیت"
-          className='w-40 ml-3'
-          options={[
-            { value: 1, label: 'فعال' },
-            { value: 2, label: 'مسدود موقت' },
-            { value: 0, label: 'مسدود شده' }
-          ]}
-        />
-        {/* <AddCompanyModal /> */}
+      <div className='flex justify-between mb-10'>
+        <div className='search-box'>
+          <Input
+            placeholder="نام شرکت"
+            className='font-normal !bg-white w-60 p-2 ml-3'
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <DatePicker onChange={onChange} placeholder="تاریخ ایجاد" className='ml-3' />
+          <Select
+            defaultValue="فعال"
+            onChange={handleChange}
+            placeholder="وضعیت"
+            className='w-40 ml-3'
+            options={[
+              { value: 1, label: 'فعال' },
+              { value: 2, label: 'مسدود موقت' },
+              { value: 0, label: 'مسدود شده' }
+            ]}
+          />
+        </div>
+
+        <div className='action-box'>
+          <Button className='bg-primary-500 text-white ml-3' icon={<PlusOutlined />} size="large">
+            افزودن شرکت
+          </Button>
+          <Button className='bg-primary-100 text-primary-500' icon={<UploadOutlined />} size="large">
+            خروجی
+          </Button>
+        </div>
       </div>
       <Table columns={columns(searchTerm)} dataSource={data?.data} />
     </>
