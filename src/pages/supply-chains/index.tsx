@@ -100,7 +100,7 @@ const SupplyChains = () => {
           />
         </div>
         <div className='action-box'>
-          <Button className='bg-primary-500 text-white ml-3' icon={<PlusOutlined />} size="large">
+          <Button className='bg-primary-500 text-white ml-3' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/supply-chains/new-chain`)}>
             افزودن زنجیره
           </Button>
           <Button className='bg-primary-100 text-primary-500' icon={<UploadOutlined />} size="large">
