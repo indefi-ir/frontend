@@ -113,7 +113,6 @@ const Bills = () => {
             { value: 0, label: 'مسدود شده' }
           ]}
         />
-        {/* <AddCompanyModal /> */}
       </div>
       <Table columns={columns(searchTerm)} dataSource={data?.data} scroll={{ y: 450 }} />
     </>
