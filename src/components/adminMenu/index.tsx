@@ -17,7 +17,7 @@ const adminMenuItems = [
   },
   {
     key: '2',
-    icon: <SupplyChainIcon />,
+    icon: <CompanyIcon />,
     label: 'شرکت ها',
     path: '/companies'
   },
@@ -29,7 +29,7 @@ const adminMenuItems = [
   // },
   {
     key: '3',
-    icon: <FinancierIcon />,
+    icon: <SupplyChainIcon />,
     label: 'مدیریت زنجیره ها',
     path: '/supply-chains'
   },
