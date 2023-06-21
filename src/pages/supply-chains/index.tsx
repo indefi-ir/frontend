@@ -21,17 +21,22 @@ const columns = (searchTerm: string) => ([
       return record.name.includes(value)
     }
   },
+
   {
-    title: 'اعتبار',
-    dataIndex: 'nationalID',
-    key: 'nationalID',
-  },
-  {
-    title: 'اعتبار جاری',
-    dataIndex: 'phoneNumber',
-    key: 'phoneNumber',
-    render: (record: string) => (
+    title: 'اعتبار ',
+    dataIndex: 'credit',
+    key: 'credit',
+    render: (record: number) => (
       <div style={{ direction: "ltr" }} className="text-right">{record}</div>
+    )
+  },
+
+  {
+    title: 'توضیحات ',
+    dataIndex: 'description',
+    key: 'description',
+    render: (record: number) => (
+      <div>{record}</div>
     )
   },
   {
