@@ -23,7 +23,7 @@ const AdminLayout = ({ children }: Props) => {
 
   return (
     <UserInfoProvider>
-      <Layout className='flex h-screen'>
+      <Layout className='flex'>
         <Sider
           trigger={null}
           width={250}
