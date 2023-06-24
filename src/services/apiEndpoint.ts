@@ -23,7 +23,7 @@ export const addFinancialInstrumentsUrl= "/api/v1/credits/add-financial-instrume
 export const transferCreditUrl = "/api/v1/credits/transfer-credit";
 
 // ProductCategory
-export const productCategoriesUrl =  "/api/v1/product-category/get-all-product-categories";
+export const productCategoriesUrl =  "/api/v1/product-category/get-all-product-categories?skip=0&count=100";
 export const productCategoriesCompanyUrl = "/api/v1/product-category/get-product-categories-for-company";
 export const productCategoriesMyCompanyUrl= "/api/v1/product-category/get-product-categories-for-my-company";
 export const addProductCategoryUrl = "/api/v1/product-category/add-product-category";
