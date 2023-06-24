@@ -35,7 +35,7 @@ export const transactionMyCompanyUrl =  "/api/v1/transactions/get-transaction-fo
 
 // Users
 export const companyByIdUrl = "/api/v1/users/get-company-by-id";
-export const companyDetailsByIdUrl = "/api/v1/users/get-company-details-by-id";
+export const companyDetailsByIdUrl = "/api/v1/users/get-company-details-by-id?companyId=";
 export const companiesUrl =  "api/v1/users/get-companies?skip=0&count=100&verifired=true";
 export const myCompanyInfoUrl = "/api/v1/users/get-my-company-info";
 export const updateCompanyUrl = "/api/v1/users/update-company";

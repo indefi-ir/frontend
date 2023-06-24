@@ -1,18 +1,25 @@
 import { Avatar, Card, Col, Form, List, Row, Tag, Select, Button, Collapse, Space, CollapseProps } from "antd";
+import { useRouter } from 'next/router';
+import { companyDetailsByIdUrl } from "../../../services/apiEndpoint";
+import { fetcher } from "../../../services/axios";
+import useSWR from 'swr';
 const { Option } = Select;
 
-const data = [
+const data = (companyDetails: any) => [
   {
     iconUrl: '/images/information-icon.png',
     title: 'شناسه ملی شرکت',
+    key: `${companyDetails?.data?.nationalID}`
   },
   {
     iconUrl: '/images/phone-icon.png',
     title: 'شماره تلفن',
+    key: `${companyDetails?.data?.phoneNumber}`
   },
   {
     iconUrl: '/images/address-icon.png',
     title: 'آدرس پستی',
+    key: `${companyDetails?.data?.address}`
   },
 ];
 
@@ -49,6 +56,17 @@ const onFinishFailed = (errorInfo: any) => {
 };
 
 const DetailsCompany = () => {
+  const router = useRouter();
+  console.log(router.query)
+
+  const {Id} = router.query;
+
+  const companyDetailsUrl = `${companyDetailsByIdUrl}${Id}`;
+
+  const {data:companyDetails, error} = useSWR(companyDetailsUrl,fetcher);
+
+  console.log("data",companyDetails.data)
+
   return (
     <Row gutter={16}>
       <Col span={6}>
@@ -58,19 +76,19 @@ const DetailsCompany = () => {
               <div className='flex flex-col divide-y divide-gray-50'>
                 <div className='flex flex-col justify-center items-center mb-3'>
                   <Avatar size={80} className="mb-2" />
-                  <div className='mb-1'>چینوا</div>
-                  <div>contact@chainovastudio.com</div>
+                  <div className='mb-1'>{companyDetails?.data?.name}</div>
+                  <div>{companyDetails?.data?.email}</div>
                 </div>
                 <div>
                   <List
                     itemLayout="horizontal"
-                    dataSource={data}
+                    dataSource={data(companyDetails)}
                     renderItem={(item, index) => (
                       <List.Item>
                         <List.Item.Meta
                           avatar={<Avatar src={item.iconUrl} />}
                           title={item.title}
-                          description="۱۳۵۵۲۶۳۵۲۶۴"
+                          description={item.key}
                         />
                       </List.Item>
                     )}
