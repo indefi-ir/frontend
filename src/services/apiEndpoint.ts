@@ -5,7 +5,7 @@ export const registerCompanyUrl = '/api/v1/authenticate/register-company';
 export const loginCompanyUrl = '/api/v1/authenticate/login-company';
 
 // Bills
-export const billsUrl =  "/api/v1/bills/get-all-bills";
+export const billsUrl =  "/api/v1/bills/get-all-bills?skip=0&count=10";
 export const myBillsUrl = "/api/v1/bills/get-my-bills";
 export const updateBillUrl = "/api/v1/bills/update-bill";
 

@@ -1,14 +1,11 @@
 import { DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
 import useSWR from 'swr';
-import { companiesUrl } from '../../services/apiEndpoint';
+import { billsUrl } from '../../services/apiEndpoint';
 import { fetcher } from '../../services/axios';
 import { useState } from 'react';
 import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
 import React from 'react';
-import Link from 'next/link';
 import dateFormat from '../../utils/dateFormat';
-import { CreditIcon, EyeIcon } from '../../components/icons';
-
 
 const renderStatus = (status: Number) => {
   switch (status) {
@@ -24,35 +21,26 @@ const renderStatus = (status: Number) => {
 const columns = (searchTerm: string) => ([
   {
     title: 'نام شرکت',
-    dataIndex: 'name',
-    key: 'name',
-    filteredValue: [searchTerm],
-    onFilter: (value: any, record: { name: string | any[]; }) => {
-      return record.name.includes(value)
-    }
-  },
-  {
-    title: 'شناسه ملی شرکت',
-    dataIndex: 'nationalID',
-    key: 'nationalID',
-    filteredValue: [searchTerm],
-    onFilter: (value: any, record: { name: string | any[]; }) => {
-      return record.name.includes(value)
-    }
+    dataIndex: 'company',
+    key: 'company',
+    render: (record: any) => (
+      <div className="text-right">{record.name}</div>
+    ),
   },
   {
     title: 'تلفن',
-    dataIndex: 'phoneNumber',
-    key: 'phoneNumber',
-    render: (record: string) => (
-      <div style={{direction: "ltr"}} className="text-right">{record}</div>
+    dataIndex: 'company',
+    key: 'company',
+    render: (record: any) => (
+      <div style={{direction: "ltr"}} className="text-right">{record.phoneNumber}</div>
     )
   },
   {
-    title: 'وضعیت',
-    dataIndex: 'companyStatus',
-    render: (record: Number) => (
-      renderStatus(record)
+    title: 'مقدار',
+    dataIndex: 'value',
+    key: 'value',
+    render: (record: string) => (
+      <div style={{direction: "ltr"}} className="text-right">{record}</div>
     )
   },
   {
@@ -64,17 +52,18 @@ const columns = (searchTerm: string) => ([
     ),
   },
   {
-    title: "عملیات",
-    key: "action",
-    render: () => (
-      <Space size="middle">
-        <Link href="/about">
-          <EyeIcon />
-        </Link>
-        <Link href="/about">
-          <CreditIcon />
-        </Link>
-      </Space>
+    title: 'تاریخ سررسید',
+    dataIndex: 'due',
+    key: 'due',
+    render: (record: string) => (
+      dateFormat(record)
+    ),
+  },
+  {
+    title: 'وضعیت',
+    dataIndex: 'billStatus',
+    render: (record: Number) => (
+      renderStatus(record)
     )
   }
 ]);
@@ -83,7 +72,7 @@ const Bills = () => {
   const userInfo = React.useContext(userInfoContext);
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
-  const { data } = useSWR(companiesUrl, fetcher)
+  const { data } = useSWR(billsUrl, fetcher)
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     console.log(date, dateString);
