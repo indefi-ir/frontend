@@ -1,4 +1,4 @@
-import { Avatar, Card, Col, Form, List, Row, Tag, Select, Button, Collapse, Space, CollapseProps } from "antd";
+import { Avatar, Card, Col, Form, List, Row, Tag, Select, Button, Collapse, CollapseProps } from "antd";
 import { useRouter } from 'next/router';
 import { companyDetailsByIdUrl } from "../../../services/apiEndpoint";
 import { fetcher } from "../../../services/axios";
@@ -7,19 +7,22 @@ const { Option } = Select;
 
 const data = (companyDetails: any) => [
   {
+    key: 1,
     iconUrl: '/images/information-icon.png',
     title: 'شناسه ملی شرکت',
-    key: `${companyDetails?.data?.nationalID}`
+    description: `${companyDetails?.data?.nationalID}`
   },
   {
+    key: 2,
     iconUrl: '/images/phone-icon.png',
     title: 'شماره تلفن',
-    key: `${companyDetails?.data?.phoneNumber}`
+    description: `${companyDetails?.data?.phoneNumber}`
   },
   {
+    key: 3,
     iconUrl: '/images/address-icon.png',
     title: 'آدرس پستی',
-    key: `${companyDetails?.data?.address}`
+    description: `${companyDetails?.data?.address}`
   },
 ];
 
@@ -27,6 +30,7 @@ const text = `A dog is a type of domesticated animal.
   Known for its loyalty and faithfulness,
   it can be found as a welcome guest in many households across the world.
 `;
+
 const items: CollapseProps['items'] = [
   {
     key: '1',
@@ -65,8 +69,6 @@ const DetailsCompany = () => {
 
   const {data:companyDetails, error} = useSWR(companyDetailsUrl,fetcher);
 
-  console.log("data",companyDetails.data)
-
   return (
     <Row gutter={16}>
       <Col span={6}>
@@ -83,12 +85,12 @@ const DetailsCompany = () => {
                   <List
                     itemLayout="horizontal"
                     dataSource={data(companyDetails)}
-                    renderItem={(item, index) => (
-                      <List.Item>
+                    renderItem={(item) => (
+                      <List.Item key={item.key}>
                         <List.Item.Meta
                           avatar={<Avatar src={item.iconUrl} />}
                           title={item.title}
-                          description={item.key}
+                          description={item.description}
                         />
                       </List.Item>
                     )}
