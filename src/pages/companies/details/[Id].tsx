@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { companyDetailsByIdUrl, CreditUsedUrl, totalCreditsUrl, updateCompanyStatusUrl } from "../../../services/apiEndpoint";
 import { fetcher, patch, put } from "../../../services/axios";
 import useSWR, { mutate } from 'swr';
+import { TransactionProductVolume } from "../../../features";
 const { Option } = Select;
 
 const renderStatus = (status: any) => {
@@ -79,8 +80,8 @@ const DetailsCompany = () => {
 
   const onFinish = async (values: any) => {
     const finalData = { ...values }
-    const result = await patch(`${updateCompanyStatusUrl}${Id}`, 
-    finalData);
+    const result = await patch(`${updateCompanyStatusUrl}${Id}`,
+      finalData);
     await mutate(companyDetailsUrl);
     if (result.success) { }
   };
@@ -183,8 +184,11 @@ const DetailsCompany = () => {
           </Row>
           <Row gutter={16} className="mb-4">
             <Col span={8}>
-              <Card className="h-96">
-                test
+              <Card className="h-96 h-full">
+                <span className="block text-lg">حجم معاملات</span>
+                <div className="flex justify-center items-center">
+                  <TransactionProductVolume />
+                </div>
               </Card>
             </Col>
             <Col span={16}>
