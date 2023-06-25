@@ -41,6 +41,21 @@ export async function post(url:string, body?:any, config={}) {
   .catch((error) => error)
 }
 
+export async function put(url:string, body?:any) {
+  return axiosApiInstance
+  .put(url, body)
+  .then((res) => res.data)
+  .catch((error) => error)
+}
+
+
+export async function patch(url:string, body?:any) {
+  return axiosApiInstance
+  .patch(url, body)
+  .then((res) => res.data)
+  .catch((error) => error)
+}
+
 export const fetcher = (url:string) => axiosApiInstance.get(url).then(res => res.data)
 
 export default axiosApiInstance;

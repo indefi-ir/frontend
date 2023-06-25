@@ -39,6 +39,7 @@ export const companyDetailsByIdUrl = "/api/v1/users/get-company-details-by-id?co
 export const companiesUrl =  "api/v1/users/get-companies?skip=0&count=100&verifired=true";
 export const myCompanyInfoUrl = "/api/v1/users/get-my-company-info";
 export const updateCompanyUrl = "/api/v1/users/update-company";
+export const updateCompanyStatusUrl = "/api/v1/users/update-company-status?companyId=";
 
 // Dashboard
 export const totalCreditsUrl = "/api/v1/dashboard/get-all-credits-ever-for-company?companyId=";

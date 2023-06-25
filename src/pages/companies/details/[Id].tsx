@@ -1,9 +1,20 @@
 import { Avatar, Card, Col, Form, List, Row, Tag, Select, Button, Collapse, CollapseProps } from "antd";
 import { useRouter } from 'next/router';
-import { companyDetailsByIdUrl, CreditUsedUrl, totalCreditsUrl } from "../../../services/apiEndpoint";
-import { fetcher } from "../../../services/axios";
-import useSWR from 'swr';
+import { companyDetailsByIdUrl, CreditUsedUrl, totalCreditsUrl, updateCompanyStatusUrl } from "../../../services/apiEndpoint";
+import { fetcher, patch, put } from "../../../services/axios";
+import useSWR, { mutate } from 'swr';
 const { Option } = Select;
+
+const renderStatus = (status: any) => {
+  switch (status) {
+    case 1:
+      return <Tag color="green">فعال</Tag>;
+    case 0:
+      return <Tag color="red">مسدود شده</Tag>;
+    case 2:
+      return <Tag color="gold">مسدود موقت</Tag>;
+  }
+}
 
 const data = (companyDetails: any) => [
   {
@@ -52,26 +63,27 @@ const items: CollapseProps['items'] = [
 
 
 
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
-
 const DetailsCompany = () => {
   const router = useRouter();
-  const {Id} = router.query;
+  const { Id } = router.query;
 
   const companyDetailsUrl = `${companyDetailsByIdUrl}${Id}`;
-  const {data:companyDetails, error:companyDetailsError} = useSWR(companyDetailsUrl,fetcher);
-  
+  const { data: companyDetails, error: companyDetailsError } = useSWR(companyDetailsUrl, fetcher);
+
+
   const companyTotalCreditsUrl = `${totalCreditsUrl}${Id}`;
-  const {data:companyTotalCredits, error:companyTotalCreditsError} = useSWR(companyTotalCreditsUrl,fetcher);
+  const { data: companyTotalCredits, error: companyTotalCreditsError } = useSWR(companyTotalCreditsUrl, fetcher);
 
   const companyCreditUsedUrl = `${CreditUsedUrl}${Id}`;
-  const {data:companyCreditUsed, error:companyCreditUsedError} = useSWR(companyCreditUsedUrl,fetcher);
+  const { data: companyCreditUsed, error: companyCreditUsedError } = useSWR(companyCreditUsedUrl, fetcher);
+
+  const onFinish = async (values: any) => {
+    const finalData = { ...values }
+    const result = await patch(`${updateCompanyStatusUrl}${Id}`, 
+    finalData);
+    await mutate(companyDetailsUrl);
+    if (result.success) { }
+  };
 
   return (
     <Row gutter={16}>
@@ -108,31 +120,26 @@ const DetailsCompany = () => {
         </Card>
         <Card className="mb-4">
           <div className="flex-col">
-            <div className="flex justify-between">
-              <div className="block">وضعیت</div>
-              <Tag color="green">
-                فعال
-              </Tag>
+            <div className="flex justify-between mb-6">
+              <span className="block text-lg">وضعیت</span>
+              <div>
+                {renderStatus(companyDetails?.data?.status)}
+              </div>
             </div>
             <Form
-              name="basic"
               layout="vertical"
               onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
               autoComplete="off"
             >
-              <Form.Item name="gender" label="وضعیت شرکت" rules={[{ required: true }]}>
-                <Select
-                  // onChange={}
-                  allowClear
-                >
-                  <Option value="male">فعال</Option>
-                  <Option value="female">مسدود</Option>
-                  <Option value="other">مسدود موقت</Option>
+              <Form.Item name="companyStatus" label="وضعیت شرکت">
+                <Select>
+                  <Option value={1}>مسدود</Option>
+                  <Option value={0}>فعال</Option>
+                  <Option value={2}>مسدود موقت</Option>
                 </Select>
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit">
+                <Button className="bg-primary-500" type="primary" htmlType="submit">
                   ذخیره
                 </Button>
               </Form.Item>

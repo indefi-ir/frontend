@@ -82,7 +82,7 @@ const NewCompany = () => {
     </div>
   );
 
-  const onFinish = async (values) => {
+  const onFinish = async (values:any) => {
     const finalData = { ...values }
     const result = await post(registerCompanyUrl, finalData);
     // await mutate(companiesUrl);
