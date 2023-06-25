@@ -41,8 +41,8 @@ export const myCompanyInfoUrl = "/api/v1/users/get-my-company-info";
 export const updateCompanyUrl = "/api/v1/users/update-company";
 
 // Dashboard
-export const totalCreditsUrl = "/api/v1/dashboard/get-all-credits-ever-for-company";
-export const CreditUsedUrl = "/api/v1/dashboard/get-all-transactions-value-sent-ever-for-company";
+export const totalCreditsUrl = "/api/v1/dashboard/get-all-credits-ever-for-company?companyId=";
+export const CreditUsedUrl = "/api/v1/dashboard/get-all-transactions-value-sent-ever-for-company?companyId=";
 export const companyPurchaseAmountUrl =  "/api/v1/dashboard/get-transfer-amount-based-on-product";
 export const companySalesAmountUrl = "/api/v1/dashboard/get-received-amount-based-on-product";
 export const averageProductAmountUrl = "/api/v1/dashboard/get-average-price-for-product-for-company";

@@ -1,6 +1,6 @@
 import { Avatar, Card, Col, Form, List, Row, Tag, Select, Button, Collapse, CollapseProps } from "antd";
 import { useRouter } from 'next/router';
-import { companyDetailsByIdUrl } from "../../../services/apiEndpoint";
+import { companyDetailsByIdUrl, CreditUsedUrl, totalCreditsUrl } from "../../../services/apiEndpoint";
 import { fetcher } from "../../../services/axios";
 import useSWR from 'swr';
 const { Option } = Select;
@@ -25,6 +25,7 @@ const data = (companyDetails: any) => [
     description: `${companyDetails?.data?.address}`
   },
 ];
+
 
 const text = `A dog is a type of domesticated animal.
   Known for its loyalty and faithfulness,
@@ -61,13 +62,16 @@ const onFinishFailed = (errorInfo: any) => {
 
 const DetailsCompany = () => {
   const router = useRouter();
-  console.log(router.query)
-
   const {Id} = router.query;
 
   const companyDetailsUrl = `${companyDetailsByIdUrl}${Id}`;
+  const {data:companyDetails, error:companyDetailsError} = useSWR(companyDetailsUrl,fetcher);
+  
+  const companyTotalCreditsUrl = `${totalCreditsUrl}${Id}`;
+  const {data:companyTotalCredits, error:companyTotalCreditsError} = useSWR(companyTotalCreditsUrl,fetcher);
 
-  const {data:companyDetails, error} = useSWR(companyDetailsUrl,fetcher);
+  const companyCreditUsedUrl = `${CreditUsedUrl}${Id}`;
+  const {data:companyCreditUsed, error:companyCreditUsedError} = useSWR(companyCreditUsedUrl,fetcher);
 
   return (
     <Row gutter={16}>
@@ -145,19 +149,28 @@ const DetailsCompany = () => {
             <Col span={8}>
               <Card className="flex flex-col" bordered={false}>
                 <span className="text-primary-500 block text-base font-bold mb-4">کل اعتبار داده شده</span>
-                <span className="text-2xl block mb-2 text-left text-gray-400">۱۰۰۰ میلیون ریال</span>
+                <p className="text-2xl mb-2 text-left text-gray-400">
+                  <span className="inline-block ml-2">{companyTotalCredits?.data}</span>
+                  <span>توکن</span>
+                </p>
               </Card>
             </Col>
             <Col span={8}>
               <Card className="flex flex-col" bordered={false}>
                 <span className="text-primary-500 block text-base font-bold mb-4">اعتبار استفاده شده</span>
-                <span className="text-2xl block mb-2 text-left text-gray-400">۱۰۰۰ میلیون ریال</span>
+                <p className="text-2xl mb-2 text-left text-gray-400">
+                  <span className="inline-block ml-2">{companyCreditUsed?.data}</span>
+                  <span>توکن</span>
+                </p>
               </Card>
             </Col>
             <Col span={8}>
               <Card className="flex flex-col" bordered={false}>
                 <span className="text-primary-500 block text-base font-bold mb-4">مانده اعتبار</span>
-                <span className="text-2xl block mb-2 text-left text-gray-400">۱۰۰۰ میلیون ریال</span>
+                <p className="text-2xl mb-2 text-left text-gray-400">
+                  <span className="inline-block ml-2">{companyTotalCredits?.data - companyTotalCredits?.data}</span>
+                  <span>توکن</span>
+                </p>
               </Card>
             </Col>
           </Row>
