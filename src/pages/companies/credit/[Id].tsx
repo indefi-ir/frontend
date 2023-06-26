@@ -1,6 +1,7 @@
 import React from 'react';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Avatar, DatePicker, Button, Card, Col, Form, Input, List, Row, Select, Space } from 'antd';
+import CompanyInfo from '../../../features/company-information/CompanyInfo';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -44,34 +45,7 @@ const CreditCompany = () => {
     <Row gutter={16}>
       <Col span={8}>
         <Card>
-          <div className='flex flex-col'>
-            <div className='p-1'>
-              <div className='flex flex-col divide-y divide-gray-50'>
-                <div className='flex flex-col justify-center items-center mb-3'>
-                  <Avatar size={80} className="mb-2" />
-                  <div className='mb-1'>چینوا</div>
-                  <div>contact@chainovastudio.com</div>
-                </div>
-                <div>
-                  <List
-                    itemLayout="horizontal"
-                    dataSource={data}
-                    renderItem={(item, index) => (
-                      <List.Item>
-                        <List.Item.Meta
-                          avatar={<Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />}
-                          title={<a href="https://ant.design">{item.title}</a>}
-                          description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                        />
-                      </List.Item>
-                    )}
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-            </div>
-          </div>
+          <CompanyInfo />
         </Card>
       </Col>
       <Col span={8}>

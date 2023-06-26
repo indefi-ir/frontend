@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { companyDetailsByIdUrl, CreditUsedUrl, totalCreditsUrl, updateCompanyStatusUrl } from "../../../services/apiEndpoint";
 import { fetcher, patch, put } from "../../../services/axios";
 import useSWR, { mutate } from 'swr';
-import { TransactionProductVolume } from "../../../features";
+import { CompanyInfo, TransactionProductVolume } from "../../../features";
 const { Option } = Select;
 
 const renderStatus = (status: any) => {
@@ -90,34 +90,7 @@ const DetailsCompany = () => {
     <Row gutter={16}>
       <Col span={6}>
         <Card className="mb-4">
-          <div className='flex flex-col'>
-            <div className='p-1'>
-              <div className='flex flex-col divide-y divide-gray-50'>
-                <div className='flex flex-col justify-center items-center mb-3'>
-                  <Avatar size={80} className="mb-2" />
-                  <div className='mb-1'>{companyDetails?.data?.name}</div>
-                  <div>{companyDetails?.data?.email}</div>
-                </div>
-                <div>
-                  <List
-                    itemLayout="horizontal"
-                    dataSource={data(companyDetails)}
-                    renderItem={(item) => (
-                      <List.Item key={item.key}>
-                        <List.Item.Meta
-                          avatar={<Avatar src={item.iconUrl} />}
-                          title={item.title}
-                          description={item.description}
-                        />
-                      </List.Item>
-                    )}
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-            </div>
-          </div>
+          <CompanyInfo />
         </Card>
         <Card className="mb-4">
           <div className="flex-col">
