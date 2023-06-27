@@ -107,8 +107,8 @@ const DetailsCompany = () => {
             >
               <Form.Item name="companyStatus" label="وضعیت شرکت">
                 <Select>
-                  <Option value={1}>مسدود</Option>
-                  <Option value={0}>فعال</Option>
+                  <Option value={0}>مسدود</Option>
+                  <Option value={1}>فعال</Option>
                   <Option value={2}>مسدود موقت</Option>
                 </Select>
               </Form.Item>
