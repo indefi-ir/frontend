@@ -9,6 +9,7 @@ const LoginForm = () => {
     try {
       const res = await login({...values}) 
       if (res?.data?.data) {
+        localStorage.setItem('role', JSON.stringify(res?.data?.role));
         router.push(`/dashboard`);
       }
     } catch (err) {

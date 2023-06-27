@@ -1,8 +1,7 @@
 import { Menu } from 'antd';
 import Link from 'next/link';
-import React from 'react';
-import { BuyOrderIcon, CompanyIcon, DashboardIcon, FinancierIcon, SellOrderIcon, SupplyChainIcon } from '../icons';
-import { userInfoContext } from '../providers/userInfoProvider/UserInfoProvider';
+import React, { useEffect, useState } from 'react';
+import { BuyOrderIcon, CompanyIcon, DashboardIcon, FinancierIcon, SupplyChainIcon } from '../icons';
 
 interface Props {
   styles?: any;
@@ -56,21 +55,28 @@ const companyMenuItems = [
   }
 ]
 const AdminMenu = ({ styles }: Props) => {
-  const { role }: any = React.useContext(userInfoContext);
+  const [userRole, setUserRole] = useState<string | null>(null)
+
+  const access_token = typeof window !== "undefined" && localStorage.getItem('token')
+
+  useEffect(() => {
+    setUserRole(localStorage.getItem('role'))
+  }, [access_token]);
+
 
   return (
     <Menu mode="inline" style={styles} className="text-base px-2">
-      {role === 'Company'
-        ? (companyMenuItems.map((item) => (
-          <Menu.Item key={item.key} icon={item.icon} className="!my-6">
+      {userRole !== null
+        ? (adminMenuItems.map((item) => (
+          <Menu.Item key={item.key} icon={item.icon} className="!my-6 text-black-500">
             <Link href={item.path}>
               {item.label}
             </Link>
           </Menu.Item>
         )))
 
-        : (adminMenuItems.map((item) => (
-          <Menu.Item key={item.key} icon={item.icon} className="!my-6 text-black-500">
+        : (companyMenuItems.map((item) => (
+          <Menu.Item key={item.key} icon={item.icon} className="!my-6">
             <Link href={item.path}>
               {item.label}
             </Link>
