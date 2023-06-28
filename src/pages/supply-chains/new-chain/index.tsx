@@ -15,6 +15,149 @@ import {DiagramSchema} from "beautiful-react-diagrams/@types/DiagramSchema";
 
 
 
+
+// @ts-ignore
+function isTree(links) {
+  const nodes = new Set();
+  const childrenMap = {};
+
+  for (const link of links) {
+    const parent = link.input;
+    const child = link.output;
+
+    if (!nodes.has(parent)) {
+      nodes.add(parent);
+    }
+    if (!nodes.has(child)) {
+      nodes.add(child);
+    }
+
+    // @ts-ignore
+    if (!childrenMap[parent]) {
+      // @ts-ignore
+      childrenMap[parent] = [];
+    }
+    // @ts-ignore
+    childrenMap[parent].push(child);
+  }
+
+  let rootCount = 0;
+  // @ts-ignore
+  for (const node of nodes) {
+    // @ts-ignore
+    if (!childrenMap[node]) {
+      rootCount++;
+    }
+    if (rootCount > 1) {
+      return false; // Multiple roots found, not a tree
+    }
+  }
+
+  if (rootCount !== 1) {
+    return false; // No root found, not a tree
+  }
+
+  const visited = new Set();
+  const stack = [Array.from(nodes)[0]]; // Start traversal from the root
+
+  while (stack.length > 0) {
+    const node = stack.pop();
+
+    if (visited.has(node)) {
+      return false; // Cycle detected, not a tree
+    }
+
+    visited.add(node);
+
+    // @ts-ignore
+    if (childrenMap[node]) {
+      // @ts-ignore
+      stack.push(...childrenMap[node]);
+    }
+  }
+
+  return visited.size === nodes.size; // All nodes visited, forms a tree
+}
+
+
+
+
+
+// @ts-ignore
+function findHeadAndPrintChain(links) {
+  const inputs = new Set();
+  const outputs = new Set();
+
+  for (const link of links) {
+    inputs.add(link.input.split('_')[0]);
+    outputs.add(link.output.split('_')[0]);
+  }
+
+  let headNode = null;
+
+  // @ts-ignore
+  for (const node of outputs) {
+    if (!inputs.has(node)) {
+      headNode = node;
+      break;
+    }
+  }
+
+  if (headNode === null) {
+    console.log('No head node found.');
+    return;
+  }
+
+  console.log('Head Node:', headNode);
+
+  const chain = [headNode];
+  let currentNode = headNode;
+
+  while (true) {
+    // @ts-ignore
+    const link = links.find((link) => link.output.startsWith(currentNode));
+    if (link) {
+      currentNode = link.input.split('_')[0];
+      chain.push(currentNode);
+    } else {
+      break;
+    }
+  }
+
+  console.log('Chain:', chain);
+}
+
+
+
+
+
+
+
+// @ts-ignore
+function findNodeWithOutNoIn(links) {
+  const outputNodes = new Set();
+  const inputNodes = new Set();
+
+  for (const link of links) {
+    outputNodes.add(link.output.split('_')[0]);
+    inputNodes.add(link.input.split('_')[0]);
+  }
+
+  // @ts-ignore
+  for (const node of outputNodes) {
+    if (!inputNodes.has(node)) {
+      return node;
+    }
+  }
+
+  return null;
+}
+
+
+
+
+
+
 const initialSchema = createSchema({
   nodes: [
 /*    { id: 'node-1', content: 'تسلا تک ایرانیان', coordinates: [250, 60],   outputs: [ { id:Math.random().toString(36).slice(2, 7) }] },
@@ -42,20 +185,20 @@ const UncontrolledDiagram = () => {
 
 
     const newNodeId = companyName ;
-    const newNode = { id: newNodeId, content: <Button>newNodeId</Button> , coordinates: [0, 0] , outputs: [ { id: newNodeId+'_link'   }] };
+    const newNode = { id: newNodeId, content: <Button>{newNodeId}</Button> , coordinates: [0, 0] , outputs: [ { id: newNodeId+'_in'   }, { id: newNodeId+'_out'   }] };
 
     // @ts-ignore
     addNode(newNode);
     setNodeCounter(nodeCounter + 1);
   };
   const handleClick = () => {
+
+/*    const head = findNodeWithOutNoIn(schema.links);
+    (findHeadAndPrintChain(schema.links))
+    console.log('Head:', head);
+    console.log('isTree:', isTree(schema.links))*/
     console.log(schema.links);
-    console.log(schema.nodes);
-  };
-
-  // @ts-ignore
-  const test = (schema) => {
-
+    (findHeadAndPrintChain(schema.links))
   };
 
   return (
