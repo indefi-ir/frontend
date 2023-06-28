@@ -1,4 +1,5 @@
-export { default as LoginForm } from './loginForm/LoginForm';
+export { default as LoginFormFinancier } from './loginForm/LoginFormFinancier';
+export { default as LoginFormCompany } from './loginForm/LoginFormCompany';
 export { default as AddSupplyChainForm } from './addSupplyChainForm/AddSupplyChainForm';
 export { default as EditSupplyChainForm } from './editSupplyChainForm/EditSupplyChainForm';
 export { default as AddCompanyForm } from './addCompanyForm/AddCompanyForm';

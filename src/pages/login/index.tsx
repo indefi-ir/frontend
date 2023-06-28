@@ -1,5 +1,19 @@
-import { LoginForm } from "../../components/forms";
+import { LoginFormFinancier, LoginFormCompany } from "../../components/forms";
 import Image from 'next/image'
+import { Card, Tabs, TabsProps } from "antd";
+
+const items: TabsProps['items'] = [
+  {
+    key: '1',
+    label: `ورود سرمایه گذار`,
+    children: <LoginFormFinancier />,
+  },
+  {
+    key: '2',
+    label: `ورود شرکت`,
+    children: <LoginFormCompany />,
+  },
+];
 
 const Login = () => {
   return (
@@ -25,7 +39,9 @@ const Login = () => {
         </div>
       </div>
       <div className="flex justify-center w-5/12">
-        <LoginForm />
+        <Card className="flex flex-col justify-center p-10">
+          <Tabs defaultActiveKey="1" items={items} />
+        </Card>
       </div>
     </div>
   )

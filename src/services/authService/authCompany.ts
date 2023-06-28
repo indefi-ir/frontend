@@ -1,11 +1,9 @@
 import axiosApiInstance from "../axios";
-import { loginFunderUrl } from "../apiEndpoint";
-import { setCookie } from "../../utils/cookie";
+import { loginCompanyUrl } from "../apiEndpoint";
 
-export async function login(data:any) {
-  console.log("data", data)
+export async function loginCompany(data:any) {
   return axiosApiInstance 
-    .post(loginFunderUrl, {
+    .post(loginCompanyUrl, {
       username: data?.username,
       password: data?.password
     })

@@ -1,6 +1,6 @@
 import { Button, Form, Input } from "antd";
 import { useRouter } from 'next/router';
-import { login } from "../../../services/authService/auth";
+import { login } from "../../../services/authService/authFunder";
 
 const LoginForm = () => {
   const router = useRouter();
