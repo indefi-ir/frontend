@@ -51,7 +51,7 @@ const columns = (searchTerm: string) => ([
   {
     title: "عملیات",
     key: "action",
-    render: (_, record: any) => (
+    render: (_: any, record: any) => (
       <Space size="middle">
         <span className='cursor-pointer' onClick={() => nextRouter.push(`/supply-chains/view-chain/${record.id}`)}>
           <EyeIcon />

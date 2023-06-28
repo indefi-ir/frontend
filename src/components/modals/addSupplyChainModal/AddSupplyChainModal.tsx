@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import { AddSupplyChainForm } from "../../forms";
+// import { AddSupplyChainForm } from "../../forms";
 
 const AddSupplyChainModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,7 +27,7 @@ const AddSupplyChainModal = () => {
         onCancel={closeModal}
         footer={false}
       >
-        <AddSupplyChainForm closeModal={closeModal} />
+        {/* <AddSupplyChainForm closeModal={closeModal} /> */}
       </Modal>
     </>
   )

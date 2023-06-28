@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import { SetPasswordForm } from "../../forms";
+// import { SetPasswordForm } from "../../forms";
 
 const SetPasswordModal = ({ userId }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,7 +27,7 @@ const SetPasswordModal = ({ userId }: any) => {
         onCancel={closeModal}
         footer={false}
       >
-        <SetPasswordForm closeModal={closeModal} id={userId} />
+        {/* <SetPasswordForm closeModal={closeModal} id={userId} /> */}
       </Modal>
     </>
   )

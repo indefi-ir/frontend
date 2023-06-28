@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import { AddOrderForm } from "../../forms";
+// import { AddOrderForm } from "../../forms";
 
 const AddOrderModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,7 +27,7 @@ const AddOrderModal = () => {
         onCancel={closeModal}
         footer={false}
       >
-        <AddOrderForm closeModal={closeModal}/>
+        {/* <AddOrderForm closeModal={closeModal}/> */}
       </Modal>
     </>
   )

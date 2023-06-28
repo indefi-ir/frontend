@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import { EditCompanyForm } from "../../forms";
+// import { EditCompanyForm } from "../../forms";
 import { EditIcon } from "../../icons";
 
 const EditCompanyModal = (companyInfo: any) => {
@@ -26,7 +26,7 @@ const EditCompanyModal = (companyInfo: any) => {
         onCancel={closeModal}
         footer={false}
       >
-        <EditCompanyForm closeModal={closeModal} companyInfo={companyInfo} />
+        {/* <EditCompanyForm closeModal={closeModal} companyInfo={companyInfo} /> */}
       </Modal>
     </>
   )

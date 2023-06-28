@@ -1,12 +1,6 @@
 export { default as AddSupplyChainModal } from './addSupplyChainModal/AddSupplyChainModal';
 export { default as EditSupplyChainModal } from './editSupplyChainModal/EditSupplyChainModal';
-export { default as DeleteSupplyChainModal } from './deleteSupplyChainModal/DeleteSupplyChainModal';
-export { default as AddCompanyModal } from './addCompanyModal/AddCompanyModal';
 export { default as EditCompanyModal } from './editCompanyModal/EditCompanyModal';
-export { default as DeleteCompanyModal } from './deleteCompanyModal/DeleteCompanyModal';
-export { default as AddFinancierModal } from './addFinancierModal/AddFinancierModal';
 export { default as EditFinancierModal } from './editFinancierModal/EditFinancierModal';
-export { default as DeleteFinancierModal } from './deleteFinancierModal/DeleteFinancierModal';
 export { default as SetPasswordModal } from './setPasswordModal/SetPasswordModal';
-export { default as UpdateOrderStateModal } from './updateOrderStateModal/UpdateOrderStateModal';
 export { default as AddOrderModal } from './addOrderModal/AddOrderModal';

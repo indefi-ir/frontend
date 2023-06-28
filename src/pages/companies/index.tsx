@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from 'react';
 import { Avatar, Button, Card, DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
 import useSWR from 'swr';
@@ -31,7 +33,7 @@ const columns = (searchTerm: string) => ([
     onFilter: (value: any, record: { name: string | any[]; }) => {
       return record.name.includes(value)
     },
-    render: (_, record: { name: string | any; email: string | any }) => (
+    render: (_:any, record: { name: string | any; email: string | any }) => (
       <Card bordered={false}>
         <Meta
           avatar={<Avatar src="/images/chainova-logo.jpeg" />}
@@ -76,7 +78,7 @@ const columns = (searchTerm: string) => ([
   {
     title: "عملیات",
     key: "action",
-    render: (_, record: any) => (
+    render: (_: any, record: any) => (
       <Space size="middle">
         <span className='cursor-pointer' onClick={() => nextRouter.push(`/companies/details/${record.id}`)}>
           <EyeIcon />

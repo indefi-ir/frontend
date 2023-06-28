@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import { AddSupplyChainForm } from "../../forms";
+// import { AddSupplyChainForm } from "../../forms";
 import { AddIcon, EditIcon } from "../../icons";
 
 const EditSupplyChainModal = () => {
