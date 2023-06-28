@@ -1,6 +1,5 @@
 import getConfig from "next/config";
 import axios from "axios";
-import { getCookie } from "../utils/cookie";
 
 const headers: { [key: string]: any } = {};
 
