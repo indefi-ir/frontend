@@ -66,8 +66,9 @@ const AdminMenu = ({ styles }: Props) => {
 
   return (
     <Menu mode="inline" style={styles} className="text-base px-2">
-      {userRole === "Funder"
-        ? (adminMenuItems.map((item) => (
+      {
+      // userRole === "Funder"
+         (adminMenuItems.map((item) => (
           <Menu.Item key={item.key} icon={item.icon} className="!my-6 text-black-500">
             <Link href={item.path}>
               {item.label}
@@ -75,13 +76,13 @@ const AdminMenu = ({ styles }: Props) => {
           </Menu.Item>
         )))
 
-        : (companyMenuItems.map((item) => (
-          <Menu.Item key={item.key} icon={item.icon} className="!my-6">
-            <Link href={item.path}>
-              {item.label}
-            </Link>
-          </Menu.Item>
-        )))
+        // : (companyMenuItems.map((item) => (
+        //   <Menu.Item key={item.key} icon={item.icon} className="!my-6">
+        //     <Link href={item.path}>
+        //       {item.label}
+        //     </Link>
+        //   </Menu.Item>
+        // )))
       }
     </Menu>
   )
