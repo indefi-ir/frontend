@@ -2,32 +2,26 @@ import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
 import { useEffect, useState } from 'react';
 
 // @ts-ignore
-
-
-
-
-const UncontrolledDiagram = (nodesList:any, setIsParentData:any) => {
+const UncontrolledDiagram = ({ nodesList, getChainData }) => {
   const initialSchema = createSchema({
     nodes: [],
-    links:[]
+    links: []
   });
+
   const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
-  const [chainData, setChainData] = useState()
+  const [chainData, setChainData] = useState<any>()
 
-  console.log("schema",schema)
-
-
-  const findHeadAndPrintChain = (links:any) => {
+  const findHeadAndPrintChain = (links: any) => {
     const inputs = new Set();
     const outputs = new Set();
-  
+
     for (const link of links) {
       inputs.add(link.input.split('_')[0]);
       outputs.add(link.output.split('_')[0]);
     }
-  
+
     let headNode = null;
-  
+
     // @ts-ignore
     for (const node of outputs) {
       if (!inputs.has(node)) {
@@ -35,17 +29,18 @@ const UncontrolledDiagram = (nodesList:any, setIsParentData:any) => {
         break;
       }
     }
-  
+
     if (headNode === null) {
       console.log('No head node found.');
       return;
     }
-  
-    console.log('Head Node:', headNode);
-  
+
     const chain = [headNode];
     let currentNode = headNode;
-  
+
+    console.log('Head Node:', chain);
+    setChainData(chain)
+
     while (true) {
       // @ts-ignore
       const link = links.find((link) => link.output.startsWith(currentNode));
@@ -56,23 +51,25 @@ const UncontrolledDiagram = (nodesList:any, setIsParentData:any) => {
         break;
       }
     }
-
-    setChainData(chainData)
   }
 
- useEffect(()=> {
-  nodesList?.data?.map((company:any) => (
-    addNode(company)
-  ))
- }, [nodesList?.data?.length])
+  const sendChainData = () => {
+    findHeadAndPrintChain(schema.links);
+    getChainData(chainData)
+  }
 
- 
+  useEffect(() => {
+    nodesList?.map((company: any) => (
+      addNode(company)
+    ))
+  }, [nodesList?.length])
+
 
 
   return (
     <div style={{ height: '22.5rem' }}>
       <Diagram schema={schema} onChange={onChange} />
-      <button onClick={() => {setIsParentData(chainData)}}>Update</button>
+      <button onClick={sendChainData}>Update</button>
     </div>
   );
 };
