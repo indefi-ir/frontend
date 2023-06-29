@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
 import { useEffect, useState } from 'react';
 
@@ -64,12 +65,10 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
     ))
   }, [nodesList?.length])
 
-
-
   return (
     <div style={{ height: '22.5rem' }}>
       <Diagram schema={schema} onChange={onChange} />
-      <button onClick={sendChainData}>Update</button>
+      <Button type="primary" className="bg-primary-500 text-white mt-4" onClick={sendChainData}>ثبت زنجیره</Button>
     </div>
   );
 };

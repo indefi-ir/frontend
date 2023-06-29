@@ -5,6 +5,31 @@ import 'beautiful-react-diagrams/styles.css';
 import { fetcher, post } from '../../../services/axios';
 import { addSupplyChainUrl, companiesUrl } from '../../../services/apiEndpoint';
 import { DrawChain } from '../../../features';
+import { BuildingIcon } from '../../../components/icons';
+
+
+const CustomNode = (props: any) => {
+  console.log("props", props)
+  const { outputs, inputs } = props;
+
+  return (
+    <div className='flex flex-col items-center justify-center bg-red'>
+      <div className='flex justify-between items-center'>
+        {outputs.map((port: any) => React.cloneElement(port, { style: { width: '25px', height: '25px', background: '#F9B4AF', borderRadius: '50%' } }))}
+        <div className='flex justify-center items-center rounded-full bg-primary-100 w-14 h-14 mb-2'>
+          <BuildingIcon color="#5C59E8" width="30" height="30" />
+        </div>
+
+        {inputs.map((port: any) => React.cloneElement(port, { style: { width: '25px', height: '25px', background: '#9ED0B9', borderRadius: '50%' } }))}
+
+      </div>
+      <div className='bg-blue-300 rounded-md py-2 px-5'>
+        {props.content}
+      </div>
+
+    </div>
+  );
+}
 
 const NewChain = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,6 +44,7 @@ const NewChain = () => {
   const getChainData = (data: any) => {
     setChainInfo(data);
   };
+
   const cloneChainInfo = chainInfo?.length > 0 ? [...chainInfo] : []
   cloneChainInfo.shift();
 
@@ -27,8 +53,10 @@ const NewChain = () => {
       setNodesList((current: any) => [...current, {
         id: company.value,
         content: company.label,
+        render: CustomNode,
         coordinates: [0, 0],
-        outputs: [{ id: company.value + '_in' }, { id: company.value + '_out' }],
+        inputs: [{ id: company.value + '_in' }],
+        outputs: [{ id: company.value + '_in' }],
       }])
     ))
     setIsModalOpen(false);
@@ -39,7 +67,7 @@ const NewChain = () => {
   };
 
   // @ts-ignore
-  const handleChange = (value, options)=> {
+  const handleChange = (value, options) => {
     setCompaniesList(options)
   }
 
@@ -69,7 +97,7 @@ const NewChain = () => {
   return (
     <Card>
       <Form
-        name="basic"
+        name="supply-chain"
         labelCol={{ span: 8 }}
         layout="vertical"
         initialValues={{ remember: false }}
@@ -95,7 +123,7 @@ const NewChain = () => {
             required: true,
             message: 'لطفا توضیحات زنجیره را وارد نمایید.'
           }]}>
-          <Input.TextArea rows={4} maxLength={6} />
+          <Input.TextArea rows={4} />
         </Form.Item>
         {/* <Form.Item>
           <span className='block mb-2'>اسناد مربوط به زنجیره</span>
@@ -107,28 +135,30 @@ const NewChain = () => {
           </Dragger>
         </Form.Item> */}
         <Form.Item>
-          <span className='block mb-2'>رسم زنجیره</span>
+          <span className='block mb-1'>رسم زنجیره</span>
         </Form.Item>
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button htmlType="submit">
+        <div>
+          <div className='flex items-center bg-primary-100 w-full rounded-lg p-3 mb-2'>
+            <Select
+              mode="multiple"
+              style={{ minWidth: "500px" }}
+              allowClear
+              options={options}
+              onChange={(value, options) => handleChange(value, options)}
+              placeholder="انتخاب شرکت ها"
+            />
+            <Button type="primary" onClick={() => handleOk()} className="bg-primary-500 text-white mr-2">
+              ارسال شرکت ها به زنجیره
+            </Button>
+          </div>
+          <DrawChain nodesList={nodesList} getChainData={getChainData} />
+        </div>
+        <Form.Item className='flex justify-end mt-4'>
+          <Button htmlType="submit" className='bg-primary-500 text-white'>
             ذخیره
           </Button>
         </Form.Item>
       </Form>
-      <div>
-        <Button onClick={showModal}>Add Node</Button>
-        <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-          <Select
-            mode="multiple"
-            style={{ width: "100%" }}
-            allowClear
-            options={options}
-            onChange={(value, options) => handleChange(value, options)}
-            placeholder="لطفا محصولات مورد نظر را انتخاب کنید."
-          />
-        </Modal>
-      </div>
-      <DrawChain nodesList={nodesList} getChainData={getChainData} />
     </Card>
   )
 }
