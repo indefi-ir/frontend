@@ -48,6 +48,7 @@ const NewChain = () => {
     setIsModalOpen(false);
   };
 
+  // @ts-ignore
   const handleChange = (value, options)=> {
     setCompaniesList(options)
   }
