@@ -8,23 +8,14 @@ import { UserInfoContext } from '../components/providers';
 import { useEffect, useState } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [userInfo, setUserInfo] = useState<any>({
-    role: null,
-    id: null,
-  });
+  const [userInfo, setUserInfo] = useState<any>(null);
   const roleItem = typeof window !== "undefined" ? localStorage.getItem('role') : false;
   const role = roleItem ? window.JSON.parse(roleItem): null
 
   const token = typeof window !== "undefined" ?  window.localStorage.getItem('token') : false;
 
-  const idItem = typeof window !== "undefined" ? localStorage.getItem('id') : null;
-  const id = idItem ? window.JSON.parse(idItem): null;
-
   useEffect(()=> {
-    setUserInfo({
-      role: role,
-      id: id,
-    })
+    setUserInfo(role)
   },[token])
   
   return (

@@ -68,14 +68,11 @@ const AdminMenu = ({ styles }: Props) => {
   const { userInfo } = useContext(UserInfoContext);
   const { data: companyInfo, error: companyError } = useSWR(myCompanyInfoUrl, fetcher);
 
-  const token = typeof window !== "undefined" ?  window.localStorage.getItem('token') : false;
-
   useEffect(()=> {
     localStorage.setItem('id', JSON.stringify(companyInfo?.data?.id))
-  }, [token] )
+  }, [] )
 
   return (
-
     <Menu mode="inline" style={styles} className="text-base px-2">
       {
         userInfo?.role === "Funder"

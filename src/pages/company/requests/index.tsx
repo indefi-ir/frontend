@@ -20,7 +20,7 @@ const renderStatus = (status: Number) => {
   }
 }
 
-const columns = (searchTerm: string, userInfo: any, handleAccepte:Function, handleReject:Function) => ([
+const columns = (searchTerm: string, id: any, handleAccepte:Function, handleReject:Function) => ([
   {
     title: 'شماره پیش فاکتور',
     dataIndex: 'id',
@@ -83,7 +83,7 @@ const columns = (searchTerm: string, userInfo: any, handleAccepte:Function, hand
     title: "عملیات",
     key: "action",
     render: (_: any, record: any) => (
-      record.destinationCompany.id == userInfo.id
+      record.destinationCompany.id == id
         ? <Space size="middle">
           <Button className="bg-green-300 text-white hover:!text-white text-base" onClick={() => handleAccepte(record.id)}>پذیرفتن</Button>
           <Button onClick={() => handleReject(record.id)} className="bg-red-300 text-white hover:!text-white text-base">ردکردن</Button>
@@ -95,6 +95,9 @@ const columns = (searchTerm: string, userInfo: any, handleAccepte:Function, hand
 
 const Request = () => {
   const { userInfo } = useContext(UserInfoContext);
+  const idItem = typeof window !== "undefined" ? localStorage.getItem('id') : null;
+  const id = idItem ? window.JSON.parse(idItem): null;
+
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
   const { data } = useSWR(InvoicesMyCompanyUrl, fetcher)
@@ -164,7 +167,7 @@ const Request = () => {
           خروجی
         </Button>
       </div>
-      <Table columns={columns(searchTerm, userInfo, handleAccepte, handleReject)} dataSource={data?.data} scroll={{ y: 450 }} />
+      <Table columns={columns(searchTerm, id, handleAccepte, handleReject)} dataSource={data?.data} scroll={{ y: 450 }} />
     </>
   )
 };
