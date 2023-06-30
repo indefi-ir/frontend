@@ -1,7 +1,7 @@
 import { Menu } from 'antd';
 import Link from 'next/link';
-import React, { useContext, useEffect, useState } from 'react';
-import { BuyOrderIcon, CompanyIcon, DashboardIcon, FinancierIcon, SupplyChainIcon } from '../icons';
+import React, { useContext } from 'react';
+import { BillsCompanyIcon, CompanyIcon, DashboardIcon, FinancierIcon, RequestIcon, SupplyChainIcon } from '../icons';
 import { UserInfoContext } from '../providers';
 
 interface Props {
@@ -45,15 +45,21 @@ const companyMenuItems = [
   {
     key: '1',
     icon: <DashboardIcon />,
-    label: 'Dashboard',
-    path: '/dashboard'
+    label: 'داشبورد',
+    path: '/company/dashboard'
   },
   {
     key: '2',
-    icon: <BuyOrderIcon />,
-    label: 'Orders',
-    path: '/orders'
-  }
+    icon: <RequestIcon />,
+    label: 'درخواست ها',
+    path: '/company/requests'
+  },
+  {
+    key: '3',
+    icon: <BillsCompanyIcon />,
+    label: 'صورتحساب ها',
+    path: '/company/bills'
+  },
 ]
 const AdminMenu = ({ styles }: Props) => {
   const { userInfo } = useContext(UserInfoContext)

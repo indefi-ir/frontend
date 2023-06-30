@@ -4,12 +4,11 @@ import {
   MenuUnfoldOutlined,
   PoweroffOutlined,
 } from '@ant-design/icons';
-import { Button, Layout, MenuProps, Space, theme } from 'antd';
+import { Button, Layout, theme } from 'antd';
 import AdminMenu from '../components/adminMenu';
 import Breadcrumb from '../components/breadcrumb';
 import { PlutusLogo } from '../components/icons';
 import { useRouter } from 'next/router';
-import UserInfoProvider from '../components/providers/userInfoProvider/UserInfoProvider';
 
 const { Header, Sider, Content } = Layout;
 
@@ -59,7 +58,7 @@ const AdminLayout = ({ children }: Props) => {
           </div>
           <Button icon={<PoweroffOutlined />} onClick={logoutUser}>خروج کاربر</Button>
         </Header>
-        <Content style={{ margin: '16px' }}>
+        <Content style={{ margin: '16px', minHeight:"100vh"}}>
           <div>
             {children}
           </div>
