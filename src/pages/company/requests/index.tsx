@@ -20,7 +20,7 @@ const renderStatus = (status: Number) => {
   }
 }
 
-const columns = (searchTerm: string, id: any, handleAccepte:Function, handleReject:Function) => ([
+const columns = (searchTerm: string, id: any, handleAccepte: Function, handleReject: Function) => ([
   {
     title: 'شماره پیش فاکتور',
     dataIndex: 'id',
@@ -94,9 +94,8 @@ const columns = (searchTerm: string, id: any, handleAccepte:Function, handleReje
 ]);
 
 const Request = () => {
-  const { userInfo } = useContext(UserInfoContext);
   const idItem = typeof window !== "undefined" ? localStorage.getItem('id') : null;
-  const id = idItem ? window.JSON.parse(idItem): null;
+  const id = idItem ? window.JSON.parse(idItem) : null;
 
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
@@ -110,11 +109,11 @@ const Request = () => {
     console.log(`selected ${value}`);
   };
 
-  const handleAccepte = async (Id:string) => {
+  const handleAccepte = async (Id: string) => {
     const result = await patch(`${UpdateInvoiceUrl}${Id}`, 0);
     await mutate(InvoicesMyCompanyUrl);
     if (result.success) {
-      const finalData = { 
+      const finalData = {
         invoiceId: "string",
         destinationCompanyId: "string",
         supplychain: "string",
@@ -132,7 +131,7 @@ const Request = () => {
     }
   };
 
-  const handleReject = async (Id:string) => {
+  const handleReject = async (Id: string) => {
     const result = await patch(`${UpdateInvoiceUrl}${Id}`, 1);
     await mutate(InvoicesMyCompanyUrl);
     if (result.success) { }
@@ -140,35 +139,38 @@ const Request = () => {
 
   return (
     <>
-      <div className='flex mb-10'>
-        <Input
-          placeholder="نام شرکت"
-          className='font-normal !bg-white w-60 p-2 ml-3'
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <DatePicker onChange={onChange} placeholder="تاریخ ایجاد" className='ml-3' />
-        <Select
-          defaultValue="فعال"
-          onChange={handleChange}
-          placeholder="وضعیت"
-          className='w-40 ml-3'
-          options={[
-            { value: 1, label: 'فعال' },
-            { value: 2, label: 'مسدود موقت' },
-            { value: 0, label: 'مسدود شده' }
-          ]}
-        />
-      </div>
-      <div className='action-box'>
-        <Button className='bg-primary-500 text-white ml-3 hover:!text-white' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/company/requests/new-request`)}>
-          افزودن پیش فاکتور
-        </Button>
-        <Button className='bg-primary-100 text-primary-500' icon={<UploadOutlined />} size="large">
-          خروجی
-        </Button>
+      <div className='flex justify-between mb-10'>
+        <div className='search-box'>
+          <Input
+            placeholder="نام شرکت"
+            className='font-normal !bg-white w-60 p-2 ml-3'
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <DatePicker onChange={onChange} placeholder="تاریخ ایجاد" className='ml-3' />
+          <Select
+            defaultValue="فعال"
+            onChange={handleChange}
+            placeholder="وضعیت"
+            className='w-40 ml-3'
+            options={[
+              { value: 1, label: 'فعال' },
+              { value: 2, label: 'مسدود موقت' },
+              { value: 0, label: 'مسدود شده' }
+            ]}
+          />
+        </div>
+        <div className='action-box'>
+          <Button className='bg-primary-500 text-white ml-3 hover:!text-white' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/company/requests/new-request`)}>
+            افزودن پیش فاکتور
+          </Button>
+          <Button className='bg-primary-100 text-primary-500' icon={<UploadOutlined />} size="large">
+            خروجی
+          </Button>
+        </div>
       </div>
       <Table columns={columns(searchTerm, id, handleAccepte, handleReject)} dataSource={data?.data} scroll={{ y: 450 }} />
     </>
+
   )
 };
 
