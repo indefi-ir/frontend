@@ -1,1 +1,1 @@
-export { default as UserInfoProvider } from './userInfoProvider/UserInfoProvider';
+export { default as UserInfoContext } from './userInfoProvider/UserInfoProvider';

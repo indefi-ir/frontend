@@ -2,20 +2,19 @@ import { LoginFormFinancier, LoginFormCompany } from "../../components/forms";
 import Image from 'next/image'
 import { Card, Tabs, TabsProps } from "antd";
 
-const items: TabsProps['items'] = [
-  {
-    key: '1',
-    label: `ورود سرمایه گذار`,
-    children: <LoginFormFinancier />,
-  },
-  {
-    key: '2',
-    label: `ورود شرکت`,
-    children: <LoginFormCompany />,
-  },
-];
-
 const Login = () => {
+  const items: TabsProps['items'] = [
+    {
+      key: '1',
+      label: `ورود سرمایه گذار`,
+      children: <LoginFormFinancier />,
+    },
+    {
+      key: '2',
+      label: `ورود شرکت`,
+      children: <LoginFormCompany />,
+    },
+  ];
   return (
     <div className="flex items-center justify-between bg-gradient-radial h-screen p-12">
       <div className="flex justify-center w-7/12">

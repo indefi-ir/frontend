@@ -1,26 +1,10 @@
+// @ts-ignore
 import React, { useEffect, useState } from 'react';
 
-export const userInfoContext = React.createContext([]);
+export const UserInfoContext = React.createContext({
+  userInfo: null,
+  setUserInfo: (info: any) => { }
+});
 
-interface Props {
-  children?: any;
-}
 
-const UserInfoProvider = ({ children }: Props) => {
-  const [userInfo, setUserInfo] = useState<string | null | any>(null)
-
-  const access_token = typeof window !== "undefined" && localStorage.getItem('token')
-
-  useEffect(() => {
-    const role = localStorage.getItem("role");
-    setUserInfo(role)
-  }, [access_token]);
-
-  return (
-    <userInfoContext.Provider value={userInfo ? userInfo : []}>
-      {children}
-    </userInfoContext.Provider>
-  );
-};
-
-export default UserInfoProvider;
+export default UserInfoContext;

@@ -1,15 +1,19 @@
+// @ts-ignore
 import { Button, Form, Input } from "antd";
 import { useRouter } from 'next/router';
+import { useContext } from "react";
 import { loginFunder } from "../../../services/authService/authFunder";
+import { UserInfoContext } from "../../providers";
 
 const LoginFormFinancier = () => {
   const router = useRouter();
+  const { setUserInfo } = useContext(UserInfoContext)
 
   const onFinish = async (values: any) => {
     try {
       const res = await loginFunder({...values}) 
       if (res?.data?.data) {
-        localStorage.setItem('role', JSON.stringify(res?.data?.role));
+        setUserInfo(res?.data?.role)
         router.push(`/dashboard`);
       }
     } catch (err) {
@@ -18,6 +22,7 @@ const LoginFormFinancier = () => {
   };
 
   return (
+    
     <div>
       <h1 className="mb-10 text-right text-4xl text-black">ورود</h1>
       <Form onFinish={onFinish} layout="vertical">
