@@ -92,7 +92,6 @@ const columns = (searchTerm: string) => ([
 ]);
 
 const Companies = () => {
-  const userInfo = React.useContext(userInfoContext);
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
   const { data } = useSWR(companiesUrl, fetcher)

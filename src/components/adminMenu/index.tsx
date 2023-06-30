@@ -51,7 +51,7 @@ const companyMenuItems = [
   {
     key: '2',
     icon: <RequestIcon />,
-    label: 'درخواست ها',
+    label: 'پیش فاکتورها',
     path: '/company/requests'
   },
   {
