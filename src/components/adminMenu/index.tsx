@@ -1,6 +1,9 @@
+import useSWR from 'swr';
 import { Menu } from 'antd';
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { myCompanyInfoUrl } from '../../services/apiEndpoint';
+import { fetcher } from '../../services/axios';
 import { BillsCompanyIcon, CompanyIcon, DashboardIcon, FinancierIcon, RequestIcon, SupplyChainIcon } from '../icons';
 import { UserInfoContext } from '../providers';
 
@@ -62,13 +65,20 @@ const companyMenuItems = [
   },
 ]
 const AdminMenu = ({ styles }: Props) => {
-  const { userInfo } = useContext(UserInfoContext)
+  const { userInfo } = useContext(UserInfoContext);
+  const { data: companyInfo, error: companyError } = useSWR(myCompanyInfoUrl, fetcher);
+
+  const token = typeof window !== "undefined" ?  window.localStorage.getItem('token') : false;
+
+  useEffect(()=> {
+    localStorage.setItem('id', JSON.stringify(companyInfo?.data?.id))
+  }, [token] )
 
   return (
 
     <Menu mode="inline" style={styles} className="text-base px-2">
       {
-        userInfo === "Funder"
+        userInfo?.role === "Funder"
           ? (adminMenuItems.map((item) => (
             <Menu.Item key={item.key} icon={item.icon} className="!my-6 text-black-500">
               <Link href={item.path}>

@@ -47,3 +47,9 @@ export const CreditUsedUrl = "/api/v1/dashboard/get-all-transactions-value-sent-
 export const companyPurchaseAmountUrl =  "/api/v1/dashboard/get-transfer-amount-based-on-product";
 export const companySalesAmountUrl = "/api/v1/dashboard/get-received-amount-based-on-product";
 export const averageProductAmountUrl = "/api/v1/dashboard/get-average-price-for-product-for-company";
+
+// Invoices
+export const addNewInvoiceUrl = "/api/v1/invoice/add-new-invoice";
+export const InvoicesMyCompanyUrl = "/api/v1/invoice/get-invoices-for-my-company?skip=0&count=100";
+export const UpdateInvoiceUrl = "/api/v1/invoice/update-invoice-status?invoiceId=";
+

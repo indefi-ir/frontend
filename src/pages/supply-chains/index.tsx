@@ -5,7 +5,6 @@ import nextRouter, { useRouter } from 'next/router';
 import { getAllSupplyChainsUrl } from '../../services/apiEndpoint';
 import { fetcher } from '../../services/axios';
 import { useState } from 'react';
-import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
 import dateFormat from '../../utils/dateFormat';
 
 import { CreditIcon, EyeIcon } from '../../components/icons';
@@ -62,7 +61,6 @@ const columns = (searchTerm: string) => ([
 ]);
 
 const SupplyChains = () => {
-  const userInfo = React.useContext(userInfoContext);
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
   const { data } = useSWR(getAllSupplyChainsUrl, fetcher)
@@ -98,7 +96,7 @@ const SupplyChains = () => {
           />
         </div>
         <div className='action-box'>
-          <Button className='bg-primary-500 text-white ml-3' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/supply-chains/new-chain`)}>
+          <Button className='bg-primary-500 text-white hover:!text-white h-[50px] text-base ml-3' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/supply-chains/new-chain`)}>
             افزودن زنجیره
           </Button>
           <Button className='bg-primary-100 text-primary-500' icon={<UploadOutlined />} size="large">

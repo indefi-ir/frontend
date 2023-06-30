@@ -26,6 +26,8 @@ const AdminLayout = ({ children }: Props) => {
   const logoutUser = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('companyId');
+    localStorage.removeItem('id');
     router.push(`/login`);
   }
 
