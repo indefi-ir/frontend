@@ -1,14 +1,16 @@
 import { Button, Form, Input } from "antd";
 import { useRouter } from 'next/router';
-import { useContext } from "react";
+import { use, useContext, useState } from "react";
 import { loginCompany } from "../../../services/authService/authCompany";
 import { UserInfoContext } from "../../providers";
 
 const LoginFormCompany = () => {
   const router = useRouter();
   const { setUserInfo } = useContext(UserInfoContext);
+  const [loading, setLoading] = useState(false);
 
   const onFinish = async (values: any) => {
+    setLoading(true);
     try {
       const res = await loginCompany({ ...values })
       if (res?.data?.data) {
@@ -18,6 +20,7 @@ const LoginFormCompany = () => {
     } catch (err) {
       console.log(err)
     }
+    setLoading(false);
   };
 
   return (
@@ -31,7 +34,7 @@ const LoginFormCompany = () => {
           <Input placeholder="کلمه عبور" className="p-3 text-sm w-96" type="password" />
         </Form.Item>
         <Form.Item>
-          <Button htmlType="submit" className="w-full bg-primary-500 text-white hover:!text-white h-[55px] text-base">
+          <Button htmlType="submit" loading={loading} className="w-full bg-primary-500 text-white hover:!text-white h-[55px] text-base">
             ورود
           </Button>
         </Form.Item>

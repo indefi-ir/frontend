@@ -61,19 +61,19 @@ const NewCompany = () => {
     })
   ));
 
-  const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
-    if (info.file.status === 'uploading') {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj as RcFile, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
-  };
+  // const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
+  //   if (info.file.status === 'uploading') {
+  //     setLoading(true);
+  //     return;
+  //   }
+  //   if (info.file.status === 'done') {
+  //     // Get this url from response in real world.
+  //     getBase64(info.file.originFileObj as RcFile, (url) => {
+  //       setLoading(false);
+  //       setImageUrl(url);
+  //     });
+  //   }
+  // };
 
   const uploadButton = (
     <div>
@@ -145,7 +145,6 @@ const NewCompany = () => {
               mode="multiple"
               allowClear
               placeholder="لطفا محصولات مورد نظر را انتخاب کنید."
-              onChange={handleChange}
               options={options}
             />
           </Form.Item>
