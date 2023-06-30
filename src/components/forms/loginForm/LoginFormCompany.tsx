@@ -1,12 +1,10 @@
 import { Button, Form, Input } from "antd";
 import { useRouter } from 'next/router';
-import { use, useContext, useState } from "react";
+import { useState } from "react";
 import { loginCompany } from "../../../services/authService/authCompany";
-import { UserInfoContext } from "../../providers";
 
 const LoginFormCompany = () => {
   const router = useRouter();
-  const { setUserInfo } = useContext(UserInfoContext);
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values: any) => {
@@ -14,7 +12,7 @@ const LoginFormCompany = () => {
     try {
       const res = await loginCompany({ ...values })
       if (res?.data?.data) {
-        setUserInfo(res?.data?.role)
+        localStorage.setItem('role', JSON.stringify(res?.data?.role))
         router.push(`/dashboard`);
       }
     } catch (err) {
