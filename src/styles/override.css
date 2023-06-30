@@ -25,3 +25,7 @@
   position: relative;
   overflow: hidden;
 }
+
+.ant-card.ant-card-rtl  {
+  box-shadow: none;
+}

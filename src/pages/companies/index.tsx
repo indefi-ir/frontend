@@ -9,7 +9,7 @@ import { fetcher } from '../../services/axios';
 import { useState } from 'react';
 import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
 import dateFormat from '../../utils/dateFormat';
-import { CreditIcon, EyeIcon } from '../../components/icons';
+import { CompanyIcon, CreditIcon, EyeIcon } from '../../components/icons';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
@@ -33,10 +33,10 @@ const columns = (searchTerm: string) => ([
     onFilter: (value: any, record: { name: string | any[]; }) => {
       return record.name.includes(value)
     },
-    render: (_:any, record: { name: string | any; email: string | any }) => (
+    render: (_: any, record: { name: string | any; email: string | any }) => (
       <Card bordered={false}>
         <Meta
-          avatar={<Avatar src="/images/chainova-logo.jpeg" />}
+          avatar={<Avatar size={64} src={record?.logo ? record?.logo : "/images/logo-alternative.png"} />}
           title={record.name}
           description={record.email}
         />
@@ -128,7 +128,7 @@ const Companies = () => {
         </div>
 
         <div className='action-box'>
-          <Button className='bg-primary-500 text-white ml-3' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/companies/new-company`)}>
+          <Button className='bg-primary-500 text-white ml-3 hover:!text-white' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/companies/new-company`)}>
             افزودن شرکت
           </Button>
           <Button className='bg-primary-100 text-primary-500' icon={<UploadOutlined />} size="large">
@@ -136,7 +136,7 @@ const Companies = () => {
           </Button>
         </div>
       </div>
-      <Table columns={columns(searchTerm)} dataSource={data?.data} />
+      <Table columns={columns(searchTerm)} dataSource={data?.data} sortDirections="ascend"/>
     </>
   )
 };
