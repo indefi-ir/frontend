@@ -38,7 +38,7 @@ const CompanyInfo = () => {
       <div className='p-1'>
         <div className='flex flex-col divide-y divide-gray-50'>
           <div className='flex flex-col justify-center items-center mb-3'>
-            <Avatar size={80} className="mb-2" />
+            <Avatar size={80} className="mb-2" src={companyDetails?.data?.logo} />
             <div className='mb-1'>{companyDetails?.data?.name}</div>
             <div>{companyDetails?.data?.email}</div>
           </div>
