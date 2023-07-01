@@ -5,8 +5,6 @@ import { BuildingIcon } from '../../components/icons';
 const CustomNode = (props: any) => {
   const { supplyChain } = props;
 
-  console.log("supplyChain",supplyChain)
-
   return (
     <Popover content={supplyChain?.company?.owner} title="مدیرعامل" trigger="hover">
     <div className='flex flex-col items-center justify-center'>

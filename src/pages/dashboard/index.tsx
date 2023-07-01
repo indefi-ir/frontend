@@ -26,11 +26,17 @@ const BillsColumns = ([
     title: 'از شرکت',
     dataIndex: 'from',
     key: 'from',
+    render: (record: any) => (
+      <div className="text-right">{record.name}</div>
+    ),
   },
   {
     title: 'به شرکت',
     dataIndex: 'to',
     key: 'to',
+    render: (record: any) => (
+      <div className="text-right">{record.name}</div>
+    ),
   },
   {
     title: 'محصول',
