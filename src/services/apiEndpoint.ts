@@ -11,6 +11,7 @@ export const updateBillUrl = "/api/v1/bills/update-bill";
 
 // SupplyChain
 export const addSupplyChainUrl =  "/api/v1/supplychain/add-supplychain";
+export const supplyChainDetailsUrl =  "/api/v1/supplychain/get-supplychain-by-id?supplychainId=";
 export const getAllSupplyChainsUrl =  "/api/v1/supplychain/get-all-supplychains?skip=0&count=10";
 export const getSupplyChainsForCompanyUrl =  "/api/v1/supplychain/get-supplychains-for-company";
 export const getSupplyChainsForMyCompanyUrl =  "/api/v1/supplychain/get-supplychains-for-my-company";

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, Form, Input, Modal, Select, SelectProps, Upload, UploadProps } from 'antd';
+import { Button, Card, Form, Input, Select, SelectProps, Upload, UploadProps } from 'antd';
 import useSWR, { mutate } from 'swr';
 import 'beautiful-react-diagrams/styles.css';
 import { fetcher, post } from '../../../services/axios';
@@ -7,7 +7,6 @@ import { addSupplyChainUrl, companiesUrl, getAllSupplyChainsUrl } from '../../..
 import { DrawChain } from '../../../features';
 import { BuildingIcon } from '../../../components/icons';
 import { InboxOutlined } from '@ant-design/icons';
-import { RcFile } from 'antd/es/upload';
 import { useRouter } from 'next/router';
 
 const { Dragger } = Upload;

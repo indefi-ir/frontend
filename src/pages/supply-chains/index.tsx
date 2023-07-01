@@ -21,7 +21,6 @@ const columns = (searchTerm: string) => ([
       return record.name.includes(value)
     }
   },
-
   {
     title: 'اعتبار ',
     dataIndex: 'credit',
@@ -30,7 +29,6 @@ const columns = (searchTerm: string) => ([
       <div style={{ direction: "ltr" }} className="text-right">{record}</div>
     )
   },
-
   {
     title: 'توضیحات ',
     dataIndex: 'description',
@@ -52,7 +50,7 @@ const columns = (searchTerm: string) => ([
     key: "action",
     render: (_: any, record: any) => (
       <Space size="middle">
-        <span className='cursor-pointer' onClick={() => nextRouter.push(`/supply-chains/view-chain/${record.id}`)}>
+        <span className='cursor-pointer' onClick={() => nextRouter.push(`/supply-chains/details-chain/${record.id}`)}>
           <EyeIcon />
         </span>
       </Space>
