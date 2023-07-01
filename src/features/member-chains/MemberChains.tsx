@@ -9,7 +9,7 @@ const MemberChains = ({ companyId }: any) => {
   const { data: supplyChains, error: companyTotalCreditsError } = useSWR(supplyChainsUrl, fetcher);
 
   return (
-    <Collapse defaultActiveKey={['1']} >
+    <Collapse defaultActiveKey={['1']} className="mb-4" >
       {supplyChains?.data?.map(((chain:any, index:any) => {
         return (
           <Panel header={chain.name} key={index}>

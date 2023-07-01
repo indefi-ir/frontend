@@ -1,6 +1,6 @@
 import { Card, Col, Row, Segmented, Space, Table, Tag } from "antd";
 import { useState } from "react";
-import { companiesUrl } from "../../services/apiEndpoint";
+import { companiesUrl, transactionsUrl } from "../../services/apiEndpoint";
 import { fetcher } from "../../services/axios";
 import dateFormat from "../../utils/dateFormat";
 import useSWR from 'swr';
@@ -15,6 +15,50 @@ const renderStatus = (status: Number) => {
       return <Tag color="gold">مسدود موقت</Tag>;
   }
 }
+
+const BillsColumns = ([
+  {
+    title: 'شماره صورتحساب ',
+    dataIndex: 'txId',
+    key: 'txId',
+  },
+  {
+    title: 'از شرکت',
+    dataIndex: 'from',
+    key: 'from',
+  },
+  {
+    title: 'به شرکت',
+    dataIndex: 'to',
+    key: 'to',
+  },
+  {
+    title: 'محصول',
+    dataIndex: 'productCategory',
+    key: 'productCategory',
+    render: (record: any) => (
+      <div className="text-right">{record.name}</div>
+    ),
+  },
+  {
+    title: 'مقدار محصول',
+    dataIndex: 'productAmount',
+    key: 'productAmount',
+  },
+  {
+    title: 'میزان اعتبار',
+    dataIndex: 'amount',
+    key: 'amount',
+  },
+  {
+    title: 'تاریخ ایجاد',
+    dataIndex: 'date',
+    key: 'date',
+    render: (record: string) => (
+      dateFormat(record)
+    ),
+  },
+]);
 
 const CompanyColumns = ([
   {
@@ -46,7 +90,8 @@ const CompanyColumns = ([
 
 const Dashboard = () => {
   const [options, setOptions] = useState(['ماه جاری', 'سال جاری', 'همه زمان ها']);
-  const { data } = useSWR(companiesUrl, fetcher);
+  const { data:companies } = useSWR(companiesUrl, fetcher);
+  const { data:bills } = useSWR(transactionsUrl, fetcher);
   return (
     <>
       <div>
@@ -97,12 +142,12 @@ const Dashboard = () => {
         <Row gutter={16}>
           <Col span={12}>
             <Card title={<span className="text-gray-400 font-medium">شرکت های های اخیر</span>} extra={<a href="#" className="text-primary-500">بیشتر</a>} >
-              <Table columns={CompanyColumns} dataSource={data?.data} scroll={{ y: 450 }} />
+              <Table columns={CompanyColumns} dataSource={companies?.data} scroll={{ y: 450 }} />
             </Card>
           </Col>
           <Col span={12}>
             <Card title={<span className="text-gray-400 font-medium">صورتحساب های اخیر</span>} extra={<a href="#" className="text-primary-500">بیشتر</a>} >
-              <Table columns={CompanyColumns} dataSource={data?.data} scroll={{ y: 450 }} />
+              <Table columns={BillsColumns} dataSource={bills?.data} scroll={{ y: 450 }} />
             </Card>
           </Col>
         </Row>

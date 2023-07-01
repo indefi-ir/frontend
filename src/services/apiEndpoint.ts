@@ -32,9 +32,9 @@ export const productCategoriesMyCompanyUrl= "/api/v1/product-category/get-produc
 export const addProductCategoryUrl = "/api/v1/product-category/add-product-category";
 
 // Transactions
-export const transactionsUrl = "/api/v1/transactions/get-all-transactions";
+export const transactionsUrl = "/api/v1/transactions/get-all-transactions?skip=0&count=100";
 export const transactionCompanyUrl = "/api/v1/transactions/get-transaction-for-company";
-export const transactionMyCompanyUrl =  "/api/v1/transactions/get-transaction-for-my-company";
+export const transactionMyCompanyUrl =  "/api/v1/transactions/get-transaction-for-my-company?skip=0&count=100";
 
 // Users
 export const companyByIdUrl = "/api/v1/users/get-company-by-id";

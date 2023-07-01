@@ -1,10 +1,14 @@
+import { Popover } from 'antd';
 import React from 'react';
 import { BuildingIcon } from '../../components/icons';
 
 const CustomNode = (props: any) => {
   const { supplyChain } = props;
 
+  console.log("supplyChain",supplyChain)
+
   return (
+    <Popover content={supplyChain?.company?.owner} title="مدیرعامل" trigger="hover">
     <div className='flex flex-col items-center justify-center'>
       <div className='flex justify-between items-center'>
         <div className='flex justify-center items-center rounded-full bg-primary-100 w-14 h-14 mb-2'>
@@ -16,6 +20,7 @@ const CustomNode = (props: any) => {
       </div>
       <div className='text-primary-500 font-bold'>{supplyChain?.order}</div>
     </div>
+    </Popover>
   );
 }
 

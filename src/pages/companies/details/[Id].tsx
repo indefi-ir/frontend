@@ -1,10 +1,55 @@
-import { Avatar, Card, Col, Form, List, Row, Tag, Select, Button, Collapse, CollapseProps } from "antd";
+import { Avatar, Card, Col, Form, List, Row, Tag, Select, Button, Collapse, CollapseProps, Table } from "antd";
 import { useRouter } from 'next/router';
-import { companyDetailsByIdUrl, CreditUsedUrl, totalCreditsUrl, updateCompanyStatusUrl } from "../../../services/apiEndpoint";
+import { companyDetailsByIdUrl, CreditUsedUrl, totalCreditsUrl, transactionsUrl, updateCompanyStatusUrl } from "../../../services/apiEndpoint";
 import { fetcher, patch, put } from "../../../services/axios";
 import useSWR, { mutate } from 'swr';
 import { CompanyInfo, MemberChains, SimpleLineChart, TransactionProductVolume } from "../../../features";
+import dateFormat from "../../../utils/dateFormat";
 const { Option } = Select;
+
+const BillsColumns = ([
+  {
+    title: 'شماره صورتحساب ',
+    dataIndex: 'txId',
+    key: 'txId',
+  },
+  {
+    title: 'از شرکت',
+    dataIndex: 'from',
+    key: 'from',
+  },
+  {
+    title: 'به شرکت',
+    dataIndex: 'to',
+    key: 'to',
+  },
+  {
+    title: 'محصول',
+    dataIndex: 'productCategory',
+    key: 'productCategory',
+    render: (record: any) => (
+      <div className="text-right">{record.name}</div>
+    ),
+  },
+  {
+    title: 'مقدار محصول',
+    dataIndex: 'productAmount',
+    key: 'productAmount',
+  },
+  {
+    title: 'میزان اعتبار',
+    dataIndex: 'amount',
+    key: 'amount',
+  },
+  {
+    title: 'تاریخ ایجاد',
+    dataIndex: 'date',
+    key: 'date',
+    render: (record: string) => (
+      dateFormat(record)
+    ),
+  },
+]);
 
 const renderStatus = (status: any) => {
   switch (status) {
@@ -47,7 +92,7 @@ const text = `A dog is a type of domesticated animal.
 const DetailsCompany = () => {
   const router = useRouter();
   const { Id } = router.query;
-
+  const { data: bills } = useSWR(transactionsUrl, fetcher);
   const companyDetailsUrl = `${companyDetailsByIdUrl}${Id}`;
   const { data: companyDetails, error: companyDetailsError } = useSWR(companyDetailsUrl, fetcher);
 
@@ -174,8 +219,13 @@ const DetailsCompany = () => {
           </Card>
         </Col>
         <Col span={18}>
-          <MemberChains companyId={Id} />
+          <MemberChains companyId={Id}/>
+          <Card title={<span className="text-gray-400 font-medium">صورتحساب های اخیر</span>}>
+            <Table columns={BillsColumns} dataSource={bills?.data} scroll={{ y: 450 }} />
+          </Card>
+
         </Col>
+
       </Row>
     </>
   )

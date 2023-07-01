@@ -1,112 +1,103 @@
-import { DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
-import useSWR from 'swr';
-import { billsUrl } from '../../services/apiEndpoint';
-import { fetcher } from '../../services/axios';
-import { useState } from 'react';
+import { Button, DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
+import useSWR, { mutate } from 'swr';
+import nextRouter from 'next/router';
+import { transactionsUrl } from '../../services/apiEndpoint';
+import { fetcher, patch } from '../../services/axios';
+import { useContext, useEffect, useState } from 'react';
 import React from 'react';
 import dateFormat from '../../utils/dateFormat';
+import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 
-const renderStatus = (status: Number) => {
-  switch (status) {
-    case 1:
-      return <Tag color="green">فعال</Tag>;
-    case 0:
-      return <Tag color="red">مسدود شده</Tag>;
-    case 2:
-      return <Tag color="gold">مسدود موقت</Tag>;
-  }
-}
 
 const columns = (searchTerm: string) => ([
   {
-    title: 'نام شرکت',
-    dataIndex: 'company',
-    key: 'company',
+    title: 'شماره صورتحساب ',
+    dataIndex: 'txId',
+    key: 'txId',
+  },
+  {
+    title: 'از شرکت',
+    dataIndex: 'from',
+    key: 'from',
+  },
+  {
+    title: 'به شرکت',
+    dataIndex: 'to',
+    key: 'to',
+  },
+  {
+    title: 'محصول',
+    dataIndex: 'productCategory',
+    key: 'productCategory',
     render: (record: any) => (
       <div className="text-right">{record.name}</div>
     ),
   },
   {
-    title: 'تلفن',
-    dataIndex: 'company',
-    key: 'company',
-    render: (record: any) => (
-      <div style={{direction: "ltr"}} className="text-right">{record.phoneNumber}</div>
-    )
+    title: 'مقدار محصول',
+    dataIndex: 'productAmount',
+    key: 'productAmount',
   },
   {
-    title: 'مقدار',
-    dataIndex: 'value',
-    key: 'value',
-    render: (record: string) => (
-      <div style={{direction: "ltr"}} className="text-right">{record}</div>
-    )
+    title: 'میزان اعتبار',
+    dataIndex: 'amount',
+    key: 'amount',
   },
   {
     title: 'تاریخ ایجاد',
-    dataIndex: 'creationDate',
-    key: 'creationDate',
+    dataIndex: 'date',
+    key: 'date',
     render: (record: string) => (
       dateFormat(record)
     ),
   },
-  {
-    title: 'تاریخ سررسید',
-    dataIndex: 'due',
-    key: 'due',
-    render: (record: string) => (
-      dateFormat(record)
-    ),
-  },
-  {
-    title: 'وضعیت',
-    dataIndex: 'billStatus',
-    render: (record: Number) => (
-      renderStatus(record)
-    )
-  }
 ]);
 
 const Bills = () => {
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
-  const { data } = useSWR(billsUrl, fetcher)
-
-  const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-    console.log(date, dateString);
-  };
-
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
+  const { data } = useSWR(transactionsUrl, fetcher)
 
   return (
     <>
-      <div className='flex mb-10'>
-        <Input
-          placeholder="نام شرکت"
-          className='font-normal !bg-white w-60 p-2 ml-3'
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <DatePicker onChange={onChange} placeholder="تاریخ ایجاد" className='ml-3' />
-        <Select
-          defaultValue="فعال"
-          onChange={handleChange}
-          placeholder="وضعیت"
-          className='w-40 ml-3'
-          options={[
-            { value: 1, label: 'فعال' },
-            { value: 2, label: 'مسدود موقت' },
-            { value: 0, label: 'مسدود شده' }
-          ]}
-        />
+      <div className='flex justify-between mb-10'>
+        <div className='search-box'>
+          <Input
+            placeholder="نام شرکت"
+            className='font-normal !bg-white w-60 p-2 ml-3'
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <DatePicker placeholder="تاریخ ایجاد" className='ml-3' />
+          <Select
+            defaultValue="فعال"
+            placeholder="وضعیت"
+            className='w-40 ml-3'
+            options={[
+              { value: 1, label: 'فعال' },
+              { value: 2, label: 'مسدود موقت' },
+              { value: 0, label: 'مسدود شده' }
+            ]}
+          />
+        </div>
+        <div className='action-box'>
+          <Button className='bg-primary-500 text-white ml-3 hover:!text-white' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/company/requests/new-request`)}>
+            افزودن پیش فاکتور
+          </Button>
+          <Button className='bg-primary-100 text-primary-500' icon={<UploadOutlined />} size="large">
+            خروجی
+          </Button>
+        </div>
       </div>
       <Table columns={columns(searchTerm)} dataSource={data?.data} scroll={{ y: 450 }} />
     </>
+
   )
 };
 
 Bills.layout = 'admin'
 
 export default Bills
+
+
+
 
