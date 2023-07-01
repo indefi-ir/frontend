@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { Button, Card, Form, Input, Modal, Select, SelectProps } from 'antd';
-import useSWR from 'swr';
+import { Button, Card, Form, Input, Modal, Select, SelectProps, Upload, UploadProps } from 'antd';
+import useSWR, { mutate } from 'swr';
 import 'beautiful-react-diagrams/styles.css';
 import { fetcher, post } from '../../../services/axios';
-import { addSupplyChainUrl, companiesUrl } from '../../../services/apiEndpoint';
+import { addSupplyChainUrl, companiesUrl, getAllSupplyChainsUrl } from '../../../services/apiEndpoint';
 import { DrawChain } from '../../../features';
 import { BuildingIcon } from '../../../components/icons';
+import { InboxOutlined } from '@ant-design/icons';
+import { RcFile } from 'antd/es/upload';
+import { useRouter } from 'next/router';
 
+const { Dragger } = Upload;
 
 const CustomNode = (props: any) => {
   console.log("props", props)
@@ -33,9 +37,21 @@ const CustomNode = (props: any) => {
 
 const NewChain = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
   const [companiesList, setCompaniesList] = useState([]);
   const [nodesList, setNodesList] = useState<any>([])
   const [chainInfo, setChainInfo] = useState([]);
+  const [file, setFile] = useState<any>({});
+
+  const props: UploadProps = {
+    name: 'file',
+    multiple: true,
+    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    onChange(info) {
+      setFile(info?.file?.name);
+      console.log("file.name",info?.file?.name)
+    }
+  };
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -81,12 +97,11 @@ const NewChain = () => {
   ));
 
   const onFinish = async (values: any) => {
-    console.log("values", values)
-    const finalData = { ...values, head: chainInfo[0], subChains: cloneChainInfo }
-    console.log("values", finalData)
+    const finalData = { ...values, logo: file, head: chainInfo[0], subChains: cloneChainInfo }
     const result = await post(addSupplyChainUrl, finalData);
-    if (result.success) {
-
+    if (result.status) {
+      await mutate(getAllSupplyChainsUrl);
+      router.push(`/supply-chains`);
     }
   };
 
@@ -113,9 +128,20 @@ const NewChain = () => {
           }]}>
           <Input />
         </Form.Item>
-        <Form.Item name="logo" label="اسناد مربوط به زنجیره">
+        {/* <Form.Item name="logo" label="اسناد مربوط به زنجیره">
           <Input />
-        </Form.Item>
+        </Form.Item> */}
+        <div className='mb-4'>
+          <span className='block mb-2'>اسناد مربوط به زنجیره</span>
+          <Dragger {...props}>
+            <p className="ant-upload-drag-icon">
+              <InboxOutlined />
+            </p>
+            <p className="ant-upload-hint">
+              فایل را در اینجا بکشید و رها کنید یا روی افزودن تصویر کلیک کنید
+            </p>
+          </Dragger>
+        </div>
         <Form.Item
           name="description"
           label="توضیحات"
@@ -125,17 +151,9 @@ const NewChain = () => {
           }]}>
           <Input.TextArea rows={4} />
         </Form.Item>
-        {/* <Form.Item>
-          <span className='block mb-2'>اسناد مربوط به زنجیره</span>
-          <Dragger {...props}>
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="text-gray-400 text-sm">تصویر را در اینجا بکشید و رها کنید یا روی افزودن تصویر کلیک کنید</p>
-          </Dragger>
-        </Form.Item> */}
+
         <Form.Item>
-          <span className='block mb-1'>رسم زنجیره</span>
+          <span className='block'>رسم زنجیره</span>
         </Form.Item>
         <div>
           <div className='flex items-center bg-primary-100 w-full rounded-lg p-3 mb-2'>
@@ -164,3 +182,5 @@ const NewChain = () => {
 }
 NewChain.layout = 'admin';
 export default NewChain
+
+
