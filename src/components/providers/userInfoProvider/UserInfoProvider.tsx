@@ -2,7 +2,10 @@
 import React, { useEffect, useState } from 'react';
 
 export const UserInfoContext = React.createContext({
-  userInfo: {},
+  userInfo: {
+    role: "",
+    id: ""
+  },
   setUserInfo: (info: any) => { }
 });
 

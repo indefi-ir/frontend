@@ -88,11 +88,13 @@ const Dashboard = () => {
           </Col>
         </Row>
       </div>
-      <div className="my-4">
+      <div className="flex my-4">
         <Card title="صورتحساب های اخیر" extra={<a href="#">بیشتر</a>} >
           <Table columns={columns} dataSource={data?.data} scroll={{ y: 450 }} />
         </Card>
-
+        {/* <Card title="صورتحساب های اخیر" extra={<a href="#">بیشتر</a>} >
+          <Table columns={columns} dataSource={data?.data} scroll={{ y: 450 }} />
+        </Card> */}
       </div>
     </>
   )

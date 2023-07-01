@@ -15,21 +15,23 @@ export default function App({ Component, pageProps }: AppProps) {
     id: ""
   });
   const roleItem = typeof window !== "undefined" ? localStorage.getItem('role') : false;
-  const role = roleItem ? window.JSON.parse(roleItem): null;
+  const role = roleItem ? window.JSON.parse(roleItem) : null;
 
-  const idItem = typeof window !== "undefined" ? localStorage.getItem('id') : false;
-  const id = idItem ? window.JSON.parse(idItem): null;
+  let id = "";
+  if (role === "Company") {
+    let idItem = typeof window !== "undefined" ? localStorage.getItem('id') : false;
+    id = idItem ? window.JSON.parse(idItem) : null;
+  }
 
+  const token = typeof window !== "undefined" ? window.localStorage.getItem('token') : false;
 
-  const token = typeof window !== "undefined" ?  window.localStorage.getItem('token') : false;
-
-  useEffect(()=> {
+  useEffect(() => {
     setUserInfo({
       role: role,
       id: id
     })
-  },[token])
-  
+  }, [token])
+
   return (
     <ConfigProvider
       direction="rtl"
@@ -39,10 +41,10 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       }}
     >
-      <UserInfoContext.Provider value={{userInfo, setUserInfo}}>
-      <LayoutWrapper>
-        <Component {...pageProps} />
-      </LayoutWrapper>
+      <UserInfoContext.Provider value={{ userInfo, setUserInfo }}>
+        <LayoutWrapper>
+          <Component {...pageProps} />
+        </LayoutWrapper>
       </UserInfoContext.Provider>
     </ConfigProvider>
   )
