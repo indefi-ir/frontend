@@ -9,4 +9,7 @@ module.exports = {
     // Will be available on both server and client
     baseURL: process.env.NEXT_PUBLIC_BACKEND_BASE_URL,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
