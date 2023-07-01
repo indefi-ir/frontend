@@ -58,7 +58,7 @@ const columns = (searchTerm: string, userInfo: any, handleAccepte: Function, han
     title: 'مقدار',
     dataIndex: 'value',
     key: 'value',
-    with: 50,
+    with: 100,
   },
   {
     title: 'تاریخ ایجاد',
@@ -86,7 +86,7 @@ const columns = (searchTerm: string, userInfo: any, handleAccepte: Function, han
     render: (_: any, record: any) => (
       record?.destinationCompany?.id === userInfo?.id
         ? <Space size="middle">
-          <Button className="bg-green-300 text-white hover:!text-white text-base" onClick={() => handleAccepte(record.id)}>پذیرفتن</Button>
+          <Button className="bg-green-300 text-white hover:!text-white text-base" onClick={() => handleAccepte(record.id)}>پذیرفتن و انتقال اعتبار</Button>
           <Button onClick={() => handleReject(record.id)} className="bg-red-300 text-white hover:!text-white text-base">ردکردن</Button>
         </Space>
         : null
