@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { companyDetailsByIdUrl, CreditUsedUrl, totalCreditsUrl, updateCompanyStatusUrl } from "../../../services/apiEndpoint";
 import { fetcher, patch, put } from "../../../services/axios";
 import useSWR, { mutate } from 'swr';
-import { CompanyInfo, TransactionProductVolume } from "../../../features";
+import { CompanyInfo, MemberChains, TransactionProductVolume } from "../../../features";
 const { Option } = Select;
 
 const renderStatus = (status: any) => {
@@ -43,26 +43,6 @@ const text = `A dog is a type of domesticated animal.
   Known for its loyalty and faithfulness,
   it can be found as a welcome guest in many households across the world.
 `;
-
-const items: CollapseProps['items'] = [
-  {
-    key: '1',
-    label: 'This is panel header 1',
-    children: <p>{text}</p>,
-  },
-  {
-    key: '2',
-    label: 'This is panel header 2',
-    children: <p>{text}</p>,
-  },
-  {
-    key: '3',
-    label: 'This is panel header 3',
-    children: <p>{text}</p>,
-  },
-];
-
-
 
 const DetailsCompany = () => {
   const router = useRouter();
@@ -170,10 +150,10 @@ const DetailsCompany = () => {
               </Card>
             </Col>
           </Row>
-          <Collapse collapsible="header" items={items} defaultActiveKey={['1']} />
         </div>
       </Col>
       <Col span={24}>
+        <MemberChains companyId={Id} />
       </Col>
     </Row>
   )
