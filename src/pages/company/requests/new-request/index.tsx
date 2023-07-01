@@ -11,7 +11,7 @@ import {
 import React, { useState } from 'react';
 import useSWR, { mutate } from 'swr';
 const { TextArea } = Input;
-import { addNewInvoiceUrl, companiesUrl, InvoicesMyCompanyUrl, productCategoriesMyCompanyUrl } from '../../../../services/apiEndpoint';
+import { addNewInvoiceUrl, companiesUrl, getSupplyChainsForMyCompanyUrl, InvoicesMyCompanyUrl, productCategoriesMyCompanyUrl } from '../../../../services/apiEndpoint';
 import { fetcher, post } from '../../../../services/axios';
 import { useRouter } from 'next/router';
 
@@ -21,6 +21,7 @@ const NewRequest = () => {
   const router = useRouter();
   const { data: productCategories } = useSWR(productCategoriesMyCompanyUrl, fetcher);
   const { data: companies } = useSWR(companiesUrl, fetcher);
+  const { data: supplyChains } = useSWR(getSupplyChainsForMyCompanyUrl, fetcher);
   
   const optionsCategories: SelectProps['options'] = [];
   productCategories?.data?.map((category: { id: any; name: any; }) => (
@@ -35,6 +36,14 @@ const NewRequest = () => {
     optionsCompanies.push({
       value: company.id,
       label: company.name,
+    })
+  ));
+
+  const optionsSupplyChains: SelectProps['options'] = [];
+  supplyChains?.data?.map((supplyChain: { id: any; name: any; }) => (
+    optionsSupplyChains.push({
+      value: supplyChain.id,
+      label: supplyChain.name,
     })
   ));
 
@@ -54,8 +63,21 @@ const NewRequest = () => {
     <Card>
       <Form layout="vertical" onFinish={onFinish}>
         <div className='flex gap-6'>
-          <Form.Item className='flex-1' name="value" label="مقدار اعتبار">
+          <Form.Item className='flex-1' name="value" label="میزان اعتبار">
             <Input />
+          </Form.Item>
+
+          <Form.Item className='flex-1' name="productAmount" label="مقدار محصول">
+            <Input />
+          </Form.Item>
+        </div>
+        <div className='flex-1 gap-6 items-center'>
+          <Form.Item label="نام زنجیره" name="supplychainId" required>
+            <Select
+              allowClear
+              placeholder="لطفا زنجیره مورد نظر را انتخاب کنید."
+              options={optionsSupplyChains}
+            />
           </Form.Item>
         </div>
         <div className='flex-1 gap-6 items-center'>

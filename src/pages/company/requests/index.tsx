@@ -3,11 +3,12 @@ import useSWR, { mutate } from 'swr';
 import nextRouter from 'next/router';
 import { InvoicesMyCompanyUrl, UpdateInvoiceUrl } from '../../../services/apiEndpoint';
 import { fetcher, patch } from '../../../services/axios';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import React from 'react';
 import dateFormat from '../../../utils/dateFormat';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { UserInfoContext } from '../../../components/providers';
+import { unstable_batchedUpdates } from 'react-dom';
 
 const renderStatus = (status: Number) => {
   switch (status) {
@@ -83,7 +84,7 @@ const columns = (searchTerm: string, id: any, handleAccepte: Function, handleRej
     title: "عملیات",
     key: "action",
     render: (_: any, record: any) => (
-      record.destinationCompany.id == id
+      record.destinationCompany.id == "1285c048-a527-4b25-8a5d-b72a8ac890c0"
         ? <Space size="middle">
           <Button className="bg-green-300 text-white hover:!text-white text-base" onClick={() => handleAccepte(record.id)}>پذیرفتن</Button>
           <Button onClick={() => handleReject(record.id)} className="bg-red-300 text-white hover:!text-white text-base">ردکردن</Button>
@@ -94,8 +95,8 @@ const columns = (searchTerm: string, id: any, handleAccepte: Function, handleRej
 ]);
 
 const Request = () => {
-  const idItem = typeof window !== "undefined" ? localStorage.getItem('id') : null;
-  const id = idItem ? window.JSON.parse(idItem) : null;
+  const id = typeof window !== "undefined" ? localStorage.getItem('id') : null;
+ 
 
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
