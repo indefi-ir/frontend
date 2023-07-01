@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, DatePicker, Form, Input, Select, SelectProps } from "antd";
-import useSWR from 'swr';
-import { addFinancialInstrumentsUrl, getAllSupplyChainsUrl } from "../../services/apiEndpoint";
+import useSWR, { mutate } from 'swr';
+import { addFinancialInstrumentsUrl, companiesUrl, getAllSupplyChainsUrl } from "../../services/apiEndpoint";
 import { fetcher, post } from "../../services/axios";
 import { useRouter } from "next/router";
 
 const { TextArea } = Input;
 
 const AddCreditCompany = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const { Id } = router.query;
-
   const { data: supplyChains } = useSWR(getAllSupplyChainsUrl, fetcher);
 
   const options: SelectProps['options'] = [];
@@ -22,14 +22,18 @@ const AddCreditCompany = () => {
   ));
 
   const onFinish = async (values: any) => {
+    setLoading(true)
     const finalData = { companyId: Id, supplyChainId: values.supplyChainId, financialInstrumentDto: { value: values.value, bill: { ...values, billStatus: 0 } } };
     delete finalData.financialInstrumentDto.bill.supplyChainId;
     delete finalData.financialInstrumentDto.bill.companyId;
     delete finalData.financialInstrumentDto.bill.value;
 
     const result = await post(addFinancialInstrumentsUrl, finalData);
-    if (result.success) {
+    if (result.status) {
+      await mutate(companiesUrl);
+      router.push(`/companies`);
     }
+    setLoading(false)
   };
 
   return (
@@ -49,9 +53,9 @@ const AddCreditCompany = () => {
       <Form.Item name="billInfo" label="توضیحات">
         <TextArea rows={4} maxLength={6} />
       </Form.Item>
-      <Form.Item>
-        <Button htmlType="submit">
-          ثبت
+      <Form.Item className="flex justify-end">
+        <Button htmlType="submit" loading={loading} className="bg-primary-500 text-white hover:!text-white h-[50px] text-base">
+          افزودن اعتبار
         </Button>
       </Form.Item>
     </Form>
