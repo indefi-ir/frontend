@@ -16,11 +16,16 @@ const renderStatus = (status: Number) => {
   }
 }
 
-const columns = ([
+const CompanyColumns = ([
   {
     title: 'نام شرکت',
     dataIndex: 'name',
     key: 'name',
+  },
+  {
+    title: 'شناسه ملی شرکت',
+    dataIndex: 'nationalID',
+    key: 'nationalID',
   },
   {
     title: 'وضعیت',
@@ -89,12 +94,18 @@ const Dashboard = () => {
         </Row>
       </div>
       <div className="flex my-4">
-        <Card title="صورتحساب های اخیر" extra={<a href="#">بیشتر</a>} >
-          <Table columns={columns} dataSource={data?.data} scroll={{ y: 450 }} />
-        </Card>
-        {/* <Card title="صورتحساب های اخیر" extra={<a href="#">بیشتر</a>} >
-          <Table columns={columns} dataSource={data?.data} scroll={{ y: 450 }} />
-        </Card> */}
+        <Row gutter={16}>
+          <Col span={12}>
+            <Card title={<span className="text-gray-400 font-medium">شرکت های های اخیر</span>} extra={<a href="#" className="text-primary-500">بیشتر</a>} >
+              <Table columns={CompanyColumns} dataSource={data?.data} scroll={{ y: 450 }} />
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Card title={<span className="text-gray-400 font-medium">صورتحساب های اخیر</span>} extra={<a href="#" className="text-primary-500">بیشتر</a>} >
+              <Table columns={CompanyColumns} dataSource={data?.data} scroll={{ y: 450 }} />
+            </Card>
+          </Col>
+        </Row>
       </div>
     </>
   )
