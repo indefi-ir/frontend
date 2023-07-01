@@ -12,13 +12,14 @@ import { useEffect, useState } from 'react';
 export default function App({ Component, pageProps }: AppProps) {
   const [userInfo, setUserInfo] = useState<any>({
     role: null,
-    id: null
+    id: ""
   });
   const roleItem = typeof window !== "undefined" ? localStorage.getItem('role') : false;
   const role = roleItem ? window.JSON.parse(roleItem): null;
 
-  const idItem = typeof window !== "undefined" ? localStorage.getItem('id') : null;
-  const id = roleItem ? window.JSON.parse(idItem): null;
+  const idItem = typeof window !== "undefined" ? localStorage.getItem('id') : false;
+  const id = idItem ? window.JSON.parse(idItem): null;
+
 
   const token = typeof window !== "undefined" ?  window.localStorage.getItem('token') : false;
 

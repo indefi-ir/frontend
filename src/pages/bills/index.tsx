@@ -3,7 +3,6 @@ import useSWR from 'swr';
 import { billsUrl } from '../../services/apiEndpoint';
 import { fetcher } from '../../services/axios';
 import { useState } from 'react';
-import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
 import React from 'react';
 import dateFormat from '../../utils/dateFormat';
 
@@ -69,7 +68,6 @@ const columns = (searchTerm: string) => ([
 ]);
 
 const Bills = () => {
-  const userInfo = React.useContext(userInfoContext);
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
   const { data } = useSWR(billsUrl, fetcher)

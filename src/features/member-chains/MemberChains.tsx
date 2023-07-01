@@ -37,7 +37,7 @@ const MemberChains = ({ companyId }: any) => {
 
   return (
     <Collapse defaultActiveKey={['1']} >
-      {filtered.map(((chain, index) => {
+      {filtered.map(((chain:any, index:any) => {
         console.log("chain", chain)
         return (
           <Panel header="This is panel header 1" key={index}>
