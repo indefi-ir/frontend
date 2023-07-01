@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import type { AppProps } from 'next/app';
 import '../styles/index.css';
 import '../styles/globals.css';
@@ -8,14 +10,23 @@ import { UserInfoContext } from '../components/providers';
 import { useEffect, useState } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [userInfo, setUserInfo] = useState<any>(null);
+  const [userInfo, setUserInfo] = useState<any>({
+    role: null,
+    id: null
+  });
   const roleItem = typeof window !== "undefined" ? localStorage.getItem('role') : false;
-  const role = roleItem ? window.JSON.parse(roleItem): null
+  const role = roleItem ? window.JSON.parse(roleItem): null;
+
+  const idItem = typeof window !== "undefined" ? localStorage.getItem('id') : null;
+  const id = roleItem ? window.JSON.parse(idItem): null;
 
   const token = typeof window !== "undefined" ?  window.localStorage.getItem('token') : false;
 
   useEffect(()=> {
-    setUserInfo(role)
+    setUserInfo({
+      role: role,
+      id: id
+    })
   },[token])
   
   return (

@@ -15,6 +15,7 @@ const LoginFormCompany = () => {
       const res = await loginCompany({ ...values })
       if (res?.data?.data) {
         localStorage.setItem('role', JSON.stringify(res?.data?.role))
+        localStorage.setItem('id', JSON.stringify(res?.data?.id))
         router.push(`/dashboard`);
       }
     } catch (err) {
