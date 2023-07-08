@@ -37,11 +37,12 @@ const AdminLayout = ({ children }: Props) => {
         width={250}
         collapsible
         theme='light'
+        className='sidebar'
         collapsed={collapsed}
       >
         {!collapsed &&
-          <div className='flex justify-center'>
-            <img src="./images/pasargadLogo.png" alt="pasargad logo" height="100px" width="120px"/>
+          <div className='flex justify-center mt-10'>
+            <img src="./images/pasargad-logo-desktop.svg" alt="pasargad logo" />
           </div>
         }
         <AdminMenu />

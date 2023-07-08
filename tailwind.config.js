@@ -108,13 +108,12 @@ module.exports = {
         400: "#858D9D",
       },
       pasargad: {
-        yellow: "#FACB06",
-        gray: "#2E3743",
-      },
-      pasargad: {
         yellow: {
           300: "#FACB06",
           400: "#F1C40f"
+        },
+        gray: {
+          500: "#2E3743"
         }
       }
     },

@@ -33,3 +33,19 @@
 .ant-tabs-nav-list .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
   color: #FACB06;
 }
+
+.sidebar {
+  background-color: #2E3743 !important;
+}
+
+.sidebar .ant-menu {
+  background-color: #2E3743;
+}
+
+.sidebar .ant-menu-item span {
+  color: white;
+}
+
+.sidebar .ant-menu-item-icon svg {
+  color: white;
+}

@@ -66,7 +66,7 @@ const AdminMenu = ({ styles }: Props) => {
   const { userInfo } = useContext(UserInfoContext);
 
   return (
-    <Menu mode="inline" style={styles} className="text-base px-2">
+    <Menu mode="inline" style={styles} className="text-base mb-10 px-2">
       {
         userInfo.role === "Funder"
           ? (adminMenuItems.map((item) => (
