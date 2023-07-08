@@ -147,12 +147,12 @@ const Dashboard = () => {
       <div className="flex my-4">
         <Row gutter={16}>
           <Col span={12}>
-            <Card title={<span className="text-gray-400 font-medium">شرکت های های اخیر</span>} extra={<a href="#" className="text-primary-500">بیشتر</a>} >
+            <Card title={<span className="text-gray-400 font-medium">شرکت های های اخیر</span>} extra={<a href="#" className="text-pasargad-yellow-400">بیشتر</a>} >
               <Table columns={CompanyColumns} dataSource={companies?.data} scroll={{ y: 450 }} />
             </Card>
           </Col>
           <Col span={12}>
-            <Card title={<span className="text-gray-400 font-medium">صورتحساب های اخیر</span>} extra={<a href="#" className="text-primary-500">بیشتر</a>} >
+            <Card title={<span className="text-gray-400 font-medium">صورتحساب های اخیر</span>} extra={<a href="#" className="text-pasargad-yellow-400">بیشتر</a>} >
               <Table columns={BillsColumns} dataSource={bills?.data} scroll={{ y: 450 }} />
             </Card>
           </Col>

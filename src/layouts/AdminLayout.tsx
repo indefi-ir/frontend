@@ -42,7 +42,7 @@ const AdminLayout = ({ children }: Props) => {
       >
         {!collapsed &&
           <div className='flex justify-center'>
-            <PlutusLogo />
+            <img src="./images/pasargadLogo.png" alt="pasargad logo" height="100px" width="120px"/>
           </div>
         }
         <AdminMenu />
@@ -50,7 +50,7 @@ const AdminLayout = ({ children }: Props) => {
       <Layout>
         <Header className='flex items-center justify-between mt-6' style={{ padding: "0px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>
           <div className='flex items-center'>
-            <div className='text-primary-500 text-xl'>
+            <div className='text-pasargad-yellow-400 text-xl'>
               {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                 className: 'trigger',
                 onClick: () => setCollapsed(!collapsed),

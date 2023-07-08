@@ -155,7 +155,7 @@ const NewChain = () => {
           <span className='block'>رسم زنجیره</span>
         </Form.Item>
         <div>
-          <div className='flex items-center bg-primary-100 w-full rounded-lg p-3 mb-2'>
+          <div className='flex items-center w-full rounded-lg py-3 mb-2'>
             <Select
               mode="multiple"
               style={{ minWidth: "500px" }}
@@ -164,14 +164,14 @@ const NewChain = () => {
               onChange={(value, options) => handleChange(value, options)}
               placeholder="انتخاب شرکت ها"
             />
-            <Button type="primary" onClick={() => handleOk()} className="bg-primary-500 text-white mr-2">
+            <Button type="primary" onClick={() => handleOk()} className="bg-pasargad-yellow-400 text-white mr-2">
               ارسال شرکت ها به زنجیره
             </Button>
           </div>
           <DrawChain nodesList={nodesList} getChainData={getChainData} />
         </div>
         <Form.Item className='flex justify-end mt-4'>
-          <Button htmlType="submit" className='bg-primary-500 text-white'>
+          <Button htmlType="submit" className='bg-pasargad-yellow-400 text-white'>
             ذخیره
           </Button>
         </Form.Item>

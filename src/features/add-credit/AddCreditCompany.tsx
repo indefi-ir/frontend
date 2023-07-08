@@ -54,7 +54,7 @@ const AddCreditCompany = () => {
         <TextArea rows={4} maxLength={6} />
       </Form.Item>
       <Form.Item className="flex justify-end">
-        <Button htmlType="submit" loading={loading} className="bg-primary-500 text-white hover:!text-white h-[50px] text-base">
+        <Button htmlType="submit" loading={loading} className="bg-pasargad-yellow-400 text-white hover:!text-white h-[50px] text-base">
           افزودن اعتبار
         </Button>
       </Form.Item>
