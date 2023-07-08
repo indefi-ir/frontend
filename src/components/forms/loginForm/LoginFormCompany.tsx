@@ -2,8 +2,6 @@ import { Button, Form, Input } from "antd";
 import { useRouter } from 'next/router';
 import { useState } from "react";
 import { loginCompany } from "../../../services/authService/authCompany";
-import { fetcher, get } from "../../../services/axios";
-import { myCompanyInfoUrl } from '../../../services/apiEndpoint';
 
 const LoginFormCompany = () => {
   const router = useRouter();

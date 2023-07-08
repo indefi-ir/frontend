@@ -49,3 +49,7 @@
 .sidebar .ant-menu-item-icon svg {
   color: white;
 }
+
+.ant-breadcrumb-link a, .ant-breadcrumb-separator {
+  color: white !important;
+}

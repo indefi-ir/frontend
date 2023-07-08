@@ -113,7 +113,7 @@ const Companies = () => {
             className='font-normal !bg-white w-60 p-2 ml-3'
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <DatePicker onChange={onChange} placeholder="تاریخ ایجاد" className='ml-3' />
+          {/* <DatePicker onChange={onChange} placeholder="تاریخ ایجاد" className='ml-3' /> */}
           <Select
             defaultValue="فعال"
             onChange={handleChange}

@@ -41,14 +41,16 @@ const AdminLayout = ({ children }: Props) => {
         collapsed={collapsed}
       >
         {!collapsed &&
-          <div className='flex justify-center mt-10'>
+          <div className='flex justify-center mt-10 mb-8'>
+            
             <img src="./images/pasargad-logo-desktop.svg" alt="pasargad logo" />
+            
           </div>
         }
         <AdminMenu />
       </Sider>
       <Layout>
-        <Header className='flex items-center justify-between mt-6' style={{ padding: "0px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>
+        <Header className='flex items-center justify-between mt-6' style={{ padding: "0px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: '#2E3743' }}>
           <div className='flex items-center'>
             <div className='text-pasargad-yellow-400 text-xl'>
               {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
@@ -58,9 +60,9 @@ const AdminLayout = ({ children }: Props) => {
             </div>
             <Breadcrumb />
           </div>
-          <Button danger icon={<PoweroffOutlined />} onClick={logoutUser}>خروج کاربر</Button>
+          <Button className='bg-white' danger icon={<PoweroffOutlined />} onClick={logoutUser}>خروج کاربر</Button>
         </Header>
-        <Content style={{ margin: '16px', minHeight:"100vh"}}>
+        <Content style={{ margin: '16px', minHeight:"90vh", padding: '20px'}}>
           <div>
             {children}
           </div>
