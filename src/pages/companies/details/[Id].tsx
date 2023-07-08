@@ -1,6 +1,6 @@
 import { Avatar, Card, Col, Form, List, Row, Tag, Select, Button, Collapse, CollapseProps, Table } from "antd";
 import { useRouter } from 'next/router';
-import { companyDetailsByIdUrl, CreditUsedUrl, totalCreditsUrl, transactionsUrl, updateCompanyStatusUrl } from "../../../services/apiEndpoint";
+import { companyDetailsByIdUrl, getAllTransferForCompanyUrl, getCreditsEverForCompanyUrl, getReceivedCreditForCompanyUrl, transactionsUrl, updateCompanyStatusUrl } from "../../../services/apiEndpoint";
 import { fetcher, patch, put } from "../../../services/axios";
 import useSWR, { mutate } from 'swr';
 import { CompanyInfo, MemberChains, SimpleLineChart, TransactionProductVolume } from "../../../features";
@@ -103,11 +103,18 @@ const DetailsCompany = () => {
   const { data: companyDetails, error: companyDetailsError } = useSWR(companyDetailsUrl, fetcher);
 
 
-  const companyTotalCreditsUrl = `${totalCreditsUrl}${Id}`;
+  const companyTotalCreditsUrl = `${getCreditsEverForCompanyUrl}${Id}`;
   const { data: companyTotalCredits, error: companyTotalCreditsError } = useSWR(companyTotalCreditsUrl, fetcher);
 
-  const companyCreditUsedUrl = `${CreditUsedUrl}${Id}`;
-  const { data: companyCreditUsed, error: companyCreditUsedError } = useSWR(companyCreditUsedUrl, fetcher);
+
+  const companyCreditTransferForCompanyUrl = `${getAllTransferForCompanyUrl}${Id}`;
+  const { data: companyCreditTransferForCompany, error: companyCreditUsedError } = useSWR(companyCreditTransferForCompanyUrl, fetcher);
+
+
+  const companyCreditReceivedForCompanyUrl = `${getReceivedCreditForCompanyUrl}${Id}`;
+  const { data: companyCreditReceivedForCompany, error: companyCreditReceivedForCompanyError } = useSWR(companyCreditTransferForCompanyUrl, fetcher);
+
+
 
   const onFinish = async (values: any) => {
     const finalData = { ...values }
@@ -158,27 +165,28 @@ const DetailsCompany = () => {
             <Row gutter={16} className="mb-4">
               <Col span={8}>
                 <Card className="flex flex-col" bordered={false}>
-                  <span className="text-primary-500 block text-base font-bold mb-4">کل اعتبار داده شده</span>
+                  <span className="text-primary-500 block text-base font-bold mb-4">کل اعتبار دریافتی از سرمایه گذار</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
-                    <span className="inline-block ml-2">{companyTotalCredits?.data}</span>
+                    <span className="inline-block ml-2">{companyTotalCredits?.data}
+                    </span>
                     <span>توکن</span>
                   </p>
                 </Card>
               </Col>
               <Col span={8}>
                 <Card className="flex flex-col" bordered={false}>
-                  <span className="text-primary-500 block text-base font-bold mb-4">اعتبار استفاده شده</span>
+                  <span className="text-primary-500 block text-base font-bold mb-4">اعتبار منتقل شده</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
-                    <span className="inline-block ml-2">{companyCreditUsed?.data}</span>
+                    <span className="inline-block ml-2">{companyCreditTransferForCompany?.data}</span>
                     <span>توکن</span>
                   </p>
                 </Card>
               </Col>
               <Col span={8}>
                 <Card className="flex flex-col" bordered={false}>
-                  <span className="text-primary-500 block text-base font-bold mb-4">مانده اعتبار</span>
+                  <span className="text-primary-500 block text-base font-bold mb-4">کل اعتبار دریافتی از شرکت ها</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
-                    <span className="inline-block ml-2">{companyTotalCredits?.data - companyTotalCredits?.data}</span>
+                    <span className="inline-block ml-2">{companyCreditReceivedForCompany?.data}</span>
                     <span>توکن</span>
                   </p>
                 </Card>

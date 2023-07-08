@@ -45,11 +45,24 @@ export const updateCompanyUrl = "/api/v1/users/update-company";
 export const updateCompanyStatusUrl = "/api/v1/users/update-company-status?companyId=";
 
 // Dashboard
-export const totalCreditsUrl = "/api/v1/dashboard/get-all-credits-ever-for-company?companyId=";
-export const CreditUsedUrl = "/api/v1/dashboard/get-all-transactions-value-sent-ever-for-company?companyId=";
-export const companyPurchaseAmountUrl =  "/api/v1/dashboard/get-transfer-amount-based-on-product";
-export const companySalesAmountUrl = "/api/v1/dashboard/get-received-amount-based-on-product";
-export const averageProductAmountUrl = "/api/v1/dashboard/get-average-price-for-product-for-company";
+export const getCreditsEverUrl = "/api/v1/dashboard/get-all-credits-ever";
+
+export const getCreditsEverForCompanyUrl = "/api/v1/dashboard/get-all-credits-ever-for-company?companyId=";
+
+export const getReceivedCreditForCompanyUrl = "/api/v1/dashboard/get-all-received-for-company?companyId=";
+
+export const getAllTransferForCompanyUrl = "/api/v1/dashboard/get-all-transfer-for-company?companyId=";
+
+export const getAllTransferAmountAllProductForCompanyUrl = "/api/v1/dashboard/get-transfer-amount-all-product-for-company?companyId=";
+
+export const geTransferAmountBasedOnProductForCompanyUrl = "/api/v1/dashboard/get-transfer-amount-based-on-product-for-company";
+
+export const getReceivedAmountAllProductForCompanyUrl = "/api/v1/dashboard/get-received-amount-all-product-for-company?companyId=";
+
+export const getReceivedAmountBaseProductForCompany =  "/api/v1/dashboard/get-received-amount-based-on-product-for-company";
+
+export const getAveragePriceProductForCompany = "/api/v1/dashboard/get-average-price-for-product-for-company";
+
 
 // Invoices
 export const addNewInvoiceUrl = "/api/v1/invoice/add-new-invoice";
