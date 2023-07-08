@@ -8,6 +8,9 @@ export const loginCompanyUrl = '/api/v1/authenticate/login-company';
 export const billsUrl =  "/api/v1/bills/get-all-bills?skip=0&count=10";
 export const myBillsUrl = "/api/v1/bills/get-my-bills";
 export const updateBillUrl = "/api/v1/bills/update-bill";
+export const getBillsForCompanyUrl = "/api/v1/bills/get-bills-for-company?skip=0&count=100&id=";
+export const getBillsValueStatusUrl = "/api/v1/bills/get-bills-value-with-status?status=";
+
 
 // SupplyChain
 export const addSupplyChainUrl =  "/api/v1/supplychain/add-supplychain";

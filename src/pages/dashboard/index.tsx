@@ -1,6 +1,6 @@
 import { Card, Col, Row, Segmented, Space, Table, Tag } from "antd";
 import { useState } from "react";
-import { companiesUrl, transactionsUrl } from "../../services/apiEndpoint";
+import { companiesUrl, transactionsUrl, getCreditsEverUrl, getBillsValueStatusUrl } from "../../services/apiEndpoint";
 import { fetcher } from "../../services/axios";
 import dateFormat from "../../utils/dateFormat";
 import useSWR from 'swr';
@@ -108,6 +108,12 @@ const Dashboard = () => {
   const [options, setOptions] = useState(['ماه جاری', 'سال جاری', 'همه زمان ها']);
   const { data:companies } = useSWR(companiesUrl, fetcher);
   const { data:bills } = useSWR(transactionsUrl, fetcher);
+  const { data:totalCredit } = useSWR(getCreditsEverUrl, fetcher);
+
+  const { data:getCreditWithNotPaidStatus } = useSWR(`${getBillsValueStatusUrl}0`, fetcher);
+  const { data:getCreditWithExpireStatus } = useSWR(`${getBillsValueStatusUrl}3`, fetcher);
+  const { data:getCreditWithPaidStatus } = useSWR(`${getBillsValueStatusUrl}2`, fetcher);
+
   return (
     <>
       <div>
@@ -122,7 +128,7 @@ const Dashboard = () => {
                 <img src="/images/total-credit.png" alt="" />
               </div>
               <span className="text-black-500 block mb-2">کل اعتبار</span>
-              <span className="text-2xl block mb-2">۱۰۰۰ میلیون ریال</span>
+              <span className="text-2xl block mb-2">{toPersianDigits(totalCredit?.data)} توکن</span>
             </Card>
           </Col>
           <Col span={6}>
@@ -131,7 +137,7 @@ const Dashboard = () => {
                 <img src="/images/cleared.png" alt="" />
               </div>
               <span className="text-black-500 block mb-2">تسویه شده</span>
-              <span className="text-2xl block mb-2">۲۵۰ میلیون ریال</span>
+              <span className="text-2xl block mb-2">{toPersianDigits(getCreditWithPaidStatus?.data)} توکن</span>
             </Card>
           </Col>
           <Col span={6}>
@@ -140,7 +146,7 @@ const Dashboard = () => {
                 <img src="/images/outstanding-debt.png" alt="" />
               </div>
               <span className="text-black-500 block mb-2">بدهی های معوقه</span>
-              <span className="text-2xl block mb-2">۲۵۰ میلیون ریال </span>
+              <span className="text-2xl block mb-2">{toPersianDigits(getCreditWithExpireStatus?.data)} توکن</span>
             </Card>
           </Col>
           <Col span={6}>
@@ -149,7 +155,7 @@ const Dashboard = () => {
                 <img src="/images/awaiting-payment.png" alt="" />
               </div>
               <span className="text-black-500 block mb-2">در انتظار پرداخت</span>
-              <span className="text-2xl block mb-2">۵۰ میلیون ریال</span>
+              <span className="text-2xl block mb-2">{toPersianDigits(getCreditWithNotPaidStatus?.data)} توکن</span>
             </Card>
           </Col>
         </Row>
