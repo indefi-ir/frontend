@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from 'react';
 import React from 'react';
 import dateFormat from '../../utils/dateFormat';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import toPersianDigits from '../../utils/toPersianDigits';
 
 
 const columns = (searchTerm: string) => ([
@@ -14,6 +15,9 @@ const columns = (searchTerm: string) => ([
     title: 'شماره صورتحساب ',
     dataIndex: 'txId',
     key: 'txId',
+    render: (record: any) => (
+      <div>{toPersianDigits(record)}</div>
+    )
   },
   {
     title: 'از شرکت',
@@ -43,18 +47,24 @@ const columns = (searchTerm: string) => ([
     title: 'مقدار محصول',
     dataIndex: 'productAmount',
     key: 'productAmount',
+    render: (record: any) => (
+      <div>{toPersianDigits(record)}</div>
+    )
   },
   {
     title: 'میزان اعتبار',
     dataIndex: 'amount',
     key: 'amount',
+    render: (record: any) => (
+      <div>{toPersianDigits(record)}</div>
+    )
   },
   {
     title: 'تاریخ ایجاد',
     dataIndex: 'date',
     key: 'date',
     render: (record: string) => (
-      dateFormat(record)
+      toPersianDigits(dateFormat(record))
     ),
   },
 ]);

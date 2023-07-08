@@ -9,6 +9,7 @@ import dateFormat from '../../utils/dateFormat';
 
 import { CreditIcon, EyeIcon } from '../../components/icons';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import toPersianDigits from '../../utils/toPersianDigits';
 const { Meta } = Card;
 
 const columns = (searchTerm: string) => ([
@@ -26,7 +27,7 @@ const columns = (searchTerm: string) => ([
     dataIndex: 'credit',
     key: 'credit',
     render: (record: number) => (
-      <div style={{ direction: "ltr" }} className="text-right">{record}</div>
+      <div style={{ direction: "ltr" }} className="text-right">{toPersianDigits (record)}</div>
     )
   },
   {
@@ -42,7 +43,7 @@ const columns = (searchTerm: string) => ([
     dataIndex: 'creationDate',
     key: 'creationDate',
     render: (record: string) => (
-      dateFormat(record)
+      toPersianDigits(dateFormat(record))
     ),
   },
   {

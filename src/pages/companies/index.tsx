@@ -11,6 +11,7 @@ import { userInfoContext } from '../../components/providers/userInfoProvider/Use
 import dateFormat from '../../utils/dateFormat';
 import { CompanyIcon, CreditIcon, EyeIcon } from '../../components/icons';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import toPersianNumbers from '../../utils/toPersianDigits'
 const { Meta } = Card;
 
 const renderStatus = (status: Number) => {
@@ -47,17 +48,16 @@ const columns = (searchTerm: string) => ([
     title: 'شناسه ملی شرکت',
     dataIndex: 'nationalID',
     key: 'nationalID',
-    filteredValue: [searchTerm],
-    onFilter: (value: any, record: { name: string | any[]; }) => {
-      return record.name.includes(value)
-    }
+    render: (record: string) => (
+      <div style={{ direction: "ltr" }} className="text-right">{toPersianNumbers(record)}</div>
+    )
   },
   {
     title: 'تلفن',
     dataIndex: 'phoneNumber',
     key: 'phoneNumber',
     render: (record: string) => (
-      <div style={{ direction: "ltr" }} className="text-right">{record}</div>
+      <div style={{ direction: "ltr" }} className="text-right">{toPersianNumbers(record)}</div>
     )
   },
   {
@@ -72,7 +72,7 @@ const columns = (searchTerm: string) => ([
     dataIndex: 'creationDate',
     key: 'creationDate',
     render: (record: string) => (
-      dateFormat(record)
+      toPersianNumbers(dateFormat(record))
     ),
   },
   {
