@@ -37,7 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
       direction="rtl"
       theme={{
         token: {
-          colorPrimary: '#4285F4',
+          colorPrimary: '#F1C40f',
         }
       }}
     >

@@ -26,7 +26,7 @@ module.exports = {
         ]
       },
       backgroundImage: {
-        'gradient-radial': ' linear-gradient(to top,white 0%,white 50%,#4285F4 50%,#4285F4 100%)',
+        'gradient-radial': ' linear-gradient(to top,white 0%,white 50%,#2E3743 50%,#2E3743 100%)',
       }
     },
     colors: {
@@ -107,6 +107,16 @@ module.exports = {
         300: "#A3A9B6",
         400: "#858D9D",
       },
+      pasargad: {
+        yellow: "#FACB06",
+        gray: "#2E3743",
+      },
+      pasargad: {
+        yellow: {
+          300: "#FACB06",
+          400: "#F1C40f"
+        }
+      }
     },
   },
   plugins: [],

@@ -13,4 +13,5 @@ export { default as EyeIcon } from './EyeIcon';
 export { default as CreditIcon } from './CreditIcon';
 export { default as RequestIcon } from './RequestIcon';
 export { default as BillsCompanyIcon } from './BillsCompanyIcon';
+export { default as SupplyChain } from './SupplyChain';
 
