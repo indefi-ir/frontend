@@ -5,6 +5,7 @@ import { fetcher, patch, put } from "../../../services/axios";
 import useSWR, { mutate } from 'swr';
 import { CompanyInfo, MemberChains, SimpleLineChart, TransactionProductVolume } from "../../../features";
 import dateFormat from "../../../utils/dateFormat";
+import toPersianDigits from "../../../utils/toPersianDigits";
 const { Option } = Select;
 
 const BillsColumns = ([
@@ -90,11 +91,6 @@ const data = (companyDetails: any) => [
 ];
 
 
-const text = `A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
 const DetailsCompany = () => {
   const router = useRouter();
   const { Id } = router.query;
@@ -167,7 +163,9 @@ const DetailsCompany = () => {
                 <Card className="flex flex-col" bordered={false}>
                   <span className="text-primary-500 block text-base font-bold mb-4">کل اعتبار دریافتی از سرمایه گذار</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
-                    <span className="inline-block ml-2">{companyTotalCredits?.data}
+                    <span className="inline-block ml-2">{
+                      toPersianDigits(companyTotalCredits?.data)
+                    }
                     </span>
                     <span>توکن</span>
                   </p>
@@ -177,7 +175,9 @@ const DetailsCompany = () => {
                 <Card className="flex flex-col" bordered={false}>
                   <span className="text-primary-500 block text-base font-bold mb-4">اعتبار منتقل شده</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
-                    <span className="inline-block ml-2">{companyCreditTransferForCompany?.data}</span>
+                    <span className="inline-block ml-2">
+                      {toPersianDigits(companyCreditTransferForCompany?.data)}
+                    </span>
                     <span>توکن</span>
                   </p>
                 </Card>
@@ -186,7 +186,9 @@ const DetailsCompany = () => {
                 <Card className="flex flex-col" bordered={false}>
                   <span className="text-primary-500 block text-base font-bold mb-4">کل اعتبار دریافتی از شرکت ها</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
-                    <span className="inline-block ml-2">{companyCreditReceivedForCompany?.data}</span>
+                    <span className="inline-block ml-2">
+                      {toPersianDigits(companyCreditReceivedForCompany?.data)}
+                    </span>
                     <span>توکن</span>
                   </p>
                 </Card>

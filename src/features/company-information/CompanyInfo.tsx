@@ -3,25 +3,26 @@ import { Avatar, List } from "antd";
 import { companyDetailsByIdUrl } from '../../services/apiEndpoint';
 import useSWR from 'swr';
 import { fetcher } from '../../services/axios';
+import toPersianDigits from '../../utils/toPersianDigits';
 
 const data = (companyDetails: any) => [
   {
     key: 1,
     iconUrl: '/images/information-icon.png',
     title: 'شناسه ملی شرکت',
-    description: `${companyDetails?.data?.nationalID}`
+    description: `${toPersianDigits(companyDetails?.data?.nationalID)}`
   },
   {
     key: 2,
     iconUrl: '/images/phone-icon.png',
     title: 'شماره تلفن',
-    description: `${companyDetails?.data?.phoneNumber}`
+    description: `${toPersianDigits(companyDetails?.data?.phoneNumber)}`
   },
   {
     key: 3,
     iconUrl: '/images/address-icon.png',
     title: 'آدرس پستی',
-    description: `${companyDetails?.data?.address}`
+    description: `${toPersianDigits(companyDetails?.data?.address)}`
   },
 ];
 

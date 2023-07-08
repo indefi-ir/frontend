@@ -4,6 +4,7 @@ import { companiesUrl, transactionsUrl } from "../../services/apiEndpoint";
 import { fetcher } from "../../services/axios";
 import dateFormat from "../../utils/dateFormat";
 import useSWR from 'swr';
+import toPersianDigits from "../../utils/toPersianDigits";
 
 const renderStatus = (status: Number) => {
   switch (status) {
@@ -21,6 +22,9 @@ const BillsColumns = ([
     title: 'شماره صورتحساب ',
     dataIndex: 'txId',
     key: 'txId',
+    render: (record: any) => (
+      <div>{toPersianDigits(record)}</div>
+    )
   },
   {
     title: 'از شرکت',
@@ -55,13 +59,16 @@ const BillsColumns = ([
     title: 'میزان اعتبار',
     dataIndex: 'amount',
     key: 'amount',
+    render: (record: any) => (
+      <div>{toPersianDigits(record)}</div>
+    )
   },
   {
     title: 'تاریخ ایجاد',
     dataIndex: 'date',
     key: 'date',
     render: (record: string) => (
-      dateFormat(record)
+      toPersianDigits(dateFormat(record))
     ),
   },
 ]);
@@ -76,6 +83,9 @@ const CompanyColumns = ([
     title: 'شناسه ملی شرکت',
     dataIndex: 'nationalID',
     key: 'nationalID',
+    render: (record: any) => (
+      <div>{toPersianDigits(record)}</div>
+    )
   },
   {
     title: 'وضعیت',
@@ -89,7 +99,7 @@ const CompanyColumns = ([
     dataIndex: 'creationDate',
     key: 'creationDate',
     render: (record: string) => (
-      dateFormat(record)
+      toPersianDigits(dateFormat(record))
     ),
   },
 ]);

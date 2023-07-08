@@ -35,7 +35,7 @@ const Login = () => {
           </div>
         </div>
         <div className="flex-col w-5/12">
-          <div className="flex justify-center mb-10">
+          <div className="flex absolute left-24 top-8 justify-center mb-10">
             <img src="./images/slogan.svg" className="mx-1" />
             <img src="./images/pasargad-logo-desktop.svg" className="mx-1" />
           </div>
