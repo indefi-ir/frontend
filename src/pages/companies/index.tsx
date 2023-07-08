@@ -94,7 +94,7 @@ const columns = (searchTerm: string) => ([
 const Companies = () => {
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
-  const { data } = useSWR(companiesUrl, fetcher)
+  const { data } = useSWR(companiesUrl, fetcher);
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     console.log(date, dateString);
@@ -136,7 +136,7 @@ const Companies = () => {
           </Button>
         </div>
       </div>
-      <Table columns={columns(searchTerm)} dataSource={data?.data} sortDirections="ascend"/>
+      <Table locale={{emptyText:"داده ای برای نمایش وجود ندارد."}}  columns={columns(searchTerm)} dataSource={data?.data} sortDirections="ascend"/>
     </>
   )
 };

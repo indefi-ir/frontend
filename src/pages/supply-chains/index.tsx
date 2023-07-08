@@ -103,7 +103,7 @@ const SupplyChains = () => {
           </Button>
         </div>
       </div>
-      <Table columns={columns(searchTerm)} dataSource={data?.data} />
+      <Table locale={{emptyText:"داده ای برای نمایش وجود ندارد."}} columns={columns(searchTerm)} dataSource={data?.data} />
     </>
   )
 };

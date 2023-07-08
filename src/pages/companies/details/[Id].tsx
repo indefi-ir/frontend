@@ -237,7 +237,7 @@ const DetailsCompany = () => {
         <Col span={18}>
           <MemberChains companyId={Id}/>
           <Card title={<span className="text-gray-400 font-medium">صورتحساب های اخیر</span>}>
-            <Table columns={BillsColumns} dataSource={bills?.data} scroll={{ y: 450 }} />
+            <Table locale={{emptyText:"داده ای برای نمایش وجود ندارد."}} columns={BillsColumns} dataSource={bills?.data} scroll={{ y: 450 }} />
           </Card>
 
         </Col>

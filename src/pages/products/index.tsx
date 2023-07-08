@@ -45,7 +45,7 @@ const Products = () => {
           </Button>
         </div>
       </div>
-      <Table columns={columns(searchTerm)} dataSource={data?.data} scroll={{ y: 450 }} />
+      <Table locale={{emptyText:"داده ای برای نمایش وجود ندارد."}} columns={columns(searchTerm)} dataSource={data?.data} scroll={{ y: 450 }} />
     </>
   )
 };
