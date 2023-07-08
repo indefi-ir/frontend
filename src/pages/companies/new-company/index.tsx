@@ -24,6 +24,7 @@ import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { companiesUrl, productCategoriesUrl, registerCompanyUrl } from '../../../services/apiEndpoint';
 import { fetcher, post } from '../../../services/axios';
 import { useRouter } from 'next/router';
+import toEnglishDigits from '../../../utils/toEnglishDigits';
 
 const options: SelectProps['options'] = [];
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
@@ -72,10 +73,18 @@ const NewCompany = () => {
       <div style={{ marginTop: 8 }}>بارگذاری</div>
     </div>
   );
-
+// ts-ignore
   const onFinish = async (values: any) => {
     setLoading(true);
-    const finalData = { ...values, logo: imageUrl }
+    const finalData = { ...values, 
+      logo: imageUrl,
+      phonenumber: toEnglishDigits(values.phonenumber),
+      nationalID: toEnglishDigits(values.nationalID),
+      customerID: toEnglishDigits(values.customerID),
+      shaba: toEnglishDigits(values.shaba),
+    }
+   
+
     const result = await post(registerCompanyUrl, finalData);
     if (result.status) {
       await mutate(companiesUrl);
@@ -119,6 +128,9 @@ const NewCompany = () => {
             <Input />
           </Form.Item>
           <Form.Item className='flex-1' name="customerID" label="شماره مشتری">
+            <Input />
+          </Form.Item>
+          <Form.Item className='flex-1' name="shaba" label="شماره شبا">
             <Input />
           </Form.Item>
           <Form.Item className='flex-1' name="password" label="پسورد">
