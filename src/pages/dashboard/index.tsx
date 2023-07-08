@@ -158,7 +158,7 @@ const Dashboard = () => {
         <Row gutter={16}>
           <Col span={12}>
             <Card title={<span className="text-gray-400 font-medium">شرکت های های اخیر</span>} extra={<a href="#" className="text-pasargad-yellow-400">بیشتر</a>} >
-              <Table columns={CompanyColumns} dataSource={companies?.data} scroll={{ y: 450 }} />
+              <Table locale={{emptyText:"داده ای برای نمایش وجود ندارد."}} columns={CompanyColumns} dataSource={companies?.data} scroll={{ y: 450 }} />
             </Card>
           </Col>
           <Col span={12}>

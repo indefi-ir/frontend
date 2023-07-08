@@ -60,7 +60,7 @@ const AdminLayout = ({ children }: Props) => {
             </div>
             <Breadcrumb />
           </div>
-          <Button className='bg-white' danger icon={<PoweroffOutlined />} onClick={logoutUser}>خروج کاربر</Button>
+          <Button className='!bg-red-400 text-white' icon={<PoweroffOutlined />} onClick={logoutUser}>خروج کاربر</Button>
         </Header>
         <Content style={{ margin: '16px', minHeight:"90vh", padding: '20px'}}>
           <div>
