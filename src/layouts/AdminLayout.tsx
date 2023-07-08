@@ -7,7 +7,6 @@ import {
 import { Button, Layout, theme } from 'antd';
 import AdminMenu from '../components/adminMenu';
 import Breadcrumb from '../components/breadcrumb';
-import { PlutusLogo } from '../components/icons';
 import { useRouter } from 'next/router';
 
 const { Header, Sider, Content } = Layout;

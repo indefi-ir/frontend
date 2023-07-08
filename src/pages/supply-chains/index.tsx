@@ -34,7 +34,7 @@ const columns = (searchTerm: string) => ([
     dataIndex: 'description',
     key: 'description',
     render: (record: number) => (
-      <div>{record}</div>
+      <div className='truncate w-[200px]'>{record}</div>
     )
   },
   {

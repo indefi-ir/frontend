@@ -48,7 +48,7 @@ const NewChain = () => {
     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
     onChange(info) {
       setFile(info?.file?.name);
-      console.log("file.name",info?.file?.name)
+      console.log("file.name", info?.file?.name)
     }
   };
 
@@ -150,12 +150,10 @@ const NewChain = () => {
           }]}>
           <Input.TextArea rows={4} />
         </Form.Item>
-
-        <Form.Item>
-          <span className='block'>رسم زنجیره</span>
-        </Form.Item>
         <div>
-          <div className='flex items-center w-full rounded-lg py-3 mb-2'>
+          <span className='block mb-2'>رسم زنجیره</span>
+
+          <div className='flex items-center w-full rounded-lg  mb-2'>
             <Select
               mode="multiple"
               style={{ minWidth: "500px" }}
