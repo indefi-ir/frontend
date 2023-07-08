@@ -39,6 +39,12 @@ const adminMenuItems = [
     icon: <FinancierIcon />,
     label: 'صورتحساب ها',
     path: '/bills'
+  },
+  {
+    key: '5',
+    icon: <FinancierIcon />,
+    label: 'محصولات',
+    path: '/products'
   }
 ]
 
