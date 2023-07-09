@@ -16,7 +16,7 @@ const MemberChains = ({ companyId }: any) => {
       {supplyChains?.data?.map(((chain:any, index:any) => {
         return (
           <Panel header={chain.name} key={index}>
-            <ViewChain chain={chain.chain}/>
+            <ViewChain chain={chain.chain} chainId={chain.id}/>
           </Panel>
         )
       }))}

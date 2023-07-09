@@ -1,12 +1,23 @@
 import { Popover } from 'antd';
+import useSWR from 'swr';
 import React from 'react';
 import { BuildingIcon } from '../../components/icons';
+import { tooltipSupplyChainForCompanyUrl } from '../../services/apiEndpoint';
+import { fetcher } from '../../services/axios';
 
 const CustomNode = (props: any) => {
-  const { supplyChain } = props;
+  const { supplyChain, chainId } = props;
+  
+  const { data: tooltipData } = useSWR(`${tooltipSupplyChainForCompanyUrl}?chainId=${chainId}&companyId=${supplyChain.company.id}`, fetcher);
+
+  const tooltipContent = () => (
+    <div>
+      test
+    </div>
+  );
 
   return (
-    <Popover content={supplyChain?.company?.owner} title="مدیرعامل" trigger="hover">
+    <Popover content={tooltipContent} trigger="hover">
     <div className='flex flex-col items-center justify-center'>
       <div className='flex justify-between items-center'>
         <div className='flex justify-center items-center rounded-full bg-primary-100 w-14 h-14 mb-2'>
@@ -22,11 +33,12 @@ const CustomNode = (props: any) => {
   );
 }
 
-const ViewChain = ({ chain }: any) => {
+const ViewChain = ({ chain, chainId }: any) => {
+  console.log("chain", chain)
   return (
     <div className='flex w-full justify-between'>
       {chain?.map((supplyChain: any) => (
-        <CustomNode supplyChain={supplyChain} />
+        <CustomNode supplyChain={supplyChain} chainId={chainId}/>
       ))}
     </div>
   );

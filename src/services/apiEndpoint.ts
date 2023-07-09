@@ -20,6 +20,7 @@ export const getSupplyChainsForCompanyUrl =  "/api/v1/supplychain/get-supplychai
 export const getSupplyChainsForMyCompanyUrl =  "/api/v1/supplychain/get-supplychains-for-my-company";
 export const updateSupplyChainUrl =  "/api/v1/supplychain/get-supplychains-for-my-company";
 export const supplyChainForCompanyUrl =  "/api/v1/supplychain/get-supplychains-for-company?skip=0&count=100&companyId=";
+export const tooltipSupplyChainForCompanyUrl = "/api/v1/supplychain/get-tool-tip-for-supplychain-for-company"
 
 
 // Credits
