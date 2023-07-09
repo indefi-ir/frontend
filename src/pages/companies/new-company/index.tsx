@@ -156,6 +156,7 @@ const NewCompany = () => {
             rules={[
               {
                 required: true,
+                message: 'لطفا تکرار پسورد را وارد نمایید.',
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
