@@ -73,17 +73,19 @@ const NewCompany = () => {
       <div style={{ marginTop: 8 }}>بارگذاری</div>
     </div>
   );
-// ts-ignore
+  // ts-ignore
   const onFinish = async (values: any) => {
     setLoading(true);
-    const finalData = { ...values, 
+    const finalData = {
+      ...values,
       logo: imageUrl,
       phonenumber: toEnglishDigits(values.phonenumber),
       nationalID: toEnglishDigits(values.nationalID),
       customerID: toEnglishDigits(values.customerID),
       shaba: toEnglishDigits(values.shaba),
     }
-   
+
+    delete finalData.confirm;
 
     const result = await post(registerCompanyUrl, finalData);
     if (result.status) {
@@ -133,8 +135,39 @@ const NewCompany = () => {
           <Form.Item className='flex-1' name="shaba" label="شماره شبا">
             <Input />
           </Form.Item>
-          <Form.Item className='flex-1' name="password" label="پسورد">
-            <Input />
+        </div>
+        <div className='flex gap-6'>
+          <Form.Item
+            name="password"
+            label="Password"
+            required
+            hasFeedback
+            className='flex-1'
+          >
+            <Input.Password />
+          </Form.Item>
+
+          <Form.Item
+            name="confirm"
+            label="Confirm Password"
+            dependencies={['password']}
+            hasFeedback
+            className='flex-1'
+            rules={[
+              {
+                required: true,
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('تکرار پسورد مطابقت ندارد.'));
+                },
+              }),
+            ]}
+          >
+            <Input.Password />
           </Form.Item>
         </div>
         <div className='flex-1 gap-6 items-center'>
