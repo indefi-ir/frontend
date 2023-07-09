@@ -1,12 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Sector } from "recharts";
 
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 }
-];
 
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
@@ -61,14 +55,14 @@ const renderActiveShape = (props: any) => {
         stroke={fill}
         fill="none"
       />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+      <circle cx={ex} cy={ey} r={4} fill={fill} stroke="none" />
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
-      >{`PV ${value}`}</text>
-      <text
+      >{`توکن ${value}`}</text>
+      {/* <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
         dy={18}
@@ -76,12 +70,12 @@ const renderActiveShape = (props: any) => {
         fill="#999"
       >
         {`(Rate ${(percent * 100).toFixed(2)}%)`}
-      </text>
+      </text> */}
     </g>
   );
 };
 
-const TransactionProductVolume = () => {
+const TransactionProductVolume = ({ data }: any | []) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
     (_: any, index: any) => {

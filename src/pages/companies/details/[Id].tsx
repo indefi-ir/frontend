@@ -1,13 +1,15 @@
-import { Avatar, Card, Col, Form, List, Row, Tag, Select, Button, Collapse, CollapseProps, Table } from "antd";
+import { Avatar, Card, Col, Form, List, Row, Tag, Select, Button, Collapse, CollapseProps, Table, Empty, Steps } from "antd";
 import { useRouter } from 'next/router';
-import { companyDetailsByIdUrl, getAllTransferForCompanyUrl, getCreditsEverForCompanyUrl, getReceivedCreditForCompanyUrl, transactionsUrl, updateCompanyStatusUrl } from "../../../services/apiEndpoint";
+import { companyDetailsByIdUrl, getAllTransferAmountAllProductForCompanyUrl, getAllTransferForCompanyUrl, getAveragePriceForAllProductForCompany, getCreditsEverForCompanyUrl, getReceivedAmountAllProductForCompanyUrl, getReceivedCreditForCompanyUrl, transactionsUrl, updateCompanyStatusUrl } from "../../../services/apiEndpoint";
 import { fetcher, patch, put } from "../../../services/axios";
 import useSWR, { mutate } from 'swr';
 import { CompanyInfo, MemberChains, SimpleLineChart, TransactionProductVolume } from "../../../features";
 import dateFormat from "../../../utils/dateFormat";
 import toPersianDigits from "../../../utils/toPersianDigits";
+import SimpleBarChart from "../../../features/chart/SimpleBarChart";
 const { Option } = Select;
 
+const Step = Steps.Step;
 const BillsColumns = ([
   {
     title: 'شماره صورتحساب ',
@@ -107,10 +109,14 @@ const DetailsCompany = () => {
   const { data: companyCreditTransferForCompany, error: companyCreditUsedError } = useSWR(companyCreditTransferForCompanyUrl, fetcher);
 
 
+  const { data: allTransferAmountAllProductForCompany } = useSWR(`${getAllTransferAmountAllProductForCompanyUrl}${Id}`, fetcher);
+
+  const { data: receivedAmountAllProductForCompany } = useSWR(`${getReceivedAmountAllProductForCompanyUrl}${Id}`, fetcher);
+
+  const { data: averagePriceForAllProductForCompany } = useSWR(`${getAveragePriceForAllProductForCompany}${Id}&startTime=2022-09-01T02:25:20.619Z&endTime=2024-09-01T02:25:20.619Z`, fetcher);
+
   const companyCreditReceivedForCompanyUrl = `${getReceivedCreditForCompanyUrl}${Id}`;
   const { data: companyCreditReceivedForCompany, error: companyCreditReceivedForCompanyError } = useSWR(companyCreditTransferForCompanyUrl, fetcher);
-
-
 
   const onFinish = async (values: any) => {
     const finalData = { ...values }
@@ -119,6 +125,28 @@ const DetailsCompany = () => {
     await mutate(companyDetailsUrl);
     if (result.success) { }
   };
+
+  const financialInstrument = [
+    { name: "توکن", value: companyTotalCredits?.data },
+    { name: "گام", value: 0 },
+    { name: "برات", value: 0 },
+  ];
+
+  const productCategoriesTransfer: any = [];
+  allTransferAmountAllProductForCompany?.data?.map((category: { value: any; productCategory: any; }) => (
+    productCategoriesTransfer.push({
+      name: category.productCategory.name,
+      value: category.value,
+    })
+  ));
+
+  const productCategoriesReceive: any = [];
+  receivedAmountAllProductForCompany?.data?.map((category: { value: any; productCategory: any; }) => (
+    productCategoriesReceive.push({
+      name: category.productCategory.name,
+      value: category.value,
+    })
+  ));
 
   return (
     <>
@@ -153,6 +181,15 @@ const DetailsCompany = () => {
                   </Button>
                 </Form.Item>
               </Form>
+            </div>
+          </Card>
+          <Card className="h-fit">
+            <span className="block text-lg">ابزارهای مالی</span>
+            <div className="flex justify-center items-center">
+              {companyTotalCredits?.data > 0
+                ? <TransactionProductVolume data={financialInstrument} />
+                : <Empty description="داده ای برای نمایش وجود ندارد." className="mt-10" />
+              }
             </div>
           </Card>
         </Col>
@@ -195,53 +232,46 @@ const DetailsCompany = () => {
               </Col>
             </Row>
             <Row gutter={16} className="mb-4">
-              <Col span={8}>
-                <Card className="h-96 h-full">
-                  <span className="block text-lg">حجم معاملات</span>
+              <Col span={7}>
+                <Card className="h-fit">
+                  <span className="block text-lg">مبلغ کالاهای خریداری شده</span>
                   <div className="flex justify-center items-center">
-                    <TransactionProductVolume />
+                    {allTransferAmountAllProductForCompany?.data?.length == 0
+                      ? <Empty description="داده ای برای نمایش وجود ندارد." className="my-10" />
+                      : <TransactionProductVolume data={productCategoriesTransfer} />
+                    }
+                  </div>
+                </Card>
+              </Col>
+              <Col span={7}>
+                <Card className="h-fit">
+                  <span className="block text-lg">مبلغ کالاهای فروخته شده</span>
+                  <div className="flex justify-center items-center">
+                    {receivedAmountAllProductForCompany?.data?.length == 0
+                      ? <Empty description="داده ای برای نمایش وجود ندارد." className="my-10" />
+                      : <TransactionProductVolume data={productCategoriesReceive} />
+                    }
                   </div>
                 </Card>
               </Col>
               <Col span={10}>
-                <Card className="flex items-center h-full">
-                  <SimpleLineChart />
-                </Card>
-              </Col>
-              <Col span={6}>
-                <Card className="flex items-center flex-col h-[48%] mb-4" bordered={false}>
-                  <span className="text-primary-500 block text-base font-bold mb-4">میزان فروش</span>
-                  <p className="text-2xl mb-2 text-left text-gray-400">
-                    <span className="inline-block ml-2">{companyTotalCredits?.data - companyTotalCredits?.data}</span>
-                    <span>توکن</span>
-                  </p>
-                </Card>
-                <Card className="flex items-center flex-col h-[48%]" bordered={false}>
-                  <span className="text-primary-500 block text-base font-bold mb-4">میزان خرید </span>
-                  <p className="text-2xl mb-2 text-left text-gray-400">
-                    <span className="inline-block ml-2">{companyTotalCredits?.data - companyTotalCredits?.data}</span>
-                    <span>توکن</span>
-                  </p>
+                <Card className="h-fit">
+                  <span className="block text-lg">میانگین قیمت فروش کالاها</span>
+                  <div className="flex justify-center items-center">
+                    {averagePriceForAllProductForCompany?.data?.length == 0
+                      ? <Empty description="داده ای برای نمایش وجود ندارد." className="my-10" />
+                      : <SimpleBarChart data={averagePriceForAllProductForCompany?.data} />
+                    }
+                  </div>
                 </Card>
               </Col>
             </Row>
           </div>
-        </Col>
-      </Row>
-      <Row gutter={16} className="mb-4">
-        <Col span={6}>
-          <Card className="flex justify-center">
-            <TransactionProductVolume />
-          </Card>
-        </Col>
-        <Col span={18}>
-          <MemberChains companyId={Id}/>
+          <MemberChains companyId={Id} />
           <Card title={<span className="text-gray-400 font-medium">صورتحساب های اخیر</span>}>
-            <Table locale={{emptyText:"داده ای برای نمایش وجود ندارد."}} columns={BillsColumns} dataSource={bills?.data} scroll={{ y: 450 }} />
+            <Table locale={{ emptyText: "داده ای برای نمایش وجود ندارد." }} columns={BillsColumns} dataSource={bills?.data} scroll={{ y: 450 }} />
           </Card>
-
         </Col>
-
       </Row>
     </>
   )

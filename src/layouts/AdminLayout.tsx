@@ -43,7 +43,7 @@ const AdminLayout = ({ children }: Props) => {
         {!collapsed &&
           <div className='flex justify-center mt-10 mb-8'>
             
-            <img src="./images/pasargad-logo-desktop.svg" alt="pasargad logo" />
+            <img src="/images/pasargad-logo-desktop.svg" alt="pasargad logo" />
             
           </div>
         }

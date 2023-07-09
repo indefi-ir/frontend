@@ -66,6 +66,7 @@ export const getReceivedAmountBaseProductForCompany =  "/api/v1/dashboard/get-re
 
 export const getAveragePriceProductForCompany = "/api/v1/dashboard/get-average-price-for-product-for-company";
 
+export const getAveragePriceForAllProductForCompany = "/api/v1/dashboard/get-average-price-for-all-product-for-company?companyId=";
 
 // Invoices
 export const addNewInvoiceUrl = "/api/v1/invoice/add-new-invoice";

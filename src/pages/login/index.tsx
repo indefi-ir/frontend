@@ -30,7 +30,7 @@ const Login = () => {
               </p>
             </div>
             <div className="mt-10 opacity-90">
-              <img src="./images/supply-block-chain.png" alt="supply chain on block chain" />
+              <img src="./images/login-vector.svg" />
             </div>
           </div>
         </div>
