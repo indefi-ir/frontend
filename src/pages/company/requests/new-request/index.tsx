@@ -14,6 +14,7 @@ const { TextArea } = Input;
 import { addNewInvoiceUrl, companiesUrl, getSupplyChainsForMyCompanyUrl, InvoicesMyCompanyUrl, productCategoriesMyCompanyUrl } from '../../../../services/apiEndpoint';
 import { fetcher, post } from '../../../../services/axios';
 import { useRouter } from 'next/router';
+import toEnglishDigits from '../../../../utils/toEnglishDigits';
 
 const NewRequest = () => {
   const [loading, setLoading] = useState(false);
@@ -50,7 +51,11 @@ const NewRequest = () => {
 
   const onFinish = async (values: any) => {
     setLoading(true);
-    const finalData = { ...values, logo: imageUrl }
+    const finalData = { ...values, 
+      logo: imageUrl, 
+      value: toEnglishDigits(values?.value),
+      productAmount: toEnglishDigits(values?.productAmount),
+     }
     const result = await post(addNewInvoiceUrl, finalData);
     if (result.status) {
       await mutate(InvoicesMyCompanyUrl);
@@ -63,7 +68,7 @@ const NewRequest = () => {
     <Card>
       <Form layout="vertical" onFinish={onFinish}>
         <div className='flex gap-6'>
-          <Form.Item className='flex-1' name="value" label="میزان اعتبار">
+          <Form.Item className='flex-1' name="value" label="مبلغ محصول">
             <Input />
           </Form.Item>
 

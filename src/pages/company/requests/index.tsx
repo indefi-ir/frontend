@@ -9,6 +9,7 @@ import dateFormat from '../../../utils/dateFormat';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { UserInfoContext } from '../../../components/providers';
 import { unstable_batchedUpdates } from 'react-dom';
+import toPersianDigits from '../../../utils/toPersianDigits';
 
 const renderStatus = (status: Number) => {
   switch (status) {
@@ -26,9 +27,9 @@ const columns = (searchTerm: string, userInfo: any, handleAccepte: Function, han
     title: 'شماره پیش فاکتور',
     dataIndex: 'id',
     key: 'id',
-    // render: (record: any) => (
-    //   <div className="text-right">{record.id}</div>
-    // ),
+    render: (record: any) => (
+      <div className="text-right truncate w-[100px]">{toPersianDigits(record)}</div>
+    ),
   },
   {
     title: 'از شرکت',
@@ -58,20 +59,26 @@ const columns = (searchTerm: string, userInfo: any, handleAccepte: Function, han
     title: 'مقدار',
     dataIndex: 'value',
     key: 'value',
+    render: (record: any) => (
+      <div className="text-right">{toPersianDigits(record)}</div>
+    ),
     with: 100,
   },
   {
     title: 'تاریخ ایجاد',
-    dataIndex: 'creationDate',
-    key: 'creationDate',
+    dataIndex: 'date',
+    key: 'date',
     render: (record: string) => (
-      dateFormat(record)
+      toPersianDigits(dateFormat(record))
     ),
   },
   {
     title: 'توضیحات',
     dataIndex: 'invoiceDescribtion',
     key: 'invoiceDescribtion',
+    render: (record: any) => (
+      <div className="text-right truncate w-[200px]">{record}</div>
+    ),
   },
   {
     title: 'وضعیت',
