@@ -15,6 +15,9 @@ const BillsColumns = ([
     title: 'شماره صورتحساب ',
     dataIndex: 'txId',
     key: 'txId',
+    render: (record: any) => (
+      <div className='truncate w-[100px]'>{toPersianDigits(record)}</div>   
+    )
   },
   {
     title: 'از شرکت',
@@ -55,7 +58,7 @@ const BillsColumns = ([
     dataIndex: 'date',
     key: 'date',
     render: (record: string) => (
-      dateFormat(record)
+      toPersianDigits(dateFormat(record))
     ),
   },
 ]);
@@ -113,10 +116,15 @@ const DetailsCompany = () => {
 
   const { data: receivedAmountAllProductForCompany } = useSWR(`${getReceivedAmountAllProductForCompanyUrl}${Id}`, fetcher);
 
+  console.log("allTransferAmountAllProductForCompany", allTransferAmountAllProductForCompany)
+
+  console.log("receivedAmountAllProductForCompany", receivedAmountAllProductForCompany)
+
   const { data: averagePriceForAllProductForCompany } = useSWR(`${getAveragePriceForAllProductForCompany}${Id}&startTime=2022-09-01T02:25:20.619Z&endTime=2024-09-01T02:25:20.619Z`, fetcher);
 
   const companyCreditReceivedForCompanyUrl = `${getReceivedCreditForCompanyUrl}${Id}`;
-  const { data: companyCreditReceivedForCompany, error: companyCreditReceivedForCompanyError } = useSWR(companyCreditTransferForCompanyUrl, fetcher);
+  const { data: companyCreditReceivedForCompany, error: companyCreditReceivedForCompanyError } = useSWR(companyCreditReceivedForCompanyUrl, fetcher);
+
 
   const onFinish = async (values: any) => {
     const finalData = { ...values }
@@ -232,8 +240,8 @@ const DetailsCompany = () => {
               </Col>
             </Row>
             <Row gutter={16} className="mb-4">
-              <Col span={7}>
-                <Card className="h-fit">
+              <Col span={12}>
+                <Card className="h-full">
                   <span className="block text-lg">مبلغ کالاهای خریداری شده</span>
                   <div className="flex justify-center items-center">
                     {allTransferAmountAllProductForCompany?.data?.length == 0
@@ -243,8 +251,8 @@ const DetailsCompany = () => {
                   </div>
                 </Card>
               </Col>
-              <Col span={7}>
-                <Card className="h-fit">
+              <Col span={12}>
+                <Card className="h-full">
                   <span className="block text-lg">مبلغ کالاهای فروخته شده</span>
                   <div className="flex justify-center items-center">
                     {receivedAmountAllProductForCompany?.data?.length == 0
@@ -254,8 +262,10 @@ const DetailsCompany = () => {
                   </div>
                 </Card>
               </Col>
-              <Col span={10}>
-                <Card className="h-fit">
+            </Row>
+            <Row gutter={16} className="mb-4">
+            <Col span={24}>
+                <Card className="h-full h-96">
                   <span className="block text-lg">میانگین قیمت فروش کالاها</span>
                   <div className="flex justify-center items-center">
                     {averagePriceForAllProductForCompany?.data?.length == 0

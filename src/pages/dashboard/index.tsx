@@ -23,7 +23,7 @@ const BillsColumns = ([
     dataIndex: 'txId',
     key: 'txId',
     render: (record: any) => (
-      <div>{toPersianDigits(record)}</div>
+      <div className='truncate w-[80px]'>{toPersianDigits(record)}</div>   
     )
   },
   {
