@@ -53,3 +53,7 @@
 .ant-breadcrumb-link a, .ant-breadcrumb-separator {
   color: white !important;
 }
+
+.ant-collapse-item.ant-collapse-item-active {
+  background-color: #fcf3cc !important;
+}
