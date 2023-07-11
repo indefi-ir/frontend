@@ -22,12 +22,10 @@ const CustomNode = (props: any) => {
             </div>
             <div>
               <span className='block text-primary'> میزان محصول</span>
-
               {buy?.productAmount}
             </div>
             <div>
               <span className='block text-primary'> مبلغ محصول</span>
-
               {buy?.value}
             </div>
           </>

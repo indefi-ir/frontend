@@ -8,6 +8,7 @@ import React from 'react';
 import dateFormat from '../../../utils/dateFormat';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { UserInfoContext } from '../../../components/providers';
+import toPersianDigits from '../../../utils/toPersianDigits';
 
 
 const renderStatus = (status: Number) => {
@@ -26,6 +27,9 @@ const columns = (searchTerm: string, userInfo: any ) => ([
     title: 'شماره صورتحساب ',
     dataIndex: 'txId',
     key: 'txId',
+    render: (record: any) => (
+      <div className='truncate w-[100px]'>{toPersianDigits(record)}</div>
+    )
   },
   {
     title: 'از شرکت',
@@ -66,7 +70,7 @@ const columns = (searchTerm: string, userInfo: any ) => ([
     dataIndex: 'date',
     key: 'date',
     render: (record: string) => (
-      dateFormat(record)
+      toPersianDigits(dateFormat(record))
     ),
   },
 ]);

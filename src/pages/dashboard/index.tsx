@@ -23,7 +23,7 @@ const BillsColumns = ([
     dataIndex: 'txId',
     key: 'txId',
     render: (record: any) => (
-      <div className='truncate w-[80px]'>{toPersianDigits(record)}</div>   
+      <div className='truncate w-[80px]'>{toPersianDigits(record)}</div>
     )
   },
   {
@@ -106,13 +106,13 @@ const CompanyColumns = ([
 
 const Dashboard = () => {
   const [options, setOptions] = useState(['ماه جاری', 'سال جاری', 'همه زمان ها']);
-  const { data:companies } = useSWR(companiesUrl, fetcher);
-  const { data:bills } = useSWR(transactionsUrl, fetcher);
-  const { data:totalCredit } = useSWR(getCreditsEverUrl, fetcher);
+  const { data: companies } = useSWR(companiesUrl, fetcher);
+  const { data: bills } = useSWR(transactionsUrl, fetcher);
+  const { data: totalCredit } = useSWR(getCreditsEverUrl, fetcher);
 
-  const { data:getCreditWithNotPaidStatus } = useSWR(`${getBillsValueStatusUrl}0`, fetcher);
-  const { data:getCreditWithExpireStatus } = useSWR(`${getBillsValueStatusUrl}3`, fetcher);
-  const { data:getCreditWithPaidStatus } = useSWR(`${getBillsValueStatusUrl}2`, fetcher);
+  const { data: getCreditWithNotPaidStatus } = useSWR(`${getBillsValueStatusUrl}0`, fetcher);
+  const { data: getCreditWithExpireStatus } = useSWR(`${getBillsValueStatusUrl}3`, fetcher);
+  const { data: getCreditWithPaidStatus } = useSWR(`${getBillsValueStatusUrl}2`, fetcher);
 
   return (
     <>
@@ -160,16 +160,24 @@ const Dashboard = () => {
           </Col>
         </Row>
       </div>
-      <div className="flex my-4">
+      <div className="my-4">
         <Row gutter={16}>
-          <Col span={12}>
-            <Card title={<span className="text-gray-400 font-medium">شرکت های های اخیر</span>} extra={<a href="#" className="text-pasargad-yellow-400">بیشتر</a>} >
-              <Table locale={{emptyText:"داده ای برای نمایش وجود ندارد."}} columns={CompanyColumns} dataSource={companies?.data} scroll={{ y: 450 }} />
+          <Col span={10}>
+            <Card
+              className="h-full"
+              title={<span className="text-gray-400 font-medium">شرکت های های اخیر</span>}
+              extra={<a href="#" className="text-pasargad-yellow-400">بیشتر</a>} >
+              <Table
+                locale={{ emptyText: "داده ای برای نمایش وجود ندارد." }}
+                columns={CompanyColumns} dataSource={companies?.data} />
             </Card>
           </Col>
-          <Col span={12}>
-            <Card title={<span className="text-gray-400 font-medium">صورتحساب های اخیر</span>} extra={<a href="#" className="text-pasargad-yellow-400">بیشتر</a>} >
-              <Table locale={{emptyText:"داده ای برای نمایش وجود ندارد."}} columns={BillsColumns} dataSource={bills?.data} scroll={{ y: 450 }} />
+          <Col span={14}>
+            <Card 
+              className="h-full"
+              title={<span className="text-gray-400 font-medium">صورتحساب های اخیر</span>} 
+              extra={<a href="#" className="text-pasargad-yellow-400">بیشتر</a>} >
+              <Table locale={{ emptyText: "داده ای برای نمایش وجود ندارد." }} columns={BillsColumns} dataSource={bills?.data} />
             </Card>
           </Col>
         </Row>

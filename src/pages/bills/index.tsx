@@ -16,7 +16,7 @@ const columns = (searchTerm: string) => ([
     dataIndex: 'txId',
     key: 'txId',
     render: (record: any) => (
-      <div>{toPersianDigits(record)}</div>
+      <div className='truncate w-[100px]'>{toPersianDigits(record)}</div>
     )
   },
   {
