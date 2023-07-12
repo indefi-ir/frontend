@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   DatePicker,
+  Empty,
   Form,
   Input,
   Select,
@@ -110,36 +111,36 @@ const NewCompany = () => {
           {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%', borderRadius: '50%' }} /> : uploadButton}
         </Upload>
         <div className='flex gap-6'>
-          <Form.Item className='flex-1' name="name" label="نام شرکت">
+          <Form.Item className='flex-1' name="name" label="نام شرکت" required>
             <Input />
           </Form.Item>
-          <Form.Item className='flex-1' name="owner" label="نام مدیرعامل">
-            <Input />
-          </Form.Item>
-        </div>
-        <div className='flex gap-6'>
-          <Form.Item className='flex-1' name="email" label="ایمیل">
-            <Input />
-          </Form.Item>
-          <Form.Item className='flex-1' name="phonenumber" label="شماره تماس">
+          <Form.Item className='flex-1' name="owner" label="نام مدیرعامل" required>
             <Input />
           </Form.Item>
         </div>
         <div className='flex gap-6'>
-          <Form.Item className='flex-1' name="nationalID" label="شناسه ملی شرکت">
+          <Form.Item className='flex-1' name="email" label="ایمیل" required>
             <Input />
           </Form.Item>
-          <Form.Item className='flex-1' name="customerID" label="شماره مشتری">
+          <Form.Item className='flex-1' name="phonenumber" label="شماره تماس" required>
             <Input />
           </Form.Item>
-          <Form.Item className='flex-1' name="shaba" label="شماره شبا">
+        </div>
+        <div className='flex gap-6'>
+          <Form.Item className='flex-1' name="nationalID" label="شناسه ملی شرکت" required>
+            <Input />
+          </Form.Item>
+          <Form.Item className='flex-1' name="customerID" label="شماره مشتری" required>
+            <Input />
+          </Form.Item>
+          <Form.Item className='flex-1' name="shaba" label="شماره شبا" required>
             <Input />
           </Form.Item>
         </div>
         <div className='flex gap-6'>
           <Form.Item
             name="password"
-            label="Password"
+            label="کلمه عبور"
             required
             hasFeedback
             className='flex-1'
@@ -149,7 +150,7 @@ const NewCompany = () => {
 
           <Form.Item
             name="confirm"
-            label="Confirm Password"
+            label="تایید کلمه عبور"
             dependencies={['password']}
             hasFeedback
             className='flex-1'
@@ -178,10 +179,11 @@ const NewCompany = () => {
               allowClear
               placeholder="لطفا محصولات مورد نظر را انتخاب کنید."
               options={options}
+              notFoundContent={<Empty description="محصولی یافت نشد."/>}
             />
           </Form.Item>
         </div>
-        <Form.Item name="address" label="آدرس پستی">
+        <Form.Item name="address" label="آدرس پستی" required>
           <TextArea rows={4} />
         </Form.Item>
         <Form.Item className='flex justify-end'>

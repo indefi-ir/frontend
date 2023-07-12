@@ -112,7 +112,7 @@ const BillsCompany = () => {
           </Button>
         </div>
       </div>
-      <Table  locale={{emptyText:"داده ای برای نمایش وجود ندارد."}} columns={columns(searchTerm, userInfo)} dataSource={data?.data} scroll={{ y: 450 }} />
+      <Table locale={{emptyText:"داده ای برای نمایش وجود ندارد."}} columns={columns(searchTerm, userInfo)} dataSource={data?.data} />
     </>
 
   )

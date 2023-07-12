@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import React from 'react';
-import { Avatar, Button, Card, DatePicker, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
+import { Avatar, Button, Card, Tooltip, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
 import useSWR from 'swr';
 import nextRouter, { useRouter } from 'next/router';
 import { companiesUrl } from '../../services/apiEndpoint';
@@ -80,12 +80,16 @@ const columns = (searchTerm: string) => ([
     key: "action",
     render: (_: any, record: any) => (
       <Space size="middle">
-        <span className='cursor-pointer' onClick={() => nextRouter.push(`/companies/details/${record.id}`)}>
-          <EyeIcon />
-        </span>
+        <Tooltip placement="top" color="#f1c40f" title="مشاهده جزییات شرکت">
+          <span className='cursor-pointer' onClick={() => nextRouter.push(`/companies/details/${record.id}`)}>
+            <EyeIcon />
+          </span>
+        </Tooltip>
+        <Tooltip placement="top" color="#f1c40f" title="افزودن اعتبار">
         <span className='cursor-pointer' onClick={() => nextRouter.push(`/companies/credit/${record.id}`)}>
           <CreditIcon />
         </span>
+        </Tooltip>
       </Space>
     )
   }
@@ -136,7 +140,7 @@ const Companies = () => {
           </Button>
         </div>
       </div>
-      <Table locale={{emptyText:"داده ای برای نمایش وجود ندارد."}}  columns={columns(searchTerm)} dataSource={data?.data} sortDirections="ascend"/>
+      <Table locale={{ emptyText: "داده ای برای نمایش وجود ندارد." }} columns={columns(searchTerm)} dataSource={data?.data} sortDirections="ascend" />
     </>
   )
 };
