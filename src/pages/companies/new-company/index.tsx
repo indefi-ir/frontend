@@ -10,6 +10,7 @@ import {
   SelectProps,
   Switch,
   TreeSelect,
+  notification
   // Upload,
 } from 'antd';
 
@@ -50,6 +51,8 @@ const beforeUpload = (file: RcFile) => {
 const NewCompany = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
+  const [api, contextHolder] = notification.useNotification();
+  
   const router = useRouter();
   const { data: productCategories } = useSWR(productCategoriesUrl, fetcher);
 
@@ -85,20 +88,31 @@ const NewCompany = () => {
       customerID: toEnglishDigits(values.customerID),
       shaba: toEnglishDigits(values.shaba),
     }
-
     delete finalData.confirm;
 
     const result = await post(registerCompanyUrl, finalData);
     if (result.status) {
+      api["success"]({
+        message: <span className='text-sm text-green-500'>شرکت مورد نظر با موفقیت افزوده شد.</span>,
+        duration: 2,
+      });
       await mutate(companiesUrl);
       router.push(`/companies`);
+    } else {
+      api["error"]({
+        message: <span className='text-sm text-red-500'>{result.response.data}</span>,
+        duration: 2,
+      });
     }
     setLoading(false);
   }
 
   return (
+    <>
+     {contextHolder}
     <Card>
       <Form layout="vertical" onFinish={onFinish}>
+        <Form.Item required>
         <Upload
           name="avatar"
           listType="picture-circle"
@@ -110,6 +124,7 @@ const NewCompany = () => {
         >
           {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%', borderRadius: '50%' }} /> : uploadButton}
         </Upload>
+        </Form.Item>
         <div className='flex gap-6'>
           <Form.Item className='flex-1' name="name" label="نام شرکت" required>
             <Input />
@@ -191,6 +206,7 @@ const NewCompany = () => {
         </Form.Item>
       </Form>
     </Card>
+    </>
   )
 }
 

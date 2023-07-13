@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, Form, Input, Select, SelectProps, Upload, UploadProps } from 'antd';
+import { Button, Card, Form, Input, notification, Select, SelectProps, Upload, UploadProps } from 'antd';
 import useSWR, { mutate } from 'swr';
 import 'beautiful-react-diagrams/styles.css';
 import { fetcher, post } from '../../../services/axios';
@@ -37,6 +37,7 @@ const CustomNode = (props: any) => {
 const NewChain = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
+  const [api, contextHolder] = notification.useNotification();
   const [companiesList, setCompaniesList] = useState([]);
   const [nodesList, setNodesList] = useState<any>([])
   const [chainInfo, setChainInfo] = useState([]);
@@ -99,8 +100,17 @@ const NewChain = () => {
     const finalData = { ...values, logo: file, head: chainInfo[0], subChains: cloneChainInfo }
     const result = await post(addSupplyChainUrl, finalData);
     if (result.status) {
+      api["success"]({
+        message: <span className='text-sm text-green-500'>زنجیره مورد نظر با موفقیت افزوده شد.</span>,
+        duration: 2,
+      });
       await mutate(getAllSupplyChainsUrl);
       router.push(`/supply-chains`);
+    } else {
+      api["error"]({
+        message: <span className='text-sm text-red-500'>{result.response.data}</span>,
+        duration: 2,
+      });
     }
   };
 
@@ -109,72 +119,75 @@ const NewChain = () => {
   };
 
   return (
-    <Card>
-      <Form
-        name="supply-chain"
-        labelCol={{ span: 8 }}
-        layout="vertical"
-        initialValues={{ remember: false }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off">
-        <Form.Item
-          label="نام زنجیره"
-          name="name"
-          rules={[{
-            required: true,
-            message: 'لطفا نام زنجیره را وارد نمایید.'
-          }]}>
-          <Input />
-        </Form.Item>
-        {/* <Form.Item name="logo" label="اسناد مربوط به زنجیره">
+    <>
+      {contextHolder}
+      <Card>
+        <Form
+          name="supply-chain"
+          labelCol={{ span: 8 }}
+          layout="vertical"
+          initialValues={{ remember: false }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off">
+          <Form.Item
+            label="نام زنجیره"
+            name="name"
+            rules={[{
+              required: true,
+              message: 'لطفا نام زنجیره را وارد نمایید.'
+            }]}>
+            <Input />
+          </Form.Item>
+          {/* <Form.Item name="logo" label="اسناد مربوط به زنجیره">
           <Input />
         </Form.Item> */}
-        <div className='mb-4'>
-          <span className='block mb-2'>اسناد مربوط به زنجیره</span>
-          <Dragger {...props}>
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="ant-upload-hint">
-              فایل را در اینجا بکشید و رها کنید یا روی افزودن تصویر کلیک کنید
-            </p>
-          </Dragger>
-        </div>
-        <Form.Item
-          name="description"
-          label="توضیحات"
-          rules={[{
-            required: true,
-            message: 'لطفا توضیحات زنجیره را وارد نمایید.'
-          }]}>
-          <Input.TextArea rows={4} />
-        </Form.Item>
-        <div>
-          <span className='block mb-2'>رسم زنجیره</span>
-
-          <div className='flex items-center w-full rounded-lg  mb-2'>
-            <Select
-              mode="multiple"
-              style={{ minWidth: "500px" }}
-              allowClear
-              options={options}
-              onChange={(value, options) => handleChange(value, options)}
-              placeholder="انتخاب شرکت ها"
-            />
-            <Button type="primary" onClick={() => handleOk()} className="bg-pasargad-yellow-400 text-white mr-2">
-              ارسال شرکت ها به زنجیره
-            </Button>
+          <div className='mb-4'>
+            <span className='block mb-2'>اسناد مربوط به زنجیره</span>
+            <Dragger {...props}>
+              <p className="ant-upload-drag-icon">
+                <InboxOutlined />
+              </p>
+              <p className="ant-upload-hint">
+                فایل را در اینجا بکشید و رها کنید یا روی افزودن تصویر کلیک کنید
+              </p>
+            </Dragger>
           </div>
-          <DrawChain nodesList={nodesList} getChainData={getChainData} />
-        </div>
-        <Form.Item className='flex justify-end mt-4'>
-          <Button htmlType="submit" className='bg-pasargad-yellow-400 text-white'>
-            ذخیره
-          </Button>
-        </Form.Item>
-      </Form>
-    </Card>
+          <Form.Item
+            name="description"
+            label="توضیحات"
+            rules={[{
+              required: true,
+              message: 'لطفا توضیحات زنجیره را وارد نمایید.'
+            }]}>
+            <Input.TextArea rows={4} />
+          </Form.Item>
+          <div>
+            <span className='block mb-2'>رسم زنجیره</span>
+
+            <div className='flex items-center w-full rounded-lg  mb-2'>
+              <Select
+                mode="multiple"
+                style={{ minWidth: "500px" }}
+                allowClear
+                options={options}
+                onChange={(value, options) => handleChange(value, options)}
+                placeholder="انتخاب شرکت ها"
+              />
+              <Button type="primary" onClick={() => handleOk()} className="bg-pasargad-yellow-400 text-white mr-2">
+                ارسال شرکت ها به زنجیره
+              </Button>
+            </div>
+            <DrawChain nodesList={nodesList} getChainData={getChainData} />
+          </div>
+          <Form.Item className='flex justify-end mt-4'>
+            <Button htmlType="submit" className='bg-pasargad-yellow-400 text-white'>
+              ذخیره
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
+    </>
   )
 }
 NewChain.layout = 'admin';
