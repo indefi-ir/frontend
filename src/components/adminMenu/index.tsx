@@ -44,7 +44,7 @@ const adminMenuItems = [
     key: '5',
     icon: <FinancierIcon />,
     label: 'محصولات',
-    path: '/products'
+    path: '/products',
   }
 ]
 

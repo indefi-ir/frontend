@@ -22,7 +22,6 @@ export const updateSupplyChainUrl =  "/api/v1/supplychain/get-supplychains-for-m
 export const supplyChainForCompanyUrl =  "/api/v1/supplychain/get-supplychains-for-company?skip=0&count=100&companyId=";
 export const tooltipSupplyChainForCompanyUrl = "/api/v1/supplychain/get-tool-tip-for-supplychain-for-company"
 
-
 // Credits
 export const creditMyCompanyUrl =  "/api/v1/credits/get-credit-for-my-company";
 export const creditCompanyUrl = "/api/v1/credits/get-credit-for-company";
@@ -34,6 +33,7 @@ export const productCategoriesUrl =  "/api/v1/product-category/get-all-product-c
 export const productCategoriesCompanyUrl = "/api/v1/product-category/get-product-categories-for-company";
 export const productCategoriesMyCompanyUrl= "/api/v1/product-category/get-product-categories-for-my-company";
 export const addProductCategoryUrl = "/api/v1/product-category/add-product-category";
+export const productUnitsUrl = "/api/v1/product-category/get-all-product-units?skip=0&count=100";
 
 // Transactions
 export const transactionsUrl = "/api/v1/transactions/get-all-transactions?skip=0&count=100";
@@ -47,6 +47,7 @@ export const companiesUrl =  "api/v1/users/get-companies?skip=0&count=100&verifi
 export const myCompanyInfoUrl = "/api/v1/users/get-my-company-info";
 export const updateCompanyUrl = "/api/v1/users/update-company";
 export const updateCompanyStatusUrl = "/api/v1/users/update-company-status?companyId=";
+export const addProductUnit = "/api/v1/product-category/add-product-unit-category";
 
 // Dashboard
 export const getCreditsEverUrl = "/api/v1/dashboard/get-all-credits-ever";
