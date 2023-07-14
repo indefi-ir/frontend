@@ -57,10 +57,10 @@ const NewCompany = () => {
   const { data: productCategories } = useSWR(productCategoriesUrl, fetcher);
 
   const options: SelectProps['options'] = [];
-  productCategories?.data?.map((company: { id: any; name: any; }) => (
+  productCategories?.data?.map((product: { id: any; name: any; }) => (
     options.push({
-      value: company.name,
-      label: company.name,
+      value: product.id,
+      label: product.name,
     })
   ));
 
