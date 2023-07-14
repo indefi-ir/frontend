@@ -12,7 +12,6 @@ import { useRouter } from 'next/router';
 const { Dragger } = Upload;
 
 const CustomNode = (props: any) => {
-  console.log("props", props)
   const { outputs, inputs } = props;
 
   return (
@@ -40,7 +39,10 @@ const NewChain = () => {
   const [api, contextHolder] = notification.useNotification();
   const [companiesList, setCompaniesList] = useState([]);
   const [nodesList, setNodesList] = useState<any>([])
-  const [chainInfo, setChainInfo] = useState([]);
+  const [chainInfo, setChainInfo] = useState({
+    nodes: [],
+    links:[]
+  });
   const [file, setFile] = useState<any>({});
 
   const props: UploadProps = {
@@ -49,7 +51,6 @@ const NewChain = () => {
     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
     onChange(info) {
       setFile(info?.file?.name);
-      console.log("file.name", info?.file?.name)
     }
   };
 
@@ -57,11 +58,14 @@ const NewChain = () => {
     setIsModalOpen(true);
   };
 
-  const getChainData = (data: any) => {
-    setChainInfo(data);
+  const getChainData = (data: {
+    nodes:any,
+    links:any
+  }) => {
+    setChainInfo(data)
   };
 
-  const cloneChainInfo = chainInfo?.length > 0 ? [...chainInfo] : []
+  const cloneChainInfo = chainInfo?.nodes?.length > 0 ? [...chainInfo?.nodes] : []
   cloneChainInfo.shift();
 
   const handleOk = () => {
@@ -72,7 +76,7 @@ const NewChain = () => {
         render: CustomNode,
         coordinates: [0, 0],
         inputs: [{ id: company.value + '_in' }],
-        outputs: [{ id: company.value + '_in' }],
+        outputs: [{ id: company.value+ '_out' }],
       }])
     ))
     setIsModalOpen(false);
@@ -96,8 +100,16 @@ const NewChain = () => {
     })
   ));
 
+  const chianLinks: { item1: any; item2: any; }[] = [];
+  chainInfo.links.map((link: {input:any; output:any}) => (
+    chianLinks.push({
+      item1: link.output.split('_')[0],
+      item2: link.input.split('_')[0]
+    })
+  ))
+
   const onFinish = async (values: any) => {
-    const finalData = { ...values, logo: file, head: chainInfo[0], subChains: cloneChainInfo }
+    const finalData = { ...values, logo: file, head: chainInfo?.nodes[0], chianNodes: cloneChainInfo, chianLinks:chianLinks }
     const result = await post(addSupplyChainUrl, finalData);
     if (result.status) {
       api["success"]({

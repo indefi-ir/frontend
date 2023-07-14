@@ -10,7 +10,7 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
   });
 
   const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
-  const [chainData, setChainData] = useState<any>()
+  const [chainData, setChainData] = useState<any>();
 
   const findHeadAndPrintChain = (links: any) => {
     const inputs = new Set();
@@ -39,7 +39,6 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
     const chain = [headNode];
     let currentNode = headNode;
 
-    console.log('Head Node:', chain);
     setChainData(chain)
 
     while (true) {
@@ -56,7 +55,10 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
 
   const sendChainData = () => {
     findHeadAndPrintChain(schema.links);
-    getChainData(chainData)
+    getChainData({
+      nodes: chainData,
+      links: schema.links
+    })
   }
 
   useEffect(() => {
