@@ -16,7 +16,11 @@ const columns = (searchTerm: string) => ([
     dataIndex: 'txId',
     key: 'txId',
     render: (record: any) => (
-      <div className='truncate w-[100px]'>{toPersianDigits(record)}</div>
+      <div className='truncate w-[100px] cursor-pointer'>
+        <a target="_blank" href={`https://sfc-chain-explorer.darkube.app/transaction/${record}`}>
+        {toPersianDigits(record)}
+        </a>
+      </div>
     )
   },
   {

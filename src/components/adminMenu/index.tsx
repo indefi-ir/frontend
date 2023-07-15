@@ -37,7 +37,7 @@ const adminMenuItems = [
   {
     key: '4',
     icon: <FinancierIcon />,
-    label: 'صورتحساب ها',
+    label: 'تراکنش ها',
     path: '/bills'
   },
   {
@@ -64,7 +64,7 @@ const companyMenuItems = [
   {
     key: '3',
     icon: <BillsCompanyIcon />,
-    label: 'صورتحساب ها',
+    label: 'تراکنش ها',
     path: '/company/bills'
   },
 ]
