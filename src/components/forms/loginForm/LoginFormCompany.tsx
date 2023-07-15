@@ -40,7 +40,7 @@ const LoginFormCompany = () => {
             <Input placeholder="شناسه ملی شرکت" className="p-3 text-sm w-96" />
           </Form.Item>
           <Form.Item name="password" label="کلمه عبور">
-            <Input placeholder="کلمه عبور" className="p-3 text-sm w-96" type="password" />
+            <Input.Password placeholder="کلمه عبور" className="p-3 text-sm w-96" type="password" />
           </Form.Item>
           <Form.Item>
             <Button htmlType="submit" loading={loading} className="w-full bg-pasargad-yellow-400 text-white hover:!text-white h-[55px] text-base">

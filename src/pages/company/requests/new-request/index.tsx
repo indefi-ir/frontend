@@ -2,6 +2,7 @@ import { } from '@ant-design/icons';
 import {
   Button,
   Card,
+  Empty,
   Form,
   Input,
   notification,
@@ -12,7 +13,7 @@ import {
 import React, { useState } from 'react';
 import useSWR, { mutate } from 'swr';
 const { TextArea } = Input;
-import { addNewInvoiceUrl, companiesUrl, getSupplyChainsForMyCompanyUrl, InvoicesMyCompanyUrl, productCategoriesMyCompanyUrl } from '../../../../services/apiEndpoint';
+import { addNewInvoiceUrl, companiesUrl, getSupplyChainsForMyCompanyUrl, InvoicesMyCompanyUrl, productCategoriesMyCompanyUrl, productUnitsUrl } from '../../../../services/apiEndpoint';
 import { fetcher, post } from '../../../../services/axios';
 import { useRouter } from 'next/router';
 import toEnglishDigits from '../../../../utils/toEnglishDigits';
@@ -25,6 +26,7 @@ const NewRequest = () => {
   const { data: productCategories } = useSWR(productCategoriesMyCompanyUrl, fetcher);
   const { data: companies } = useSWR(companiesUrl, fetcher);
   const { data: supplyChains } = useSWR(getSupplyChainsForMyCompanyUrl, fetcher);
+  const { data: productUnits } = useSWR(productUnitsUrl, fetcher);
 
   const optionsCategories: SelectProps['options'] = [];
   productCategories?.data?.map((category: { id: any; name: any; }) => (
@@ -50,6 +52,13 @@ const NewRequest = () => {
     })
   ));
 
+  const unitOptions: SelectProps['options'] = [];
+  productUnits?.data?.map((unit: { id: any; name: any; }) => (
+    unitOptions.push({
+      value: unit.id,
+      label: unit.name,
+    })
+  ));
 
   const onFinish = async (values: any) => {
     setLoading(true);
@@ -88,6 +97,14 @@ const NewRequest = () => {
 
             <Form.Item className='flex-1' name="productAmount" label="مقدار محصول">
               <Input />
+            </Form.Item>
+
+            <Form.Item className='flex-1' name="ProductUnitId" label="واحد اندازه گیری">
+              <Select
+                allowClear
+                placeholder="لطفا واحدهای اندازه گیری را انتخاب نمایید."
+                options={unitOptions}
+              />
             </Form.Item>
           </div>
           <div className='flex-1 gap-6 items-center'>

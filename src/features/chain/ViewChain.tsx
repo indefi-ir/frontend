@@ -11,7 +11,7 @@ const ViewChain = ( {chain, chainId}:  any) => {
 
   const CustomNode = (props: any) => {
     const { outputs, inputs, id } = props;
-    console.log("props", props)
+    
     const { data: tooltipData } = useSWR(`${tooltipSupplyChainForCompanyUrl}?chainId=${chainId}&companyId=${id}`, fetcher);
     const tooltipContent = () => (
       <div className='flex flex-col'>
