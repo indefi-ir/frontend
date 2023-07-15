@@ -63,7 +63,7 @@ const AddCreditCompany = () => {
           <DatePicker style={{ width: '100%' }} placeholder="انتخاب تاریخ" />
         </Form.Item>
         <Form.Item name="billInfo" label="توضیحات">
-          <TextArea rows={4} maxLength={6} />
+          <TextArea rows={4} />
         </Form.Item>
         <Form.Item className="flex justify-end">
           <Button htmlType="submit" loading={loading} className="bg-pasargad-yellow-400 text-white hover:!text-white h-[50px] text-base">
