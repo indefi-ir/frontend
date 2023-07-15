@@ -1,13 +1,17 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useContext, useState } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PoweroffOutlined,
 } from '@ant-design/icons';
-import { Button, Layout, theme } from 'antd';
+import { Avatar, Button, Layout, theme } from 'antd';
+import useSWR, { mutate } from 'swr';
 import AdminMenu from '../components/adminMenu';
 import Breadcrumb from '../components/breadcrumb';
 import { useRouter } from 'next/router';
+import { fetcher } from '../services/axios';
+import { myCompanyInfoUrl } from '../services/apiEndpoint';
+import { UserInfoContext } from '../components/providers';
 
 const { Header, Sider, Content } = Layout;
 
@@ -16,7 +20,9 @@ interface Props {
 }
 
 const AdminLayout = ({ children }: Props) => {
+  const { userInfo } = useContext(UserInfoContext);
   const router = useRouter();
+  const { data } = useSWR(myCompanyInfoUrl, fetcher);
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -42,15 +48,19 @@ const AdminLayout = ({ children }: Props) => {
       >
         {!collapsed &&
           <div className='flex justify-center mt-10 mb-8'>
-            
-            <img src="/images/pasargad-logo-desktop.svg" alt="pasargad logo" />
-            
+            {userInfo.role === "Funder"
+              ? <img src="/images/pasargad-logo-desktop.svg" alt="pasargad logo" />
+              : <div className='flex flex-col items-center justify-center'>
+                <Avatar src={data?.data?.logo} size={64} />
+                <span className='block text-white text-base mt-4'>{data?.data?.name}</span>
+              </div>
+            }
           </div>
         }
         <AdminMenu />
       </Sider>
       <Layout>
-        <Header className='flex items-center justify-between mt-6' style={{ padding: "0px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: '#2E3743' }}>
+        <Header className='flex items-center justify-between' style={{ padding: "0px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: '#2E3743' }}>
           <div className='flex items-center'>
             <div className='text-pasargad-yellow-400 text-xl'>
               {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
@@ -58,11 +68,11 @@ const AdminLayout = ({ children }: Props) => {
                 onClick: () => setCollapsed(!collapsed),
               })}
             </div>
-            <Breadcrumb />
+            {/* <Breadcrumb /> */}
           </div>
           <Button className='!bg-red-400 text-white' icon={<PoweroffOutlined />} onClick={logoutUser}>خروج کاربر</Button>
         </Header>
-        <Content style={{ margin: '16px', minHeight:"90vh", padding: '20px'}}>
+        <Content style={{ margin: '16px', minHeight: "90vh", padding: '20px' }}>
           <div>
             {children}
           </div>
