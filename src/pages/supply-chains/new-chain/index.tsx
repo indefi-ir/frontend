@@ -39,10 +39,14 @@ const NewChain = () => {
   const [api, contextHolder] = notification.useNotification();
   const [companiesList, setCompaniesList] = useState([]);
   const [nodesList, setNodesList] = useState<any>([])
-  const [chainInfo, setChainInfo] = useState({
+  const [chainInfo, setChainInfo] = useState<any>({
     nodes: [],
-    links:[]
+    links:[],
+    schema: []
   });
+
+
+  console.log("chainInfo.nnode", chainInfo.nodes)
   const [file, setFile] = useState<any>({});
 
   const props: UploadProps = {
@@ -67,6 +71,9 @@ const NewChain = () => {
 
   const cloneChainInfo = chainInfo?.nodes?.length > 0 ? [...chainInfo?.nodes] : []
   cloneChainInfo.shift();
+
+
+  console.log("cloneChainInfo", cloneChainInfo)
 
   const handleOk = () => {
     companiesList?.map((company: { value: any; label: any; }) => (
@@ -108,8 +115,12 @@ const NewChain = () => {
     })
   ))
 
+  const chianCoordinates:any[] = [];
+    
+
+
   const onFinish = async (values: any) => {
-    const finalData = { ...values, logo: file, head: chainInfo?.nodes[0], chianNodes: cloneChainInfo, chianLinks:chianLinks }
+    const finalData = { ...values, logo: file, head: chainInfo?.nodes[0], chianNodes: cloneChainInfo, chianLinks:chianLinks, cordinates:JSON.stringify(chainInfo?.schema)}
     const result = await post(addSupplyChainUrl, finalData);
     if (result.status) {
       api["success"]({
