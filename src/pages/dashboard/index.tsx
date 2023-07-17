@@ -51,9 +51,15 @@ const BillsColumns = ([
     ),
   },
   {
-    title: 'مقدار محصول',
-    dataIndex: 'productAmount',
-    key: 'productAmount',
+    title: 'مقدار',
+    dataIndex: 'invoice',
+    key: 'invoice',
+    render: (record: any) => (
+      <div className="text-right">
+        <span className="ml-1">{record?.productAmount}</span>
+        <span>{record?.productUnit?.name}</span>
+      </div>
+    )
   },
   {
     title: 'میزان اعتبار',
