@@ -82,6 +82,16 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
+"@canvasjs/charts@^3.7.12":
+  version "3.7.12"
+  resolved "https://registry.yarnpkg.com/@canvasjs/charts/-/charts-3.7.12.tgz#df592c6ccd8421bd5a10f14d62b5a6173f619e69"
+  integrity sha512-qXtO95/AmYHEjaxyF0LhoFwxuC/U7eFVKDCzMtEXOnb0upjZf6aauoE9pQccIwBq/xcf6wLzuxjyz0u1Xcg8qA==
+
+"@canvasjs/react-charts@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@canvasjs/react-charts/-/react-charts-1.0.0.tgz#84e97e1e3bd045cf345ac9dbe270edf11446af51"
+  integrity sha512-wGI675kz65owAwXZWzJULK9GXKCrPV59+CCawXP801f4rmYGmPskdtGrczgJhA8ThFEgIvq3K4qrkpLDPSmxCQ==
+
 "@ctrl/tinycolor@^3.4.0":
   version "3.5.0"
   resolved "https://registry.npmjs.org/@ctrl/tinycolor/-/tinycolor-3.5.0.tgz"
@@ -3207,6 +3217,11 @@ react-easy-crop@^4.7.4:
   dependencies:
     normalize-wheel "^1.0.1"
     tslib "2.0.1"
+
+react-google-charts@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-google-charts/-/react-google-charts-4.0.0.tgz#f648e4fe8ac8a1f47542c2cac040df6afb21e2d6"
+  integrity sha512-9OG0EkBb9JerKEPQYdhmAXnhGLzOdOHOPS9j7l+P1a3z1kcmq9mGDa7PUoX/VQUY4IjZl2/81nsO4o+1cuYsuw==
 
 react-is@^16.10.2, react-is@^16.12.0, react-is@^16.13.1:
   version "16.13.1"

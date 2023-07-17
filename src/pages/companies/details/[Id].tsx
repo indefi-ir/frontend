@@ -136,9 +136,24 @@ const DetailsCompany = () => {
 
   const financialInstrument = [
     { name: "توکن", value: companyTotalCredits?.data },
-    { name: "گام", value: 0 },
-    { name: "برات", value: 0 },
+    { name: "گام", value: 10 },
+    { name: "برات", value: 10 },
   ];
+
+  const buysData = [
+    ["Task", "Hours per Day"],
+    ["کنسانتره سنگ آهن", 300000000000],
+    ["شمش فولادی", 300000000000],
+    ["گندله سنگ آهن", 300000000000],
+  ];
+
+  const salesData = [
+    ["Sales", "Hours per Day"],
+    ["کک", 600000000000],
+    ["آهن اسفنجی", 400000000000],
+
+  ];
+
 
   const productCategoriesTransfer: any = [];
   allTransferAmountAllProductForCompany?.data?.map((category: { value: any; productCategory: any; }) => (
@@ -212,7 +227,7 @@ const DetailsCompany = () => {
                       toPersianDigits(companyTotalCredits?.data)
                     }
                     </span>
-                    <span>توکن</span>
+                    <span>ریال</span>
                   </p>
                 </Card>
               </Col>
@@ -221,9 +236,11 @@ const DetailsCompany = () => {
                   <span className="text-primary-500 block text-base font-bold mb-4">اعتبار منتقل شده</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
                     <span className="inline-block ml-2">
-                      {toPersianDigits(companyCreditTransferForCompany?.data)}
+                      {/* {toPersianDigits(companyCreditTransferForCompany?.data)} */}
+
+                      ۹۰۰،۰۰۰،۰۰۰،۰۰۰
                     </span>
-                    <span>توکن</span>
+                    <span>ریال</span>
                   </p>
                 </Card>
               </Col>
@@ -232,9 +249,10 @@ const DetailsCompany = () => {
                   <span className="text-primary-500 block text-base font-bold mb-4">کل اعتبار دریافتی از شرکت ها</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
                     <span className="inline-block ml-2">
-                      {toPersianDigits(companyCreditReceivedForCompany?.data)}
+                      {/* {toPersianDigits(companyCreditReceivedForCompany?.data)} */}
+                      ۱۰۰،۰۰۰،۰۰۰،۰۰۰
                     </span>
-                    <span>توکن</span>
+                    <span>ریال</span>
                   </p>
                 </Card>
               </Col>
@@ -246,7 +264,7 @@ const DetailsCompany = () => {
                   <div className="flex justify-center items-center">
                     {allTransferAmountAllProductForCompany?.data?.length == 0
                       ? <Empty description="داده ای برای نمایش وجود ندارد." className="my-10" />
-                      : <TransactionProductVolume data={productCategoriesTransfer} />
+                      : <TransactionProductVolume data={buysData} />
                     }
                   </div>
                 </Card>
@@ -257,7 +275,7 @@ const DetailsCompany = () => {
                   <div className="flex justify-center items-center">
                     {receivedAmountAllProductForCompany?.data?.length == 0
                       ? <Empty description="داده ای برای نمایش وجود ندارد." className="my-10" />
-                      : <TransactionProductVolume data={productCategoriesReceive} />
+                      : <TransactionProductVolume data={salesData} />
                     }
                   </div>
                 </Card>

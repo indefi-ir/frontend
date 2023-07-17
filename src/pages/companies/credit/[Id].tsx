@@ -20,6 +20,7 @@ const CreditCompany = () => {
     { name: "برات", value: 0 },
   ];
 
+
   return (
     <Row gutter={16}>
       <Col span={6}>
@@ -36,10 +37,12 @@ const CreditCompany = () => {
         <Card className='h-full'>
           <span className="block text-lg">ابزارهای مالی</span>
           <div className="flex justify-center items-center">
-            {companyTotalCredits?.data > 0
+            {/* {companyTotalCredits?.data > 0
               ? <TransactionProductVolume data={financialInstrument} />
               : <Empty description="داده ای برای نمایش وجود ندارد." className="mt-10" />
-            }
+            } */}
+
+              <TransactionProductVolume  />
           </div>
         </Card>
       </Col>
