@@ -128,7 +128,7 @@ const Dashboard = () => {
                 <img src="/images/total-credit.png" alt="" />
               </div>
               <span className="text-black-500 block mb-2">کل اعتبار</span>
-              <span className="text-2xl block mb-2">{toPersianDigits(totalCredit?.data)} توکن</span>
+              <span className="text-2xl block mb-2">{toPersianDigits(totalCredit?.data)} ریال</span>
             </Card>
           </Col>
           <Col span={6}>
@@ -137,7 +137,7 @@ const Dashboard = () => {
                 <img src="/images/cleared.png" alt="" />
               </div>
               <span className="text-black-500 block mb-2">تسویه شده</span>
-              <span className="text-2xl block mb-2">{toPersianDigits(getCreditWithPaidStatus?.data)} توکن</span>
+              <span className="text-2xl block mb-2">{toPersianDigits(getCreditWithPaidStatus?.data)} ریال</span>
             </Card>
           </Col>
           <Col span={6}>
@@ -146,7 +146,7 @@ const Dashboard = () => {
                 <img src="/images/outstanding-debt.png" alt="" />
               </div>
               <span className="text-black-500 block mb-2">بدهی های معوقه</span>
-              <span className="text-2xl block mb-2">{toPersianDigits(getCreditWithExpireStatus?.data)} توکن</span>
+              <span className="text-2xl block mb-2">{toPersianDigits(getCreditWithExpireStatus?.data)} ریال</span>
             </Card>
           </Col>
           <Col span={6}>
@@ -155,7 +155,7 @@ const Dashboard = () => {
                 <img src="/images/awaiting-payment.png" alt="" />
               </div>
               <span className="text-black-500 block mb-2">در انتظار پرداخت</span>
-              <span className="text-2xl block mb-2">{toPersianDigits(getCreditWithNotPaidStatus?.data)} توکن</span>
+              <span className="text-2xl block mb-2">{toPersianDigits(getCreditWithNotPaidStatus?.data)} ریال</span>
             </Card>
           </Col>
         </Row>
