@@ -42,7 +42,7 @@ const CreditCompany = () => {
               : <Empty description="داده ای برای نمایش وجود ندارد." className="mt-10" />
             } */}
 
-              <TransactionProductVolume  />
+              <TransactionProductVolume data={undefined}  />
           </div>
         </Card>
       </Col>
