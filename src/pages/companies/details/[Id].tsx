@@ -211,7 +211,7 @@ const DetailsCompany = () => {
                   <span className="text-primary-500 block text-base font-bold mb-4">کل اعتبار دریافتی از سرمایه گذار</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
                     <span className="inline-block ml-2">{
-                      toPersianDigits(companyTotalCredits?.data)
+                      toPersianDigits(companyTotalCredits?.data)?.toLocaleString()
                     }
                     </span>
                     <span>ریال</span>
@@ -223,7 +223,7 @@ const DetailsCompany = () => {
                   <span className="text-primary-500 block text-base font-bold mb-4">اعتبار منتقل شده</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
                     <span className="inline-block ml-2">
-                      {toPersianDigits(companyCreditTransferForCompany?.data)}
+                      {toPersianDigits(companyCreditTransferForCompany?.data)?.toLocaleString()}
                     </span>
                     <span>ریال</span>
                   </p>
@@ -234,7 +234,7 @@ const DetailsCompany = () => {
                   <span className="text-primary-500 block text-base font-bold mb-4">کل اعتبار دریافتی از شرکت ها</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
                     <span className="inline-block ml-2">
-                      {toPersianDigits(companyCreditReceivedForCompany?.data)}
+                      {toPersianDigits(companyCreditReceivedForCompany?.data)?.toLocaleString()}
                     </span>
                     <span>ریال</span>
                   </p>
