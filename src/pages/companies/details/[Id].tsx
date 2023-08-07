@@ -135,26 +135,14 @@ const DetailsCompany = () => {
   };
 
   const financialInstrument = [
-    { name: "توکن", value: companyTotalCredits?.data },
-    { name: "گام", value: 10 },
-    { name: "برات", value: 10 },
-  ];
-
-  const buysData = [
-    ["Task", "Hours per Day"],
-    ["کنسانتره سنگ آهن", 300000000000],
-    ["شمش فولادی", 300000000000],
-    ["گندله سنگ آهن", 300000000000],
-  ];
-
-  const salesData = [
-    ["Sales", "Hours per Day"],
-    ["کک", 600000000000],
-    ["آهن اسفنجی", 400000000000],
+    ["financialInstrument", ""],
+    ["توکن",  companyTotalCredits?.data ],
+    ["گام",  10 ],
+    ["برات",  10 ],
   ];
 
 
-  const productCategoriesTransfer: any = [];
+  const productCategoriesTransfer: any = [["productCategoriesTransfer", ""],];
   allTransferAmountAllProductForCompany?.data?.map((category: { value: any; productCategory: any; }) => (
     productCategoriesTransfer.push(
       [category.productCategory.name,
@@ -162,16 +150,13 @@ const DetailsCompany = () => {
     )
   ));
 
-  const productCategoriesReceive: any = [];
+  const productCategoriesReceive: any = [["productCategoriesReceive", ""],];
   receivedAmountAllProductForCompany?.data?.map((category: { value: any; productCategory: any; }) => (
     productCategoriesReceive.push(
       [category.productCategory.name,
       category.value,]
     )
   ));
-
-  console.log("productCategoriesReceive", productCategoriesReceive)
-  console.log("productCategoriesTransfer", productCategoriesTransfer)
 
   return (
     <>
@@ -238,9 +223,7 @@ const DetailsCompany = () => {
                   <span className="text-primary-500 block text-base font-bold mb-4">اعتبار منتقل شده</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
                     <span className="inline-block ml-2">
-                      {/* {toPersianDigits(companyCreditTransferForCompany?.data)} */}
-
-                      ۹۰۰،۰۰۰،۰۰۰،۰۰۰
+                      {toPersianDigits(companyCreditTransferForCompany?.data)}
                     </span>
                     <span>ریال</span>
                   </p>
@@ -251,8 +234,7 @@ const DetailsCompany = () => {
                   <span className="text-primary-500 block text-base font-bold mb-4">کل اعتبار دریافتی از شرکت ها</span>
                   <p className="text-2xl mb-2 text-left text-gray-400">
                     <span className="inline-block ml-2">
-                      {/* {toPersianDigits(companyCreditReceivedForCompany?.data)} */}
-                      ۱۰۰،۰۰۰،۰۰۰،۰۰۰
+                      {toPersianDigits(companyCreditReceivedForCompany?.data)}
                     </span>
                     <span>ریال</span>
                   </p>
