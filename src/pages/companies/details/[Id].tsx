@@ -16,7 +16,7 @@ const BillsColumns = ([
     dataIndex: 'txId',
     key: 'txId',
     render: (record: any) => (
-      <div className='truncate w-[100px]'>{toPersianDigits(record)}</div>   
+      <div className='truncate w-[100px]'>{toPersianDigits(record)}</div>
     )
   },
   {
@@ -151,25 +151,27 @@ const DetailsCompany = () => {
     ["Sales", "Hours per Day"],
     ["کک", 600000000000],
     ["آهن اسفنجی", 400000000000],
-
   ];
 
 
   const productCategoriesTransfer: any = [];
   allTransferAmountAllProductForCompany?.data?.map((category: { value: any; productCategory: any; }) => (
-    productCategoriesTransfer.push({
-      name: category.productCategory.name,
-      value: category.value,
-    })
+    productCategoriesTransfer.push(
+      [category.productCategory.name,
+      category.value,]
+    )
   ));
 
   const productCategoriesReceive: any = [];
   receivedAmountAllProductForCompany?.data?.map((category: { value: any; productCategory: any; }) => (
-    productCategoriesReceive.push({
-      name: category.productCategory.name,
-      value: category.value,
-    })
+    productCategoriesReceive.push(
+      [category.productCategory.name,
+      category.value,]
+    )
   ));
+
+  console.log("productCategoriesReceive", productCategoriesReceive)
+  console.log("productCategoriesTransfer", productCategoriesTransfer)
 
   return (
     <>
@@ -264,7 +266,7 @@ const DetailsCompany = () => {
                   <div className="flex justify-center items-center">
                     {allTransferAmountAllProductForCompany?.data?.length == 0
                       ? <Empty description="داده ای برای نمایش وجود ندارد." className="my-10" />
-                      : <TransactionProductVolume data={buysData} />
+                      : <TransactionProductVolume data={productCategoriesTransfer} />
                     }
                   </div>
                 </Card>
@@ -275,14 +277,14 @@ const DetailsCompany = () => {
                   <div className="flex justify-center items-center">
                     {receivedAmountAllProductForCompany?.data?.length == 0
                       ? <Empty description="داده ای برای نمایش وجود ندارد." className="my-10" />
-                      : <TransactionProductVolume data={salesData} />
+                      : <TransactionProductVolume data={productCategoriesReceive} />
                     }
                   </div>
                 </Card>
               </Col>
             </Row>
             <Row gutter={16} className="mb-4">
-            <Col span={24}>
+              <Col span={24}>
                 <Card className="h-full h-96">
                   <span className="block text-lg">میانگین قیمت فروش کالاها</span>
                   <div className="flex justify-center items-center">

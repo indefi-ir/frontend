@@ -13,7 +13,7 @@ export const options = {
   is3D: true,
 };
 
-const TransactionProductVolume = ({data}) =>  {
+const TransactionProductVolume = ({data}:any) =>  {
   return (
     <Chart
       chartType="PieChart"
