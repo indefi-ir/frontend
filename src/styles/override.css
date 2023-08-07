@@ -70,3 +70,7 @@
   position: relative;
   overflow: hidden;
 }
+
+.ant-popover-content {
+  min-width: 200px;
+}

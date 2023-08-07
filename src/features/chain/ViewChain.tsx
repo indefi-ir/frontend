@@ -14,47 +14,46 @@ const ViewChain = ( {chain, chainId}:  any) => {
     
     const { data: tooltipData } = useSWR(`${tooltipSupplyChainForCompanyUrl}?chainId=${chainId}&companyId=${id}`, fetcher);
     const tooltipContent = () => (
-      <div className='flex flex-col'>
-        <div>
-          <span>خریدها</span>
+      <>
+        <div className='flex flex-col justify-center'>
+          <div className='text-center my-6 border-b-4 border-indigo-500'>خریدها</div>
           {tooltipData?.data?.buys?.map((buy: any) => (
             <>
-              <div>
-                <span className='block text-primary'>نام محصول</span>
-                {buy?.product?.name}
+              <div className='flex justify-between'>
+                <div className='font-bold'>نام محصول: </div>
+                <div>{buy?.product?.name}</div>
               </div>
-              <div>
-                <span className='block text-primary'> میزان محصول</span>
-                {buy?.productAmount}
+              <div className='flex justify-between'>
+                <div className='font-bold'>میزان محصول: </div>
+                <div>{buy?.productAmount}</div>
               </div>
-              <div>
-                <span className='block text-primary'> مبلغ محصول</span>
-                {buy?.value}
+              <div className='flex justify-between'>
+                <div className='font-bold'>مبلغ محصول: </div>
+                <div>{buy?.value}</div>
               </div>
             </>
           ))}
         </div>
         <div>
-          <span className='block'>فروش ها</span>
+          <div className='my-6'>فروش ها</div>
           {tooltipData?.data?.sells?.map((sell: any) => (
             <>
-              <div>
-                <span className='block text-primary'> نام محصول</span>
-                {sell?.product?.name}
+              <div className='flex justify-between'>
+                <div className='font-bold'> نام محصول: </div>
+                <div>{sell?.product?.name}</div>
               </div>
-              <div>
-                <span className='block text-primary'> میزان محصول‌</span>
-  
-                {sell?.productAmount}
+              <div className='flex justify-between'>
+                <div className='font-bold'> میزان محصول‌: </div>
+                <div>{sell?.productAmount}</div>
               </div>
-              <div>
-                <span className='block text-primary'> مبلغ محصول</span>
-                {sell?.value}
+              <div className='flex justify-between'>
+                <div className='font-bold'> مبلغ محصول: </div>
+                <div>{sell?.value}</div>
               </div>
             </>
           ))}
         </div>
-      </div>
+      </>
     );
   
     return (
