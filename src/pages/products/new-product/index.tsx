@@ -80,7 +80,7 @@ const NewProduct = () => {
             </div>
           </div>
           <Form.Item className='flex justify-end'>
-            <Button htmlType="submit" loading={loading} className="w-full bg-pasargad-yellow-400 text-white hover:!text-white h-[50px] text-base mt-10">افزودن دسته بندی</Button>
+            <Button htmlType="submit" loading={loading} className="w-full bg-primary-500 text-white hover:!text-white h-[50px] text-base mt-10">افزودن دسته بندی</Button>
           </Form.Item>
         </Form>
       </Card>

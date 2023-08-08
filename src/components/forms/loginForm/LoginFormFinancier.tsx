@@ -43,7 +43,7 @@ const LoginFormFinancier = () => {
             <Input.Password placeholder="کلمه عبور" className="p-3 text-sm w-96" />
           </Form.Item>
           <Form.Item>
-            <Button htmlType="submit" loading={loading} className="w-full bg-pasargad-yellow-400 text-white hover:!text-white h-[55px] text-base">
+            <Button htmlType="submit" loading={loading} className="w-full bg-primary-500 text-white hover:!text-white h-[55px] text-base">
               ورود
             </Button>
           </Form.Item>

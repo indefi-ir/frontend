@@ -73,7 +73,7 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
   return (
     <div style={{ height: '22.5rem' }}>
       <Diagram schema={schema} onChange={onChange} />
-      <Button type="primary" className="bg-pasargad-yellow-400 text-white mt-4" onClick={sendChainData}>ثبت زنجیره</Button>
+      <Button type="primary" className="bg-primary-500 text-white mt-4" onClick={sendChainData}>ثبت زنجیره</Button>
     </div>
   );
 };
