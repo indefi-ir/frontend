@@ -48,7 +48,7 @@ const ProductUnitForm = ({closeModal}:any) => {
             <Checkbox className='flex-1'>کمیت‌ اصلی</Checkbox>
           </Form.Item>
           <Form.Item className="flex justify-end">
-            <Button type="primary" htmlType="submit" loading={loading} className="bg-primary-500 text-white hover:!text-white">
+            <Button type="primary" htmlType="submit" loading={loading} className="bg-pasargad-yellow-400 text-white hover:!text-white">
               ثبت
             </Button>
           </Form.Item>

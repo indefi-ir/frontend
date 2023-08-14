@@ -95,10 +95,10 @@ const SupplyChains = () => {
           />
         </div>
         <div className='action-box'>
-          <Button className='bg-primary-500 text-white hover:!text-white h-[50px] text-base ml-3' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/supply-chains/new-chain`)}>
+          <Button className='bg-pasargad-yellow-400 text-white hover:!text-white h-[50px] text-base ml-3' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/supply-chains/new-chain`)}>
             افزودن زنجیره
           </Button>
-          <Button className='bg-white border-primary-500 text-primary-500' icon={<UploadOutlined />} size="large">
+          <Button className='bg-white border-pasargad-yellow-400 text-pasargad-yellow-400' icon={<UploadOutlined />} size="large">
             خروجی
           </Button>
         </div>

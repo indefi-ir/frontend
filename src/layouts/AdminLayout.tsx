@@ -60,9 +60,9 @@ const AdminLayout = ({ children }: Props) => {
         <AdminMenu />
       </Sider>
       <Layout>
-        <Header className='flex items-center justify-between' style={{ padding: "0px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>
+        <Header className='flex items-center justify-between' style={{ padding: "0px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: '#2E3743' }}>
           <div className='flex items-center'>
-            <div className='text-primary-500 text-xl'>
+            <div className='text-pasargad-yellow-400 text-xl'>
               {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                 className: 'trigger',
                 onClick: () => setCollapsed(!collapsed),
@@ -70,7 +70,7 @@ const AdminLayout = ({ children }: Props) => {
             </div>
             {/* <Breadcrumb /> */}
           </div>
-          <Button className='!bg-red-400 text-primary-500' icon={<PoweroffOutlined />} onClick={logoutUser}>خروج کاربر</Button>
+          <Button className='!bg-red-400 text-white' icon={<PoweroffOutlined />} onClick={logoutUser}>خروج کاربر</Button>
         </Header>
         <Content style={{ margin: '16px', minHeight: "90vh", padding: '20px' }}>
           <div>

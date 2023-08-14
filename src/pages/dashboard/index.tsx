@@ -172,7 +172,7 @@ const Dashboard = () => {
             <Card
               className="h-full"
               title={<span className="text-gray-400 font-medium">شرکت های های اخیر</span>}
-              extra={<a href="#" className="text-primary-500">بیشتر</a>} >
+              extra={<a href="#" className="text-pasargad-yellow-400">بیشتر</a>} >
               <Table
                 locale={{ emptyText: "داده ای برای نمایش وجود ندارد." }}
                 columns={CompanyColumns} dataSource={companies?.data} />
@@ -182,7 +182,7 @@ const Dashboard = () => {
             <Card 
               className="h-full"
               title={<span className="text-gray-400 font-medium">صورتحساب های اخیر</span>} 
-              extra={<a href="#" className="text-primary-500">بیشتر</a>} >
+              extra={<a href="#" className="text-pasargad-yellow-400">بیشتر</a>} >
               <Table locale={{ emptyText: "داده ای برای نمایش وجود ندارد." }} columns={BillsColumns} dataSource={bills?.data} />
             </Card>
           </Col>

@@ -37,10 +37,10 @@ const Products = () => {
           />
         </div>
         <div className='action-box'>
-          <Button className='bg-primary-500 text-white ml-3 hover:!text-white' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/products/new-product/`)}>
+          <Button className='bg-pasargad-yellow-400 text-white ml-3 hover:!text-white' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/products/new-product/`)}>
             افزودن دسته بندی محصول
           </Button>
-          <Button className='bg-white border-primary-500 text-primary-500' icon={<UploadOutlined />} size="large">
+          <Button className='bg-white border-pasargad-yellow-400 text-pasargad-yellow-400' icon={<UploadOutlined />} size="large">
             خروجی
           </Button>
         </div>
