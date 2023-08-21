@@ -22,7 +22,7 @@ interface Props {
 const AdminLayout = ({ children }: Props) => {
   const { userInfo } = useContext(UserInfoContext);
   const router = useRouter();
-  
+
   const { data } = useSWR(userInfo.role === "Funder" ? null : myCompanyInfoUrl, fetcher);
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -48,12 +48,15 @@ const AdminLayout = ({ children }: Props) => {
         collapsed={collapsed}
       >
         {!collapsed &&
-          <div className='flex justify-center mt-10 mb-8'>
+          <div className='flex justify-center ' style={{ backgroundColor: "#f5f5f5", padding: "10px" }}>
             {userInfo.role === "Funder"
-              ? <img src="/images/pasargad-logo-desktop.svg" alt="pasargad logo" />
+              ? <div className='flex flex-col items-center justify-center'>
+                <Avatar src="/images/pasargad-logo-desktop.svg" shape="square" size={84} className="border" />
+                <span className='block text-[#9d9d9d] text-base mt-4'>بانک پاسارگاد</span>
+              </div>
               : <div className='flex flex-col items-center justify-center'>
-                <Avatar src={data?.data?.logo} size={64} />
-                <span className='block text-white text-base mt-4'>{data?.data?.name}</span>
+                <Avatar shape="square" src={data?.data?.logo} size={84} />
+                <span className='block text-[#9d9d9d] text-base mt-4'>{data?.data?.name}</span>
               </div>
             }
           </div>
