@@ -11,7 +11,21 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
 
   const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
 
-  console.log("schema.links",schema.nodes)
+  console.log("schema.nodes",schema.nodes) 
+  console.log("schema.links",schema.links)
+
+
+  const nodes: string[] = [];
+  schema.nodes?.map((node) => (
+    nodes.push(
+      node.id
+    )
+  ));
+
+  console.log("nodes",nodes)
+
+
+
   const [chainData, setChainData] = useState<any>();
 
   const findHeadAndPrintChain = (links: any) => {
@@ -25,6 +39,7 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
 
     let headNode = null;
 
+    
     // @ts-ignore
     for (const node of outputs) {
       if (!inputs.has(node)) {
@@ -58,7 +73,7 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
   const sendChainData = () => {
     findHeadAndPrintChain(schema.links);
     getChainData({
-      nodes: chainData,
+      nodes: nodes,
       links: schema.links,
       schema: schema
     })
@@ -69,6 +84,8 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
       addNode(company)
     ))
   }, [nodesList?.length])
+
+  console.log("initialSchema", initialSchema)
 
   return (
     <div style={{ height: '22.5rem' }}>
