@@ -44,9 +44,6 @@ const NewChain = () => {
     links:[],
     schema: []
   });
-
-
-  console.log("chainInfo.nnode", chainInfo.nodes)
   const [file, setFile] = useState<any>({});
 
   const props: UploadProps = {
@@ -71,9 +68,6 @@ const NewChain = () => {
 
   const cloneChainInfo = chainInfo?.nodes?.length > 0 ? [...chainInfo?.nodes] : []
   cloneChainInfo.shift();
-
-
-  console.log("cloneChainInfo", cloneChainInfo)
 
   const handleOk = () => {
     companiesList?.map((company: { value: any; label: any; }) => (

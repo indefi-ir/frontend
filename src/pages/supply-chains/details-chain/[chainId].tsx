@@ -12,8 +12,6 @@ const DetailsChain = () => {
   const supplyChainDetails = `${supplyChainDetailsUrl}${chainId}`;
   const { data: chainDetails, error: companyDetailsError } = useSWR(supplyChainDetails, fetcher);
 
-  console.log("chainDetails", chainDetails)
-
   return (
     <>
       <Card>

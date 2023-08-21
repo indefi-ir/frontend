@@ -119,10 +119,6 @@ const DetailsCompany = () => {
 
   const { data: receivedAmountAllProductForCompany } = useSWR(`${getReceivedAmountAllProductForCompanyUrl}${Id}`, fetcher);
 
-  console.log("allTransferAmountAllProductForCompany", allTransferAmountAllProductForCompany)
-
-  console.log("receivedAmountAllProductForCompany", receivedAmountAllProductForCompany)
-
   const { data: averagePriceForAllProductForCompany } = useSWR(`${getAveragePriceForAllProductForCompany}${Id}&startTime=2022-09-01T02:25:20.619Z&endTime=2024-09-01T02:25:20.619Z`, fetcher);
 
   const companyCreditReceivedForCompanyUrl = `${getReceivedCreditForCompanyUrl}${Id}`;

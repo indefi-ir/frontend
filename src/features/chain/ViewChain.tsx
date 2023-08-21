@@ -9,7 +9,6 @@ import { tooltipSupplyChainForCompanyUrl } from '../../services/apiEndpoint';
 import toPersianDigits from '../../utils/toPersianDigits';
 
 const ViewChain = ({ chain, chainId }: any) => {
-
   const CustomNode = (props: any) => {
     const { outputs, inputs, id } = props;
 
@@ -106,11 +105,10 @@ const ViewChain = ({ chain, chainId }: any) => {
     links: chainLinks
   });
 
-  const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
-
+  const [schema] = useSchema(initialSchema);
   return (
     <div style={{ height: '22.5rem' }}>
-      <Diagram schema={schema} onChange={onChange} />
+      <Diagram schema={schema}/>
     </div>
   );
 };

@@ -83,7 +83,6 @@ const BillsCompany = () => {
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
   const { data } = useSWR(transactionMyCompanyUrl, fetcher)
-  console.log("data", data)
 
   return (
     <>

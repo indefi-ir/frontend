@@ -77,8 +77,6 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
     ))
   }, [nodesList?.length])
 
-  console.log("initialSchema", initialSchema)
-
   return (
     <div style={{ height: '22.5rem' }}>
       <Diagram schema={schema} onChange={onChange} />
