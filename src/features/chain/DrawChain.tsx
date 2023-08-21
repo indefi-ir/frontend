@@ -11,20 +11,12 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
 
   const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
 
-  console.log("schema.nodes",schema.nodes) 
-  console.log("schema.links",schema.links)
-
-
   const nodes: string[] = [];
   schema.nodes?.map((node) => (
     nodes.push(
       node.id
     )
   ));
-
-  console.log("nodes",nodes)
-
-
 
   const [chainData, setChainData] = useState<any>();
 
@@ -39,7 +31,7 @@ const UncontrolledDiagram = ({ nodesList, getChainData }) => {
 
     let headNode = null;
 
-    
+
     // @ts-ignore
     for (const node of outputs) {
       if (!inputs.has(node)) {
