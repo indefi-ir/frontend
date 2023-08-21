@@ -22,7 +22,8 @@ interface Props {
 const AdminLayout = ({ children }: Props) => {
   const { userInfo } = useContext(UserInfoContext);
   const router = useRouter();
-  const { data } = useSWR(myCompanyInfoUrl, fetcher);
+  
+  const { data } = useSWR(userInfo.role === "Funder" ? null : myCompanyInfoUrl, fetcher);
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
