@@ -15,11 +15,11 @@ const CreditCompany = () => {
   const { data: companyTotalCredits, error: companyTotalCreditsError } = useSWR(companyTotalCreditsUrl, fetcher);
 
   const financialInstrument = [
-    { name: "توکن", value: companyTotalCredits?.data },
-    { name: "گام", value: 0 },
-    { name: "برات", value: 0 },
+    ["financialInstrument", ""],
+    ["توکن",  companyTotalCredits?.data ],
+    ["گام",  10 ],
+    ["برات",  10 ],
   ];
-
 
   return (
     <Row gutter={16}>
@@ -37,12 +37,10 @@ const CreditCompany = () => {
         <Card className='h-full'>
           <span className="block text-lg">ابزارهای مالی</span>
           <div className="flex justify-center items-center">
-            {/* {companyTotalCredits?.data > 0
+            {companyTotalCredits?.data > 0
               ? <TransactionProductVolume data={financialInstrument} />
               : <Empty description="داده ای برای نمایش وجود ندارد." className="mt-10" />
-            } */}
-
-              <TransactionProductVolume data={undefined}  />
+            }
           </div>
         </Card>
       </Col>
