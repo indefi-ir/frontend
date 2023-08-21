@@ -27,7 +27,7 @@ const columns = (searchTerm: string) => ([
     dataIndex: 'credit',
     key: 'credit',
     render: (record: number) => (
-      <div style={{ direction: "ltr" }} className="text-right">{toPersianDigits (record)}</div>
+      <div style={{ direction: "ltr" }} className="text-right">{toPersianDigits (record.toLocaleString())}</div>
     )
   },
   {

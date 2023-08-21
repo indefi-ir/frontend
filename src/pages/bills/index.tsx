@@ -60,7 +60,7 @@ const columns = (searchTerm: string) => ([
     dataIndex: 'amount',
     key: 'amount',
     render: (record: any) => (
-      <div>{toPersianDigits(record)}</div>
+      <div>{toPersianDigits(record.toLocaleString())}</div>
     )
   },
   {

@@ -64,6 +64,9 @@ const columns = (searchTerm: string, userInfo: any ) => ([
     title: 'میزان اعتبار',
     dataIndex: 'amount',
     key: 'amount',
+    render: (record: any) => (
+      <div>{toPersianDigits(record.toLocaleString())}</div>
+    )
   },
   {
     title: 'تاریخ ایجاد',

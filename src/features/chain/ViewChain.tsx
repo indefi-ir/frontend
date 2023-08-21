@@ -6,12 +6,13 @@ import React from 'react';
 import { BuildingIcon } from '../../components/icons';
 import { fetcher } from '../../services/axios';
 import { tooltipSupplyChainForCompanyUrl } from '../../services/apiEndpoint';
+import toPersianDigits from '../../utils/toPersianDigits';
 
-const ViewChain = ( {chain, chainId}:  any) => {
+const ViewChain = ({ chain, chainId }: any) => {
 
   const CustomNode = (props: any) => {
     const { outputs, inputs, id } = props;
-    
+
     const { data: tooltipData } = useSWR(`${tooltipSupplyChainForCompanyUrl}?chainId=${chainId}&companyId=${id}`, fetcher);
     const tooltipContent = () => (
       <>
@@ -29,7 +30,7 @@ const ViewChain = ( {chain, chainId}:  any) => {
               </div>
               <div className='flex justify-between'>
                 <div className='font-bold'>مبلغ محصول: </div>
-                <div>{buy?.value}</div>
+                <div>{toPersianDigits(buy?.value.toLocaleString())}</div>
               </div>
             </>
           ))}
@@ -48,39 +49,39 @@ const ViewChain = ( {chain, chainId}:  any) => {
               </div>
               <div className='flex justify-between'>
                 <div className='font-bold'> مبلغ محصول: </div>
-                <div>{sell?.value}</div>
+                <div>{toPersianDigits(sell?.value.toLocaleString())}</div>
               </div>
             </>
           ))}
         </div>
       </>
     );
-  
+
     return (
       <Popover content={tooltipContent} trigger="hover">
-      <div className='flex flex-col items-center justify-center bg-red'>
-        <div className='flex justify-between items-center'>
-          {outputs.map((port: any) => React.cloneElement(port, { style: { width: '25px', height: '25px', background: '#F9B4AF', borderRadius: '50%' } }))}
-          <div className='flex justify-center items-center rounded-full bg-primary-100 w-14 h-14 mb-2'>
-            <BuildingIcon color="#5C59E8" width="30" height="30" />
+        <div className='flex flex-col items-center justify-center bg-red'>
+          <div className='flex justify-between items-center'>
+            {outputs.map((port: any) => React.cloneElement(port, { style: { width: '25px', height: '25px', background: '#F9B4AF', borderRadius: '50%' } }))}
+            <div className='flex justify-center items-center rounded-full bg-primary-100 w-14 h-14 mb-2'>
+              <BuildingIcon color="#5C59E8" width="30" height="30" />
+            </div>
+            {inputs.map((port: any) => React.cloneElement(port, { style: { width: '25px', height: '25px', background: '#9ED0B9', borderRadius: '50%' } }))}
           </div>
-          {inputs.map((port: any) => React.cloneElement(port, { style: { width: '25px', height: '25px', background: '#9ED0B9', borderRadius: '50%' } }))}
+          <div className='bg-blue-300 rounded-md py-2 px-5'>
+            {props.content}
+          </div>
         </div>
-        <div className='bg-blue-300 rounded-md py-2 px-5'>
-          {props.content}
-        </div>
-      </div>
       </Popover>
     );
   }
   let ParsedChainSchema;
 
-  if(chain != null){
+  if (chain != null) {
     ParsedChainSchema = JSON.parse(chain);
   }
 
-  const chainLinks: { input: string; output: string;readonly: boolean }[]  = [];
-  ParsedChainSchema?.links?.map((link:any)=> (
+  const chainLinks: { input: string; output: string; readonly: boolean }[] = [];
+  ParsedChainSchema?.links?.map((link: any) => (
     chainLinks.push({
       input: link.input,
       output: link.output,
@@ -91,13 +92,13 @@ const ViewChain = ( {chain, chainId}:  any) => {
   const chainNodes: any = [];
   ParsedChainSchema?.nodes?.map((node: any) => (
     chainNodes.push({
-      id: node?.id, 
-      content: node?.content, 
+      id: node?.id,
+      content: node?.content,
       coordinates: node?.coordinates,
       inputs: node?.inputs,
-      outputs: node?.outputs, 
-      render:CustomNode
-   })
+      outputs: node?.outputs,
+      render: CustomNode
+    })
   ))
 
   const initialSchema = createSchema({
