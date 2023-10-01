@@ -26,7 +26,7 @@ module.exports = {
         ]
       },
       backgroundImage: {
-        'gradient-radial': ' linear-gradient(to top,white 0%,white 50%,#2E3743 50%,#2E3743 100%)',
+        'gradient-radial': ' linear-gradient(to top,white 0%,white 50%,#5C59E8 50%,#5C59E8 100%)',
       }
     },
     colors: {

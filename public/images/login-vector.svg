@@ -22,7 +22,7 @@
 
       .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
         fill: none;
-        stroke: #f1c40f;
+        stroke: #5C59E8;
         stroke-miterlimit: 10;
       }
 
@@ -53,7 +53,7 @@
       }
 
       .cls-12 {
-        fill: #f1c40f;
+        fill: #5C59E8;
       }
 
       .cls-8 {

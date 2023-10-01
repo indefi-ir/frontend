@@ -185,7 +185,7 @@ const DetailsCompany = () => {
                   </Select>
                 </Form.Item>
                 <Form.Item>
-                  <Button className="bg-pasargad-yellow-400" type="primary" htmlType="submit">
+                  <Button className="bg-primary-500" type="primary" htmlType="submit">
                     ذخیره
                   </Button>
                 </Form.Item>

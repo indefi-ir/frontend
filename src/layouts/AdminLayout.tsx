@@ -48,7 +48,7 @@ const AdminLayout = ({ children }: Props) => {
         collapsed={collapsed}
       >
         {!collapsed &&
-          <div className='flex justify-center ' style={{ backgroundColor: "#f5f5f5", padding: "10px" }}>
+          <div className='flex justify-center ' style={{ padding: "10px" }}>
             {userInfo.role === "Funder"
               ? <div className='flex flex-col items-center justify-center'>
                 <Avatar src="/images/pasargad-logo-desktop.svg" shape="square" size={84} className="border" />
@@ -64,9 +64,9 @@ const AdminLayout = ({ children }: Props) => {
         <AdminMenu />
       </Sider>
       <Layout>
-        <Header className='flex items-center justify-between' style={{ padding: "0px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: '#2E3743' }}>
+        <Header className='flex items-center justify-between' style={{ padding: "0px 40px", boxShadow: "-1px 13px 11px -4px rgba(255,255,255,0.34)", background: 'white' }}>
           <div className='flex items-center'>
-            <div className='text-pasargad-yellow-400 text-xl'>
+            <div className='text-primary-500 text-xl'>
               {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                 className: 'trigger',
                 onClick: () => setCollapsed(!collapsed),
@@ -74,7 +74,7 @@ const AdminLayout = ({ children }: Props) => {
             </div>
             {/* <Breadcrumb /> */}
           </div>
-          <Button className='!bg-red-400 text-white' icon={<PoweroffOutlined />} onClick={logoutUser}>خروج کاربر</Button>
+          <Button className='bg-primary-100 text-primary-500' icon={<PoweroffOutlined />} onClick={logoutUser}>خروج کاربر</Button>
         </Header>
         <Content style={{ margin: '16px', minHeight: "90vh", padding: '20px' }}>
           <div>

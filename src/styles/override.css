@@ -1,8 +1,9 @@
 .ant-menu-item.ant-menu-item-selected {
-  background-color: #FACB06 !important;
+  background-color: #5C59E8 !important;
 }
 
-.ant-menu-item.ant-menu-item-selected {
+.ant-menu-item.ant-menu-item-selected span,
+.ant-menu-item.ant-menu-item-selected svg {
   color: white !important;
 }
 
@@ -31,23 +32,23 @@
 }
 
 .ant-tabs-nav-list .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: #FACB06;
+  color: #5C59E8;
 }
 
 .sidebar {
-  background-color: #2E3743 !important;
+  background-color: white !important;
 }
 
 .sidebar .ant-menu {
-  background-color: #2E3743;
+  background-color: white;
 }
 
 .sidebar .ant-menu-item span {
-  color: white;
+  color: #667085;
 }
 
 .sidebar .ant-menu-item-icon svg {
-  color: white;
+  color:  #667085;
 }
 
 .ant-breadcrumb-link a, .ant-breadcrumb-separator {
@@ -73,4 +74,18 @@
 
 .ant-popover-content {
   min-width: 200px;
+}
+
+.ant-pagination li.ant-pagination-item.ant-pagination-item-active {
+  background-color: #5C59E8;
+  color: white;
+}
+
+.ant-pagination li.ant-pagination-item.ant-pagination-item-active a {
+  color: white;
+}
+
+button.ant-pagination-item-link span svg {
+  color: #5C59E8;
+  font-weight: bold;
 }
