@@ -1,21 +1,17 @@
 // @ts-nocheck
 
 import React from 'react';
-import { Avatar, Button, Card, Tooltip, DatePickerProps, Input, Select, Space, Table, Tag } from 'antd';
+import { Avatar, Button, Card, DatePickerProps, Input, Select, Row, Col, Badge } from 'antd';
 import useSWR from 'swr';
 import nextRouter, { useRouter } from 'next/router';
 import { companiesUrl } from '../../services/apiEndpoint';
 import { fetcher } from '../../services/axios';
 import { useState } from 'react';
-import { userInfoContext } from '../../components/providers/userInfoProvider/UserInfoProvider';
-import dateFormat from '../../utils/dateFormat';
-import { CompanyIcon, CreditIcon, EyeIcon } from '../../components/icons';
-import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import { PlusOutlined, UploadOutlined, EyeOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons';
 import toPersianNumbers from '../../utils/toPersianDigits'
 const { Meta } = Card;
 
-
-const Companies = () => {
+const ScfPrograms = () => {
   const [searchTerm, setSearchTerm] = useState("")
   //@ts-ignore
   const { data } = useSWR(companiesUrl, fetcher);
@@ -52,7 +48,7 @@ const Companies = () => {
         </div>
 
         <div className='action-box'>
-          <Button className='bg-primary-500 text-white ml-3 hover:!text-white' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/companies/new-company`)}>
+          <Button className='bg-primary-500 text-white ml-3 hover:!text-white' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/scf-programs/new-scf-program`)}>
             افزودن
           </Button>
           <Button className='bg-primary-100 text-primary-500' icon={<UploadOutlined />} size="large">
@@ -63,27 +59,26 @@ const Companies = () => {
       <div>
         <Row gutter={16}>
           <Col span={8}>
-            <Card 
-              title="Card title" 
-              bordered={false}
-              actions={[
-                <SettingOutlined key="setting" />,
-                <EditOutlined key="edit" />,
-                <EllipsisOutlined key="ellipsis" />,
-              ]}
-            >
-              Card content
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" bordered={false}>
-              Card content
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Card title" bordered={false}>
-              Card content
-            </Card>
+            <Badge.Ribbon text="فعال" color="#3DA172">
+              <Card
+                actions={[
+                  <EditOutlined 
+                    key="edit" 
+                    style={{ fontSize: '22px'}} 
+                    onClick={() => nextRouter.push(`/scf-programs/edit-scf-program/111`)}
+                  />,
+                  <EyeOutlined 
+                    key="details" 
+                    style={{ fontSize: '22px'}}
+                    onClick={() => nextRouter.push(`/scf-programs/details-scf-program/111`)}
+                  />,
+                ]}
+              >
+                <p className='mb-3 font-bold text-base'>برنامه تامین مالی میدکو</p>
+                <p className='my-2'>ابزار مالی یه چیزی</p>
+                <p className='my-2'>متد برنامه</p>
+              </Card>
+            </Badge.Ribbon>
           </Col>
         </Row>
       </div>
@@ -91,7 +86,7 @@ const Companies = () => {
   )
 };
 
-Companies.layout = 'admin'
+ScfPrograms.layout = 'admin'
 
-export default Companies
+export default ScfPrograms
 

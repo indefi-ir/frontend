@@ -19,29 +19,36 @@ const adminMenuItems = [
   {
     key: '2',
     icon: <CompanyIcon />,
+    label: 'درخواست ها',
+    path: '/requests'
+  },
+  {
+    key: '3',
+    icon: <CompanyIcon />,
+    label: 'برنامه های تامین مالی',
+    path: '/scf-programs'
+  },
+  {
+    key: '4',
+    icon: <CompanyIcon />,
     label: 'شرکت ها',
     path: '/companies'
   },
-  // {
-  //   key: '3',
-  //   icon: <CompanyIcon />,
-  //   label: 'درخواست ها',
-  //   path: '/requests'
-  // },
+  
   {
-    key: '3',
+    key: '5',
     icon: <SupplyChainIcon />,
     label: 'مدیریت زنجیره ها',
     path: '/supply-chains'
   },
   {
-    key: '4',
+    key: '6',
     icon: <FinancierIcon />,
     label: 'تراکنش ها',
     path: '/bills'
   },
   {
-    key: '5',
+    key: '7',
     icon: <FinancierIcon />,
     label: 'محصولات',
     path: '/products',
