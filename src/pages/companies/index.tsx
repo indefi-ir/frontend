@@ -133,7 +133,7 @@ const Companies = () => {
 
         <div className='action-box'>
           <Button className='bg-primary-500 text-white ml-3 hover:!text-white' icon={<PlusOutlined />} size="large" onClick={() => nextRouter.push(`/companies/new-company`)}>
-            افزودن شرکت
+            افزودن
           </Button>
           <Button className='bg-primary-100 text-primary-500' icon={<UploadOutlined />} size="large">
             خروجی

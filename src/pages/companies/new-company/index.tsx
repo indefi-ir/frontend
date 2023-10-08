@@ -1,16 +1,15 @@
-import { } from '@ant-design/icons';
+import { MinusCircleOutlined } from '@ant-design/icons';
 import {
   Button,
   Card,
   DatePicker,
-  Empty,
   Form,
   Input,
   Select,
   SelectProps,
   Switch,
   TreeSelect,
-  notification
+  notification,
   // Upload,
 } from 'antd';
 
@@ -51,7 +50,7 @@ const NewCompany = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const [api, contextHolder] = notification.useNotification();
-  
+
   const router = useRouter();
   const { data: productCategories } = useSWR(productCategoriesUrl, fetcher);
 
@@ -73,7 +72,7 @@ const NewCompany = () => {
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>بارگذاری</div>
+      <div style={{ marginTop: 8 }}>بارگذاری لوگو</div>
     </div>
   );
   // ts-ignore
@@ -108,103 +107,163 @@ const NewCompany = () => {
 
   return (
     <>
-     {contextHolder}
-    <Card>
+      {contextHolder}
       <Form layout="vertical" onFinish={onFinish}>
-        <Form.Item required>
-        <Upload
-          name="avatar"
-          listType="picture-circle"
-          className="avatar-uploader mb-8"
-          showUploadList={false}
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          beforeUpload={beforeUpload}
-          onChange={handleChange}
-        >
-          {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%', borderRadius: '50%' }} /> : uploadButton}
-        </Upload>
-        </Form.Item>
-        <div className='flex gap-6'>
-          <Form.Item className='flex-1' name="name" label="نام شرکت" required>
-            <Input />
-          </Form.Item>
-          <Form.Item className='flex-1' name="owner" label="نام مدیرعامل" required>
-            <Input />
-          </Form.Item>
-        </div>
-        <div className='flex gap-6'>
-          <Form.Item className='flex-1' name="email" label="ایمیل" required>
-            <Input />
-          </Form.Item>
-          <Form.Item className='flex-1' name="phonenumber" label="شماره تماس" required>
-            <Input />
-          </Form.Item>
-        </div>
-        <div className='flex gap-6'>
-          <Form.Item className='flex-1' name="nationalID" label="شناسه ملی شرکت" required>
-            <Input />
-          </Form.Item>
-          <Form.Item className='flex-1' name="customerID" label="شماره مشتری" required>
-            <Input />
-          </Form.Item>
-          <Form.Item className='flex-1' name="shaba" label="شماره شبا" required>
-            <Input />
-          </Form.Item>
-        </div>
-        <div className='flex gap-6'>
-          <Form.Item
-            name="password"
-            label="کلمه عبور"
-            required
-            hasFeedback
-            className='flex-1'
-          >
-            <Input.Password />
-          </Form.Item>
+        <Card title="اطلاعات اولیه کسب و کار" className='mb-4'>
+          <div className='flex gap-6'>
+            <Form.Item label="شناسه ملی کسب و کار" name="nationalID" className='flex-1'>
+              <Input />
+            </Form.Item>
+            <Form.Item label="شناسه ملی مدیرعامل" name="" className='flex-1'>
+              <Input />
+            </Form.Item>
+          </div>
+          <div className='flex gap-6'>
+            <Form.Item label="نام مدیرعامل" name="owner" className='flex-1'>
+              <Input />
+            </Form.Item>
+            <Form.Item label="شماره موبایل مدیرعامل" name="" className='flex-1'>
+              <Input />
+            </Form.Item>
+          </div>
+        </Card>
+        <Card title="اطلاعات بانکی" className='mb-4'>
+          <div className='flex gap-6'>
+            <Form.Item label="شماره حساب" name="" className='flex-1'>
+              <Input />
+            </Form.Item>
+            <Form.Item label="کد شعبه" name="" className='flex-1'>
+              <Input />
+            </Form.Item>
+          </div>
+          <div className='flex gap-6'>
+            <Form.Item label="شماره مشتری" name="customerID" className='flex-1'>
+              <Input />
+            </Form.Item>
+            <Form.Item label="شماره شبا" name="iban" className='flex-1'>
+              <Input />
+            </Form.Item>
+          </div>
+        </Card>
+        <Card title="اطلاعات صاحبین امضا" className='mb-4'>
+          <div>
+            <Form.List name="fields">
+              {(fields, { add, remove }) => {
+                return (
+                  <div>
+                    {fields.map((field, index) => (
+                      <div key={field.key}>
+                        <div className='flex gap-6'>
+                          <Form.Item label="شناسه ملی" name="nationalId" className='flex-1'>
+                            <Input />
+                          </Form.Item>
+                          <Form.Item label="شماره موبایل" name="phoneNumber" className='flex-1'>
+                            <Input />
+                          </Form.Item>
+                          {fields.length > 1 ? (
+                            <MinusCircleOutlined
+                              className="dynamic-delete-button"
+                              onClick={() => remove(field.name)}
+                            />
+                          ) : null}
+                        </div>
 
-          <Form.Item
-            name="confirm"
-            label="تایید کلمه عبور"
-            dependencies={['password']}
-            hasFeedback
-            className='flex-1'
-            rules={[
-              {
-                required: true,
-                message: 'لطفا تکرار پسورد را وارد نمایید.',
-              },
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value || getFieldValue('password') === value) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(new Error('تکرار پسورد مطابقت ندارد.'));
+                      </div>
+                    ))}
+                    <div className='flex justify-end'>
+                      <Form.Item>
+                        <Button
+                          htmlType='submit'
+                          className='bg-white text-primary-500 border-dashed border-1 border-primary-500'
+                          type="dashed"
+                          onClick={() => add()}
+                        >
+                          <PlusOutlined /> افزودن
+                        </Button>
+                      </Form.Item>
+                    </div>
+                  </div>
+                );
+              }}
+            </Form.List>
+          </div>
+        </Card>
+        <Card title="سایر اطلاعات" className='mb-4'>
+          <div className='flex'>
+            <Form.Item>
+              <Upload
+                name="avatar"
+                listType="picture-card"
+                className="avatar-uploader mb-8"
+                showUploadList={false}
+                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                beforeUpload={beforeUpload}
+                onChange={handleChange}
+              >
+                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%', borderRadius: '50%' }} /> : uploadButton}
+              </Upload>
+            </Form.Item>
+          </div>
+          <div className='flex gap-6'>
+            <Form.Item label="کد پستی" name="" className='flex-1'>
+              <Input />
+            </Form.Item>
+            <Form.Item label="شماره تلفن" name="phoneNumber" className='flex-1'>
+              <Input />
+            </Form.Item>
+            <Form.Item label="ایمیل" name="email" className='flex-1'>
+              <Input />
+            </Form.Item>
+          </div>
+          <div className='flex gap-6'>
+            <Form.Item
+              name="password"
+              label="کلمه عبور"
+              required
+              hasFeedback
+              className='flex-1'
+            >
+              <Input.Password />
+            </Form.Item>
+
+            <Form.Item
+              name="confirm"
+              label="تایید کلمه عبور"
+              dependencies={['password']}
+              hasFeedback
+              className='flex-1'
+              rules={[
+                {
+                  required: true,
+                  message: 'لطفا تکرار پسورد را وارد نمایید.',
                 },
-              }),
-            ]}
-          >
-            <Input.Password />
-          </Form.Item>
-        </div>
-        <div className='flex-1 gap-6 items-center'>
-          <Form.Item label="محصولات" name="productCategories" required>
-            <Select
-              mode="multiple"
-              allowClear
-              placeholder="لطفا محصولات مورد نظر را انتخاب کنید."
-              options={options}
-              notFoundContent={<Empty description="محصولی یافت نشد."/>}
-            />
-          </Form.Item>
-        </div>
-        <Form.Item name="address" label="آدرس پستی" required>
-          <TextArea rows={4} />
-        </Form.Item>
-        <Form.Item className='flex justify-end'>
-          <Button htmlType="submit" loading={loading} className="w-full bg-primary-500 text-white hover:!text-white h-[50px] text-base">افزودن شرکت</Button>
-        </Form.Item>
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue('password') === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('تکرار پسورد مطابقت ندارد.'));
+                  },
+                }),
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+          </div>
+          <div className='flex gap-6'>
+            <Form.Item name="address" label="آدرس پستی" className='flex-1'>
+              <TextArea rows={4} />
+            </Form.Item>
+          </div>
+          <div className='flex justify-end'>
+            <Form.Item>
+              <Button htmlType='submit' className='bg-primary-100 text-primary-500'>
+                ذخیره
+              </Button>
+            </Form.Item>
+          </div>
+        </Card>
       </Form>
-    </Card>
     </>
   )
 }
