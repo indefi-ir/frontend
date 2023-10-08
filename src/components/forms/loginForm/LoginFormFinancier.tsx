@@ -3,6 +3,7 @@ import { Button, Form, Input, notification } from "antd";
 import { useRouter } from 'next/router';
 import { useState } from "react";
 import { loginFunder } from "../../../services/authService/authFunder";
+import jwt_decode from "jwt-decode";
 
 const LoginFormFinancier = () => {
   const router = useRouter();
@@ -13,8 +14,10 @@ const LoginFormFinancier = () => {
     setLoading(true);
     try {
       const res = await loginFunder({ ...values })
-      if (res?.data?.data) {
-        localStorage.setItem('role', JSON.stringify(res?.data?.role))
+      const decodeToken:any = jwt_decode(res.data);
+      if (res) {
+        console.log(res)
+        localStorage.setItem('role', JSON.stringify(decodeToken?.role))
         api["success"]({
           message: <span className='text-sm text-green-500'>خوش آمدید.</span>,
           duration: 2,

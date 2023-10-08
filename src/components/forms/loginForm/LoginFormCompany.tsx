@@ -36,7 +36,7 @@ const LoginFormCompany = () => {
       <div>
         <h1 className="mb-10 text-right text-4xl text-black">ورود</h1>
         <Form onFinish={onFinish} layout="vertical" autoComplete="false">
-          <Form.Item name="username" label="شناسه ملی شرکت">
+          <Form.Item name="nationalId" label="شناسه ملی شرکت">
             <Input placeholder="شناسه ملی شرکت" className="p-3 text-sm w-96" />
           </Form.Item>
           <Form.Item name="password" label="کلمه عبور">

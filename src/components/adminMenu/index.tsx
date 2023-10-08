@@ -93,7 +93,7 @@ const AdminMenu = ({ styles }: Props) => {
   return (
     <Menu mode="inline" style={styles} className="text-base mb-10 px-2">
       {
-        userInfo.role === "Funder"
+        userInfo.role === "ANCHRO"
           ? (adminMenuItems.map((item) => (
             <Menu.Item key={item.key} icon={item.icon} className="!my-6 text-black-500">
               <Link href={item.path}>

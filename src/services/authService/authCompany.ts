@@ -4,7 +4,7 @@ import { loginCompanyUrl } from "../apiEndpoint";
 export async function loginCompany(data:any) {
   return axiosApiInstance 
     .post(loginCompanyUrl, {
-      username: data?.username,
+      nationalId: data?.username,
       password: data?.password
     })
     .then(async (response) => {
