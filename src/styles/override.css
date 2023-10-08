@@ -81,6 +81,11 @@
   color: white;
 }
 
+button.ant-table-row-expand-icon.ant-table-row-expand-icon-collapsed,
+button.ant-table-row-expand-icon.ant-table-row-expand-icon-expanded {
+  float: right !important;
+}
+
 .ant-pagination li.ant-pagination-item.ant-pagination-item-active a {
   color: white;
 }
@@ -88,4 +93,12 @@
 button.ant-pagination-item-link span svg {
   color: #5C59E8;
   font-weight: bold;
+}
+
+span.ant-table-row-indent.indent-level-1 {
+  padding-right: 30px !important;
+}
+
+.ant-table-wrapper .ant-table-row-indent {
+  float: right !important;
 }
