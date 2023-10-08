@@ -80,12 +80,12 @@ const columns = (searchTerm: string) => ([
     key: "action",
     render: (_: any, record: any) => (
       <Space size="middle">
-        <Tooltip placement="top" color="#f1c40f" title="مشاهده جزییات شرکت">
+        <Tooltip placement="top" color="#7D7AED" title="مشاهده جزییات شرکت">
           <span className='cursor-pointer' onClick={() => nextRouter.push(`/companies/details/${record.id}`)}>
             <EyeIcon />
           </span>
         </Tooltip>
-        <Tooltip placement="top" color="#f1c40f" title="افزودن اعتبار">
+        <Tooltip placement="top" color="#7D7AED" title="افزودن اعتبار">
         <span className='cursor-pointer' onClick={() => nextRouter.push(`/companies/credit/${record.id}`)}>
           <CreditIcon />
         </span>
