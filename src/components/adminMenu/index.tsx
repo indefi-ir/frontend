@@ -65,14 +65,26 @@ const companyMenuItems = [
   {
     key: '2',
     icon: <RequestIcon />,
-    label: 'پیش فاکتورها',
-    path: '/company/requests'
+    label: 'حسابداری فروش',
+    path: '/company/sales-accounting'
   },
   {
     key: '3',
+    icon: <RequestIcon />,
+    label: 'حسابداری خرید',
+    path: '/company/purchase-accounting'
+  },
+  {
+    key: '4',
+    icon: <RequestIcon />,
+    label: 'مدیریت جریان نقدی',
+    path: '/company/cash-flow-management'
+  },
+  {
+    key: '5',
     icon: <BillsCompanyIcon />,
-    label: 'تراکنش ها',
-    path: '/company/bills'
+    label: 'پروفایل شرکت',
+    path: '/company/profile'
   },
 ]
 const AdminMenu = ({ styles }: Props) => {
