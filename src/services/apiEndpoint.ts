@@ -1,6 +1,6 @@
 // Authenticate
 export const registerFunderUrl = '/api/v1/authenticate/register-funder';
-export const loginAnchorUrl = '/api/v1/company/authentication/login';
+export const loginFunderUrl = '/api/v1/authenticate/login-funder';
 export const registerCompanyUrl = '/api/v1/authenticate/register-company';
 export const loginCompanyUrl = '/api/v1/authenticate/login-company';
 
